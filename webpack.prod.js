@@ -7,13 +7,21 @@ const htmlPlugin = new HtmlWebPackPlugin({
 
 module.exports = {
     mode: "production",
-    entry: './src/index.js',
+    entry: './src/index.tsx',
     output: {
         path: path.resolve(__dirname, 'docs'),
         filename: 'bundle.js',
     },
     module: {
         rules: [
+            {
+                test: /\.(ts|tsx)$/,
+                exclude: /node_modules/,
+                resolve: {
+                    extensions: ['.ts', '.tsx', '.js', '.json'],
+                },
+                use: 'ts-loader',
+            },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
