@@ -1,5 +1,6 @@
 // require('dotenv').config(); // file must be called .env
 // const apiKey = process.env.API_KEY;
+import { createTag } from '../../util';
 
 // TODO: replace
 const apiKey = "m6T7mRl9ufRRQQNbkvDW0cRbv_qeip9Of0TvDDw_IEk";
@@ -10,7 +11,7 @@ const endpointCompletions = "/chat/completions";
 // 'claude-2-100k', 'claude-instant-100k', 'chat-bison-001']
 // babbage, ada, text-davinci-003
 const model = "gpt-3.5-turbo-16k";
-
+const tag = createTag("api");
 interface Msg {
     role: string,
     content: string
@@ -18,7 +19,7 @@ interface Msg {
 
 const messages : Array<Msg> = [];
 
-console.log("API Key: " + apiKey);
+console.log(tag + "API Key: " + apiKey);
 
 // const getCompletion = (msg : string, keepContext : boolean = true) : string =>{
 
@@ -44,7 +45,7 @@ export default async function getCompletion(msg : string, keepContext : boolean 
         //
         // .then(response => response.json()).then(data => {
         //console.log(data);
-        console.log(`[api] ${data.choices[0].message.content}`);
+        console.log(`${tag}${data.choices[0].message.content}`);
         return data.choices[0].message.content;
     }
     catch (e: any) {
