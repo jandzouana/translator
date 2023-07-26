@@ -5,7 +5,3 @@ export interface State {
     status: LoadingStates.idle | LoadingStates.loading | LoadingStates.succeeded | LoadingStates.failed,
     errorMessage: string
 }
-
-// export interface MyKnownError {
-//     errorMessage: string
-// }

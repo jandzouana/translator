@@ -8,21 +8,12 @@ import {LoadingStates} from '../../constants/enums';
 const disableApi = true;
 const tag = createTag("chimeraGptApi");
 
-
-// TODO: Move?
-// TODO: Create enums
-
-
 const initialState : State = {
     currentTranslation: "",
     status: LoadingStates.idle,
     errorMessage: ""
 };
 
-
-
-// TODO: Rewrite to take in param  async (msg: string) or take from current state
-// TODO: Check for errors rejectWithValue
 export const fetchTranslation = createAsyncThunk<string, void, {
     // Optional fields for defining thunkApi field types
     dispatch: AppDispatch
@@ -50,7 +41,7 @@ const apiSlice = createSlice({
     name: 'translations',
     initialState,
     reducers: {
-        addTodo: (state, action) => {
+        addTodo: () => { // state, action
             // state.currentTranslation = action.payload;
             console.log(tag + "dispatched addTodo");
         }

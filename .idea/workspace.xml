@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7fc95e27-f3c6-4190-90f6-71c413446df7" name="Changes" comment="refactored status">
+    <list default="true" id="7fc95e27-f3c6-4190-90f6-71c413446df7" name="Changes" comment="Added condition for checking if API call failed">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/api/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/interfaces.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/api/chimeraGptApiSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/api/chimeraGptApiSlice.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,6 +191,7 @@
     <MESSAGE value="fixed selectors" />
     <MESSAGE value="cleanup" />
     <MESSAGE value="refactored status" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored status" />
+    <MESSAGE value="Added condition for checking if API call failed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added condition for checking if API call failed" />
   </component>
 </project>
