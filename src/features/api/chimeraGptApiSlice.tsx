@@ -1,8 +1,7 @@
 import { createTag } from "../../util";
-import {createSlice, createAsyncThunk, AnyAction, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
 import getCompletion from './api';
-import store, {AppDispatch, RootState} from '../../store';
-import {useSelector} from "react-redux";
+import {AppDispatch, RootState} from '../../store';
 const disableApi = true;
 const tag = createTag("chimeraGptApi");
 
@@ -55,10 +54,6 @@ const apiSlice = createSlice({
                 state.status = 'succeeded';
                 state.currentTranslation = action.payload;
                 console.log(tag + "Success. Payload: " + action.payload);
-                // const select : string = useSelector(selectCurrentTranslation);
-                // console.log(tag + select);
-                // console.log(tag + store.getState());
-                //console.log(tag + state.currentTranslation);
             })
             .addCase(fetchTranslation.rejected, (state: State) => {
                 state.status = 'failed';

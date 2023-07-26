@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7fc95e27-f3c6-4190-90f6-71c413446df7" name="Changes" comment="changed api">
-      <change afterPath="$PROJECT_DIR$/src/util.ts" afterDir="false" />
+    <list default="true" id="7fc95e27-f3c6-4190-90f6-71c413446df7" name="Changes" comment="cleanup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/api/api.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/api/chimeraGptApiSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/api/chimeraGptApiSlice.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.tsx" afterDir="false" />
     </list>
@@ -98,7 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1690171462120</updated>
       <workItem from="1690171464307" duration="7071000" />
-      <workItem from="1690345470852" duration="16072000" />
+      <workItem from="1690345470852" duration="16335000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1690177630671</created>
@@ -135,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690353732921</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fixed selectors">
+      <created>1690361767737</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1690361767737</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,6 +173,8 @@
     <MESSAGE value="Added tsc" />
     <MESSAGE value="Added RTK, api" />
     <MESSAGE value="changed api" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed api" />
+    <MESSAGE value="fixed selectors" />
+    <MESSAGE value="cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleanup" />
   </component>
 </project>

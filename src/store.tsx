@@ -1,5 +1,4 @@
-import {AnyAction, AsyncThunkAction, configureStore} from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux'
+import { configureStore } from '@reduxjs/toolkit';
 import apiSlice from "./features/api/chimeraGptApiSlice";
 
 const store : any = configureStore({
@@ -15,8 +14,5 @@ const store : any = configureStore({
 });
 
 export type AppDispatch = typeof store.dispatch
-export const useAppDispatch: (action : AnyAction) => AppDispatch = useDispatch // Export a hook that can be reused to resolve types
-// export const apiDispatch: (action : AsyncThunkAction<string, void, any>) => AppDispatch = useDispatch // Export a hook that can be reused to resolve types
-
 export type RootState = ReturnType<typeof store.getState>
 export default store;

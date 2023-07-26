@@ -3,7 +3,7 @@ import { fetchTranslation } from "../features/api/chimeraGptApiSlice";
 import { selectCurrentTranslation, selectStatus } from "../features/api/chimeraGptApiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { createTag } from '../util';
-import store, {AppDispatch, RootState, useAppDispatch} from "../store"; // useAppDispatch, apiDispatch
+import { RootState } from "../store";
 
 interface Props {
 
@@ -11,15 +11,15 @@ interface Props {
 const Main : React.FC<Props> = (props = {}) => {
     console.log("top");
     const tag = createTag("Main");
-    const dispatch =  useDispatch();
+    const dispatch = useDispatch();
 
     useEffect(()=>{
         // @ts-ignore
         dispatch(fetchTranslation());
-    }, []); // dispatch
+    }, [dispatch]);
 
     const currentTranslation = useSelector(selectCurrentTranslation);
-    const currentStatus = useSelector((state : RootState) => state.chimeraApi.status)//useSelector(selectStatus);
+    const currentStatus = useSelector(selectStatus);
 
     return(<div>
         <h1>Hello World</h1>
