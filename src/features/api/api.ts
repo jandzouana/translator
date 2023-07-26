@@ -22,27 +22,33 @@ console.log("API Key: " + apiKey);
 
 // const getCompletion = (msg : string, keepContext : boolean = true) : string =>{
 
-export default function getCompletion(msg : string, keepContext : boolean = true){
+export default async function getCompletion(msg : string, keepContext : boolean = true){
     if(!keepContext) messages.length = 0;
     const temp : Msg = {"role": "user", "content": msg};
     messages.push(temp);
 
-    fetch(`${apiUrl}${endpointCompletions}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-            'model': model,
-            messages: messages
-        })
-    }).then(response => response.json()).then(data => {
+    try {
+        const response = await fetch(`${apiUrl}${endpointCompletions}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+                'model': model,
+                messages: messages
+            })
+        });
+        const data : any = await response.json();
+        console.log(data);
+        //
+        // .then(response => response.json()).then(data => {
         //console.log(data);
         console.log(`[api] ${data.choices[0].message.content}`);
         return data.choices[0].message.content;
-    }).catch(error => `The following error occured ${error}`);
-
-    // TODO: Throw exception
-    return "Error";
+    }
+    catch (e: any) {
+        console.log(`The following error occurred ${e}`);
+        throw new Error(e);
+    }
 }

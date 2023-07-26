@@ -31,7 +31,7 @@ const initialState : State = {
 
 export const fetchTranslation = createAsyncThunk<string, void>('translations/fetchTranslations', async () => {
     console.log("[chimerGptSlice] :: Getting translation...");
-    const response : string = getCompletion("2 + 2", false);
+    const response : string = await getCompletion("2 + 2", false);
     console.log("[chimerGptSlice] :: Response: " + response);
     return response;
 });
