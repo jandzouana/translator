@@ -1,0 +1,133 @@
+Index: src/features/api/api.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// require('dotenv').config(); // file must be called .env\r\n// const apiKey = process.env.API_KEY;\r\nimport { createTag } from '../../util';\r\n\r\n// TODO: replace\r\nconst apiKey = \"m6T7mRl9ufRRQQNbkvDW0cRbv_qeip9Of0TvDDw_IEk\";\r\nconst apiUrl =  'https://chimeragpt.adventblocks.cc/api/v1';\r\nconst endpointCompletions = \"/chat/completions\";\r\n// ['gpt-4', 'gpt-4-0314', 'gpt-4-poe', 'gpt-4-32k', 'gpt-4-32k-poe', 'gpt-3.5-turbo', 'gpt-3.5-turbo-0301',\r\n// 'gpt-3.5-turbo-poe', 'gpt-3.5-turbo-16k', 'gpt-3.5-turbo-16k-poe', 'llama-2-13b-chat', 'sage', 'claude-instant',\r\n// 'claude-2-100k', 'claude-instant-100k', 'chat-bison-001']\r\n// babbage, ada, text-davinci-003\r\nconst model = \"gpt-3.5-turbo-16k\";\r\nconst tag = createTag(\"api\");\r\ninterface Msg {\r\n    role: string,\r\n    content: string\r\n}\r\n\r\nconst messages : Array<Msg> = [];\r\n\r\nconsole.log(tag + \"API Key: \" + apiKey);\r\n\r\n// const getCompletion = (msg : string, keepContext : boolean = true) : string =>{\r\n\r\nexport default async function getCompletion(msg : string, keepContext : boolean = true){\r\n    if(!keepContext) messages.length = 0;\r\n    const temp : Msg = {\"role\": \"user\", \"content\": msg};\r\n    messages.push(temp);\r\n\r\n    try {\r\n        const response = await fetch(`${apiUrl}${endpointCompletions}`, {\r\n            method: 'POST',\r\n            headers: {\r\n                'Content-Type': 'application/json',\r\n                'Authorization': `Bearer ${apiKey}`\r\n            },\r\n            body: JSON.stringify({\r\n                'model': model,\r\n                messages: messages\r\n            })\r\n        });\r\n\r\n        if (!response.ok) {\r\n            // If the response status is not in the range of 200 to 299, it's considered an error\r\n            throw new Error(`Request failed with status: ${response.status}`);\r\n        }\r\n\r\n        const data : any = await response.json();\r\n        console.log(data);\r\n        //\r\n        // .then(response => response.json()).then(data => {\r\n        //console.log(data);\r\n        console.log(`${tag}${data.choices[0].message.content}`);\r\n        return data.choices[0].message.content;\r\n    }\r\n    catch (e: any) {\r\n        console.log(tag + `The following error occurred ${e.message}`);\r\n        throw new Error(e);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/features/api/api.ts b/src/features/api/api.ts
+--- a/src/features/api/api.ts	(revision 9c60c0ad93c03710f13b75d4138eb6b91ddc41ab)
++++ b/src/features/api/api.ts	(date 1690364188124)
+@@ -1,9 +1,10 @@
+-// require('dotenv').config(); // file must be called .env
+-// const apiKey = process.env.API_KEY;
++import dotenv from 'dotenv';
++dotenv.config(); // file must be called .env
++const apiKey = process.env.API_KEY;
+ import { createTag } from '../../util';
+ 
+ // TODO: replace
+-const apiKey = "m6T7mRl9ufRRQQNbkvDW0cRbv_qeip9Of0TvDDw_IEk";
++// const apiKey = "m6T7mRl9ufRRQQNbkvDW0cRbv_qeip9Of0TvDDw_IEk";
+ const apiUrl =  'https://chimeragpt.adventblocks.cc/api/v1';
+ const endpointCompletions = "/chat/completions";
+ // ['gpt-4', 'gpt-4-0314', 'gpt-4-poe', 'gpt-4-32k', 'gpt-4-32k-poe', 'gpt-3.5-turbo', 'gpt-3.5-turbo-0301',
+Index: webpack.dev.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>const HtmlWebPackPlugin = require(\"html-webpack-plugin\");\r\nconst htmlPlugin = new HtmlWebPackPlugin({\r\n    template: \"./src/index.html\",\r\n    filename: \"./index.html\"\r\n});\r\n\r\nmodule.exports = {\r\n    mode: \"development\",\r\n    entry: './src/index.tsx',\r\n    module: {\r\n        rules: [\r\n            {\r\n                test: /\\.(ts|tsx)$/,\r\n                exclude: /node_modules/,\r\n                resolve: {\r\n                    extensions: ['.ts', '.tsx', '.js', '.json'],\r\n                },\r\n                use: 'ts-loader',\r\n            },\r\n            {\r\n                test: /\\.js$/,\r\n                exclude: /node_modules/,\r\n                use: {\r\n                    loader: \"babel-loader\"\r\n                }\r\n            },\r\n            {\r\n                test: /\\.css$/,\r\n                use: [\"style-loader\", \"css-loader\"]\r\n            },\r\n            {\r\n                test: /\\.(png|jpe?g|gif|svg|ico)$/i,\r\n                use: [\r\n                    {\r\n                        loader: 'file-loader',\r\n                        options: {\r\n                            name: '[name].[hash].[ext]',\r\n                            outputPath: 'images',\r\n                        },\r\n                    },\r\n                ],\r\n            },\r\n        ]\r\n    },\r\n    devtool: 'source-map',\r\n    plugins: [htmlPlugin]\r\n};\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/webpack.dev.js b/webpack.dev.js
+--- a/webpack.dev.js	(revision 9c60c0ad93c03710f13b75d4138eb6b91ddc41ab)
++++ b/webpack.dev.js	(date 1690364493644)
+@@ -43,5 +43,17 @@
+         ]
+     },
+     devtool: 'source-map',
++    // resolve: {
++    //     extensions: ['.ts', '.tsx', '.js', '.json'],
++    //     fallback: {
++    //         "path": require.resolve("path-browserify")
++    //     }
++    // },
++    resolve: {
++        extensions: ['.ts', '.tsx', '.js', '.json'],
++        fallback: {
++            "crypto": require.resolve("crypto-browserify")
++        }
++    },
+     plugins: [htmlPlugin]
+ };
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"7fc95e27-f3c6-4190-90f6-71c413446df7\" name=\"Changes\" comment=\"refactored status\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/components/Main.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/components/Main.tsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/constants/interfaces.ts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/constants/interfaces.ts\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/features/api/api.ts\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/features/api/api.ts\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/features/api/chimeraGptApiSlice.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/features/api/chimeraGptApiSlice.tsx\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/store.tsx\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/store.tsx\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"package.json\" />\r\n        <option value=\"HTML File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2T0EBCakrTKFEnZSWsEC450Ll5a\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"javascript.nodejs.core.library.configured.version\": \"19.3.0\",\r\n    \"javascript.nodejs.core.library.typings.version\": \"20.4.4\",\r\n    \"last_opened_file_path\": \"C:/Users/jessi/Desktop/Jessica2023/Dev/AI/Translator/Translator/src/features/api\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"ts.external.directory.path\": \"C:\\\\Users\\\\jessi\\\\Desktop\\\\Jessica2023\\\\Dev\\\\AI\\\\Translator\\\\Translator\\\\node_modules\\\\typescript\\\\lib\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\jessi\\Desktop\\Jessica2023\\Dev\\AI\\Translator\\Translator\\src\\features\\api\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"npm.start\">\r\n    <configuration name=\"build\" type=\"js.build_tools.npm\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"build\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"install\" type=\"js.build_tools.npm\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"install\" />\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"start\" type=\"js.build_tools.npm\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"start\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"npm.start\" />\r\n      <item itemvalue=\"npm.install\" />\r\n      <item itemvalue=\"npm.build\" />\r\n    </list>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"7fc95e27-f3c6-4190-90f6-71c413446df7\" name=\"Changes\" comment=\"\" />\r\n      <created>1690171462120</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1690171462120</updated>\r\n      <workItem from=\"1690171464307\" duration=\"7071000\" />\r\n      <workItem from=\"1690345470852\" duration=\"18456000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"first commit\">\r\n      <created>1690177630671</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1690177630672</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"changed git ignore\">\r\n      <created>1690177671145</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1690177671145</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Added tsc\">\r\n      <created>1690181364190</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1690181364190</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Added RTK, api\">\r\n      <created>1690353176714</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1690353176714</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"changed api\">\r\n      <created>1690353732921</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1690353732921</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"fixed selectors\">\r\n      <created>1690361767737</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1690361767737</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"cleanup\">\r\n      <created>1690361978720</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1690361978720</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"refactored status\">\r\n      <created>1690362451063</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1690362451063</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"9\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n    <option name=\"exactExcludedFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/src/index.js\" />\r\n        <option value=\"$PROJECT_DIR$/src/App.js\" />\r\n        <option value=\"$PROJECT_DIR$/src/App.js.map\" />\r\n        <option value=\"$PROJECT_DIR$/src/index.js\" />\r\n        <option value=\"$PROJECT_DIR$/src/index.js.map\" />\r\n        <option value=\"$PROJECT_DIR$/src/App.js\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"first commit\" />\r\n    <MESSAGE value=\"changed git ignore\" />\r\n    <MESSAGE value=\"Added tsc\" />\r\n    <MESSAGE value=\"Added RTK, api\" />\r\n    <MESSAGE value=\"changed api\" />\r\n    <MESSAGE value=\"fixed selectors\" />\r\n    <MESSAGE value=\"cleanup\" />\r\n    <MESSAGE value=\"refactored status\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"refactored status\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 9c60c0ad93c03710f13b75d4138eb6b91ddc41ab)
++++ b/.idea/workspace.xml	(date 1690364493834)
+@@ -1,13 +1,11 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="7fc95e27-f3c6-4190-90f6-71c413446df7" name="Changes" comment="refactored status">
++    <list default="true" id="7fc95e27-f3c6-4190-90f6-71c413446df7" name="Changes" comment="Added condition for checking if API call failed">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/components/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.tsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/constants/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/interfaces.ts" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/features/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/api/api.ts" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/features/api/chimeraGptApiSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/api/chimeraGptApiSlice.tsx" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/store.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/webpack.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.dev.js" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -98,7 +96,7 @@
+       <option name="presentableId" value="Default" />
+       <updated>1690171462120</updated>
+       <workItem from="1690171464307" duration="7071000" />
+-      <workItem from="1690345470852" duration="18456000" />
++      <workItem from="1690345470852" duration="18856000" />
+     </task>
+     <task id="LOCAL-00001" summary="first commit">
+       <created>1690177630671</created>
+@@ -156,7 +154,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1690362451063</updated>
+     </task>
+-    <option name="localTasksCounter" value="9" />
++    <task id="LOCAL-00009" summary="Added condition for checking if API call failed">
++      <created>1690364119676</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1690364119676</updated>
++    </task>
++    <option name="localTasksCounter" value="10" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -192,6 +197,7 @@
+     <MESSAGE value="fixed selectors" />
+     <MESSAGE value="cleanup" />
+     <MESSAGE value="refactored status" />
+-    <option name="LAST_COMMIT_MESSAGE" value="refactored status" />
++    <MESSAGE value="Added condition for checking if API call failed" />
++    <option name="LAST_COMMIT_MESSAGE" value="Added condition for checking if API call failed" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"name\": \"translator\",\r\n  \"version\": \"1.0.0\",\r\n  \"description\": \"\",\r\n  \"main\": \"index.js\",\r\n  \"scripts\": {\r\n    \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\",\r\n    \"start\": \"webpack serve --config webpack.dev.js\",\r\n    \"build\": \"webpack --config webpack.prod.js\"\r\n  },\r\n  \"author\": \"\",\r\n  \"license\": \"ISC\",\r\n  \"dependencies\": {\r\n    \"@reduxjs/toolkit\": \"^1.9.5\",\r\n    \"react\": \"^18.2.0\",\r\n    \"react-dom\": \"^18.2.0\",\r\n    \"react-redux\": \"^8.1.1\"\r\n  },\r\n  \"devDependencies\": {\r\n    \"@babel/core\": \"^7.22.9\",\r\n    \"@babel/plugin-proposal-class-properties\": \"^7.18.6\",\r\n    \"@babel/preset-react\": \"^7.22.5\",\r\n    \"@types/react\": \"^18.2.15\",\r\n    \"@types/react-dom\": \"^18.2.7\",\r\n    \"babel-loader\": \"^9.1.3\",\r\n    \"babel-preset-react\": \"^6.24.1\",\r\n    \"css-loader\": \"^6.8.1\",\r\n    \"dotenv\": \"^16.3.1\",\r\n    \"file-loader\": \"^6.2.0\",\r\n    \"html-webpack-plugin\": \"^5.5.3\",\r\n    \"style-loader\": \"^3.3.3\",\r\n    \"ts-loader\": \"^9.4.4\",\r\n    \"typescript\": \"^5.1.6\",\r\n    \"webpack\": \"^5.88.1\",\r\n    \"webpack-cli\": \"^5.1.4\",\r\n    \"webpack-dev-server\": \"^4.15.1\"\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/package.json b/package.json
+--- a/package.json	(revision 9c60c0ad93c03710f13b75d4138eb6b91ddc41ab)
++++ b/package.json	(date 1690364399500)
+@@ -12,6 +12,8 @@
+   "license": "ISC",
+   "dependencies": {
+     "@reduxjs/toolkit": "^1.9.5",
++    "crypto-browserify": "^3.12.0",
++    "path-browserify": "^1.0.1",
+     "react": "^18.2.0",
+     "react-dom": "^18.2.0",
+     "react-redux": "^8.1.1"

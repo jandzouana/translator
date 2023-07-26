@@ -1,9 +1,5 @@
-// require('dotenv').config(); // file must be called .env
-// const apiKey = process.env.API_KEY;
+const apiKey = process.env.API_KEY;
 import { createTag } from '../../util';
-
-// TODO: replace
-const apiKey = "m6T7mRl9ufRRQQNbkvDW0cRbv_qeip9Of0TvDDw_IEk";
 const apiUrl =  'https://chimeragpt.adventblocks.cc/api/v1';
 const endpointCompletions = "/chat/completions";
 // ['gpt-4', 'gpt-4-0314', 'gpt-4-poe', 'gpt-4-32k', 'gpt-4-32k-poe', 'gpt-3.5-turbo', 'gpt-3.5-turbo-0301',
