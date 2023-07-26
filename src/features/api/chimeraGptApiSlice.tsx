@@ -1,21 +1,21 @@
-import { createTag } from "../../util";
-import {createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
+import {createTag} from "../../util";
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import getCompletion from './api';
 import {AppDispatch, RootState} from '../../store';
+import {State} from '../../constants/interfaces';
+import {LoadingStates} from '../../constants/enums';
+
 const disableApi = true;
 const tag = createTag("chimeraGptApi");
 
 
 // TODO: Move?
 // TODO: Create enums
-interface State {
-    currentTranslation : string,
-    status: 'idle' | 'loading' | 'succeeded' | 'failed';
-}
+
 
 const initialState : State = {
     currentTranslation: "",
-    status: 'idle'
+    status: LoadingStates.idle
 };
 
 
@@ -48,15 +48,15 @@ const apiSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchTranslation.pending, (state: State) => {
-                state.status = 'loading';
+                state.status = LoadingStates.loading;
             })
             .addCase(fetchTranslation.fulfilled, (state: State, action: PayloadAction<string>) => {
-                state.status = 'succeeded';
+                state.status = LoadingStates.succeeded;
                 state.currentTranslation = action.payload;
                 console.log(tag + "Success. Payload: " + action.payload);
             })
             .addCase(fetchTranslation.rejected, (state: State) => {
-                state.status = 'failed';
+                state.status = LoadingStates.failed;
             });
     }
 });

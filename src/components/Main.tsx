@@ -4,6 +4,7 @@ import { selectCurrentTranslation, selectStatus } from "../features/api/chimeraG
 import { useSelector, useDispatch } from "react-redux";
 import { createTag } from '../util';
 import { RootState } from "../store";
+import { LoadingStates } from "../constants/enums";
 
 interface Props {
 
@@ -23,8 +24,7 @@ const Main : React.FC<Props> = (props = {}) => {
 
     return(<div>
         <h1>Hello World</h1>
-        <h2>{currentStatus}</h2>
-        <h2>{currentTranslation}</h2>
+        <h2>{currentStatus === LoadingStates.succeeded && currentTranslation}</h2>
     </div>);
 }
 
