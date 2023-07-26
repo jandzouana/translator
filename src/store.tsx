@@ -4,7 +4,6 @@ import apiSlice from "./features/api/chimeraGptApiSlice";
 const store : any = configureStore({
     reducer : {
         chimeraApi: apiSlice
-        // status:
         // textInput
         // textOutput, api?
         // inputLanguage

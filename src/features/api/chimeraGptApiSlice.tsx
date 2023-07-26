@@ -15,25 +15,35 @@ const tag = createTag("chimeraGptApi");
 
 const initialState : State = {
     currentTranslation: "",
-    status: LoadingStates.idle
+    status: LoadingStates.idle,
+    errorMessage: ""
 };
 
 
 
 // TODO: Rewrite to take in param  async (msg: string) or take from current state
 // TODO: Check for errors rejectWithValue
-export const fetchTranslation = createAsyncThunk<string, void,   {
+export const fetchTranslation = createAsyncThunk<string, void, {
     // Optional fields for defining thunkApi field types
     dispatch: AppDispatch
     state: State
     extra: {
         jwt: string
-    }}>('translations/fetchTranslation', async () => {
+    }
+    rejectWithValue : any
+    }>('translations/fetchTranslation', async (_, thunkApi) => {
     if(disableApi) return "Disabled";
     console.log(tag + "Getting translation...");
-    const response : string = await getCompletion("2 + 2", false);
-    console.log(tag + "Response: " + response);
-    return response;
+    try {
+        const response: string = await getCompletion("2 + 2", false);
+        console.log(tag + "Response: " + response);
+        return response;
+    }
+    catch (e : any) {
+        // Handle the error and return a rejected action using rejectWithValue
+        const errorMessage = e.message; // Or any other error-related data you want to include
+        return thunkApi.rejectWithValue(errorMessage);
+    }
 });
 
 const apiSlice = createSlice({
@@ -55,8 +65,10 @@ const apiSlice = createSlice({
                 state.currentTranslation = action.payload;
                 console.log(tag + "Success. Payload: " + action.payload);
             })
-            .addCase(fetchTranslation.rejected, (state: State) => {
+            .addCase(fetchTranslation.rejected, (state: State, action: PayloadAction<any>) => {
                 state.status = LoadingStates.failed;
+                state.errorMessage = action.payload;
+                console.log(tag + "Failed to get translation: " + action.payload);
             });
     }
 });
@@ -64,5 +76,5 @@ const apiSlice = createSlice({
 // export const { addTodo } = apiSlice;
 export const selectCurrentTranslation = (state : RootState) => state.chimeraApi.currentTranslation;
 export const selectStatus = (state : RootState) => state.chimeraApi.status;
-
+export const selectApiError = (state : RootState) => state.chimeraApi.errorMessage;
 export default  apiSlice.reducer;

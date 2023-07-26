@@ -40,6 +40,12 @@ export default async function getCompletion(msg : string, keepContext : boolean 
                 messages: messages
             })
         });
+
+        if (!response.ok) {
+            // If the response status is not in the range of 200 to 299, it's considered an error
+            throw new Error(`Request failed with status: ${response.status}`);
+        }
+
         const data : any = await response.json();
         console.log(data);
         //
@@ -49,7 +55,7 @@ export default async function getCompletion(msg : string, keepContext : boolean 
         return data.choices[0].message.content;
     }
     catch (e: any) {
-        console.log(`The following error occurred ${e}`);
+        console.log(tag + `The following error occurred ${e.message}`);
         throw new Error(e);
     }
 }
