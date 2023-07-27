@@ -6,4 +6,25 @@
     height: 100%;
     width: 100%;
     /*background-color: red;*/
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    /*align-items: center;*/
+}
+
+#switch-languages-button{
+    margin: auto;
+}
+
+.translator-card{
+    flex: 1;
+    border-radius: 20px;
+}
+
+.input-card-container {
+    background-color: var(--off-white);
+}
+
+.output-card-container {
+    background-color: var(--red);
 }
