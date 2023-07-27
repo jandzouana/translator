@@ -2,7 +2,9 @@
 
 body, html{
     margin: 0;
-    /*font-size: var(--font-size);*/
+    font-size: var(--font-size-small);
+    font-family: var(--primary-font);
+    font-weight: var(--font-weight-regular);
 }
 
 #app-container{
@@ -24,6 +26,7 @@ body, html{
 
 #title{
     margin: auto;
+    font-weight: var(--font-weight-black);
 }
 
 #main{

@@ -1,5 +1,36 @@
 /* variables.css */
 :root {
-    --primary-color: #007bff;
-    --font-size: 16px;
+    /*Colors*/
+    --light-blue: #96C8E8;
+    --dark-blue: #265494;
+    --midnight: #1D3557;
+    --dark-grey: #443636;
+    --grey: #8D99AE;
+    --light-grey: #C3CDDC;
+    --blue: #2C95D8;
+    --white: #FFFFFF;
+    --off-black: #2B2D42;
+    --off-white: #F8F8F8;
+    --red: #F73F4D;
+
+    /*Font*/
+    --font-size-xs: 14px;
+    --font-size-small: 16px;
+    --font-size-med-small: 18px;
+    --font-size-med: 20px;
+    --font-size-med-large: 24px;
+    --font-size-large: 30px;
+    --font-size-xl: 38px;
+
+    --primary-font: 'apparat';
+    --primary-font-light: 'apparat-light';
+
+    --fallback-font: sans-serif;
+    --font-weight-light: 400;
+    --font-weight-regular: 300;
+    --font-weight-medium: 400;
+    --font-weight-semi-bold: 500;
+    --font-weight-bold: 600;
+    --font-weight-extra-bold: 700;
+    --font-weight-black: 800;
 }
