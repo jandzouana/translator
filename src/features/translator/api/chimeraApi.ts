@@ -52,6 +52,6 @@ export default async function getCompletion(msg : string, keepContext : boolean 
     }
     catch (e: any) {
         console.log(tag + `The following error occurred ${e.message}`);
-        throw new Error(e);
+        throw new Error(e.message);
     }
 }

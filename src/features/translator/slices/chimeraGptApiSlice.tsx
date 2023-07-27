@@ -1,12 +1,12 @@
-import {createTag} from "../../../shared/utils/util";
-import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createTag } from "../../../shared/utils/util";
+import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
 import getCompletion from '../api/chimeraApi';
-import {AppDispatch, RootState} from '../../../shared/store';
-import {State} from '../../../shared/constants/interfaces';
-import {LoadingStates} from '../../../shared/constants/enums';
+import { AppDispatch, RootState } from '../../../shared/store';
+import { State } from '../../../shared/constants/interfaces';
+import { LoadingStates } from '../../../shared/constants/enums';
 
-const disableApi = true;
-const tag = createTag("chimeraGptApi");
+const disableApi : boolean = true;
+const tag : string = createTag("chimeraGptApi");
 
 const initialState : State = {
     currentTranslation: "",
@@ -37,13 +37,13 @@ export const fetchTranslation = createAsyncThunk<string, void, {
     }
 });
 
-const apiSlice = createSlice({
+const apiSlice : any = createSlice({
     name: 'translations',
     initialState,
     reducers: {
-        addTodo: () => { // state, action
-            // state.currentTranslation = action.payload;
-            console.log(tag + "dispatched addTodo");
+        clearCurrentTranslation: (state : State) => { // state, action
+            state.currentTranslation = "";
+            console.log(tag + "dispatched clearCurrentTranslation");
         }
     },
     extraReducers: (builder) => {
@@ -64,8 +64,8 @@ const apiSlice = createSlice({
     }
 });
 
-// export const { addTodo } = apiSlice;
+export const { clearCurrentTranslation } = apiSlice;
 export const selectCurrentTranslation = (state : RootState) => state.chimeraApi.currentTranslation;
 export const selectStatus = (state : RootState) => state.chimeraApi.status;
 export const selectApiError = (state : RootState) => state.chimeraApi.errorMessage;
-export default  apiSlice.reducer;
+export default apiSlice.reducer;
