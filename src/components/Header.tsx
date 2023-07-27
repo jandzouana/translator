@@ -2,7 +2,10 @@ import React from 'react';
 
 const Header = () =>{
     return(<nav id={"header"}>
-        <h1 id={"title"}>WordFlex</h1>
+        <div id={"title"} className={"disable-select"}>
+            <span>Word</span>
+            <span>Flex</span>
+        </div>
     </nav>);
 }
 

@@ -16,7 +16,7 @@ body, html{
 }
 
 #header{
-    background-color: gray;
+    /*background-color: gray;*/
     /*height: 100px;*/
     flex-basis: 100px;
     width: 100%;
@@ -27,15 +27,22 @@ body, html{
 #title{
     margin: auto;
     font-weight: var(--font-weight-black);
+    font-size: var(--font-size-xl);
+    color: var(--off-black);
+}
+
+#title span:last-child{
+    color: var(--red);
 }
 
 #main{
-    background-color: #007bff;
+    /*background-color: #007bff;*/
     flex: 1;
     display: flex;
     flex-direction: column;
     margin-right: 70px;
     margin-left: 70px;
+    margin-bottom: 20px;
 }
 
 .level{
@@ -54,6 +61,10 @@ body, html{
 }
 
 #l3{
-    flex-basis: 70px;
+    flex-basis: 100px;
     align-items: center;
+}
+
+.disable-select {
+    user-select: none;
 }
