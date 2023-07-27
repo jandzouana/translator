@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import apiSlice from "./features/api/chimeraGptApiSlice";
+import apiSlice from "../features/translator/slices/chimeraGptApiSlice";
 
 const store : any = configureStore({
     reducer : {

@@ -1,9 +1,9 @@
-import {createTag} from "../../util";
+import {createTag} from "../../../shared/utils/util";
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import getCompletion from './api';
-import {AppDispatch, RootState} from '../../store';
-import {State} from '../../constants/interfaces';
-import {LoadingStates} from '../../constants/enums';
+import getCompletion from '../api/chimeraApi';
+import {AppDispatch, RootState} from '../../../shared/store';
+import {State} from '../../../shared/constants/interfaces';
+import {LoadingStates} from '../../../shared/constants/enums';
 
 const disableApi = true;
 const tag = createTag("chimeraGptApi");

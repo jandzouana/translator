@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { fetchTranslation } from "../features/api/chimeraGptApiSlice";
-import { selectCurrentTranslation, selectStatus, selectApiError } from "../features/api/chimeraGptApiSlice";
+import { fetchTranslation } from "../features/translator/slices/chimeraGptApiSlice";
+import { selectCurrentTranslation, selectStatus, selectApiError } from "../features/translator/slices/chimeraGptApiSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { createTag } from '../util';
-import { LoadingStates } from "../constants/enums";
+import { createTag } from '../shared/utils/util';
+import { LoadingStates } from "../shared/constants/enums";
 
 interface Props {
 

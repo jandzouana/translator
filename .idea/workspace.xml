@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fc95e27-f3c6-4190-90f6-71c413446df7" name="Changes" comment="Added condition for checking if API call failed">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/interfaces.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/api/chimeraGptApiSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/api/chimeraGptApiSlice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/enums.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/enums.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/constants/interfaces.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/translator/api/chimeraApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/api/chimeraGptApiSlice.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/translator/slices/chimeraGptApiSlice.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/store.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/styles/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/utils/util.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +58,13 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jessi\Desktop\Jessica2023\Dev\AI\Translator\Translator\src\features\api" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jessi\Desktop\Jessica2023\Dev\AI\Translator\Translator\src\shared" />
+      <recent name="C:\Users\jessi\Desktop\Jessica2023\Dev\AI\Translator\Translator\src\features\translator\slices" />
+      <recent name="C:\Users\jessi\Desktop\Jessica2023\Dev\AI\Translator\Translator\src\features\translator" />
+      <recent name="C:\Users\jessi\Desktop\Jessica2023\Dev\AI\Translator\Translator\src" />
+      <recent name="C:\Users\jessi\Desktop\Jessica2023\Dev\AI\Translator\Translator\src\utils" />
+    </key>
   </component>
   <component name="RunManager" selected="npm.start">
     <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
@@ -98,6 +110,7 @@
       <updated>1690171462120</updated>
       <workItem from="1690171464307" duration="7071000" />
       <workItem from="1690345470852" duration="18456000" />
+      <workItem from="1690400517157" duration="1160000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1690177630671</created>
@@ -155,7 +168,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690362451063</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added condition for checking if API call failed">
+      <created>1690366143381</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1690366143381</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

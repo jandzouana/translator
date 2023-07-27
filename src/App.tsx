@@ -1,8 +1,8 @@
 import React from 'react';
 import Main from './components/Main';
 import {Provider} from "react-redux";
-import store from './store';
-import './styles/main.css';
+import store from './shared/store';
+import './shared/styles/main.css';
 
 interface Props{
 }

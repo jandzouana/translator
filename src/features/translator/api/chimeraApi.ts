@@ -1,5 +1,5 @@
 const apiKey = process.env.API_KEY;
-import { createTag } from '../../util';
+import { createTag } from '../../../shared/utils/util';
 const apiUrl =  'https://chimeragpt.adventblocks.cc/api/v1';
 const endpointCompletions = "/chat/completions";
 // ['gpt-4', 'gpt-4-0314', 'gpt-4-poe', 'gpt-4-32k', 'gpt-4-32k-poe', 'gpt-3.5-turbo', 'gpt-3.5-turbo-0301',
