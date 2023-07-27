@@ -1,0 +1,5 @@
+Copyright 2023 Jessica Andzouana
+
+All rights reserved. This code is proprietary and confidential.
+Unauthorized copying, modification, distribution, or use of this code, in whole or in part,
+is strictly prohibited, and may be unlawful. This code is for personal use only.
