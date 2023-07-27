@@ -7,6 +7,7 @@ import {LoadingStates, TranslateCardType} from "../../shared/constants/enums";
 import './styles/translator.css';
 import TranslatorCard from "./components/TranslatorCard";
 import CircleButton from "../../shared/components/buttons/CircleButton";
+import switchIcon from '../../assets/switch.svg';
 
 interface Props {
 
@@ -28,7 +29,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     return(
         <div id={"translator-container"}>
             <TranslatorCard type={TranslateCardType.Input} />
-            <CircleButton id={"switch-languages-button"}/>
+            <CircleButton id={"switch-languages-button"} switchIcon={switchIcon} enablePress={false}/>
             <TranslatorCard type={TranslateCardType.Output} />
         </div>
     );
