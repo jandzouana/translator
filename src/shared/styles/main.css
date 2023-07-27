@@ -1,0 +1,43 @@
+@import 'variables.css';
+
+body, html{
+    margin: 0;
+    /*font-size: var(--font-size);*/
+}
+
+#app-container{
+    display: flex;
+    flex-direction: column;
+    /*align-items: stretch;*/
+    height: 100vh;
+}
+
+#header{
+    background-color: gray;
+    /*height: 100px;*/
+    flex-basis: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#title{
+    margin: auto;
+}
+
+#main{
+    background-color: #007bff;
+    flex: 1;
+}
+
+#l1{
+
+}
+
+#l2{
+
+}
+
+#l3{
+
+}
