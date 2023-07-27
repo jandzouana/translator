@@ -4,6 +4,7 @@ import { selectCurrentTranslation, selectStatus, selectApiError } from "./slices
 import { useSelector, useDispatch } from "react-redux";
 import { createTag} from "../../shared/utils/util";
 import { LoadingStates} from "../../shared/constants/enums";
+import './styles/translator.css';
 
 interface Props {
 
@@ -22,7 +23,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     const currentStatus = useSelector(selectStatus);
     const apiError = useSelector(selectApiError);
 
-    return(<div id={"translatorContainer"}>
+    return(<div id={"translator-container"}>
         <h1>Hello World</h1>
         <h2>{currentStatus === LoadingStates.succeeded && currentTranslation}</h2>
         <h2>Current Status: {currentStatus}</h2>

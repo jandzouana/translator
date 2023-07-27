@@ -1,0 +1,9 @@
+@import '../../../shared/styles/variables.css';
+
+/*font-size: var(--font-size);*/
+
+#translator-container{
+    height: 100%;
+    width: 100%;
+    background-color: red;
+}

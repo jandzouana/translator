@@ -10,6 +10,7 @@ body, html{
     flex-direction: column;
     /*align-items: stretch;*/
     height: 100vh;
+    min-height: 500px;
 }
 
 #header{
@@ -28,16 +29,28 @@ body, html{
 #main{
     background-color: #007bff;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 70px;
+    margin-left: 70px;
+}
+
+.level{
+    border: 2px solid lightseagreen;
+    display: flex;
 }
 
 #l1{
-
+    flex-basis: 50px;
+    align-items: center;
 }
 
 #l2{
-
+    flex: 1;
+    align-items: center;
 }
 
 #l3{
-
+    flex-basis: 70px;
+    align-items: center;
 }

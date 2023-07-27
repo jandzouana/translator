@@ -16,11 +16,15 @@ const Main : React.FC<Props> = (props = {}) => {
 
     return(
         <div id={"main"}>
-            <div id={"l1"} className={"level"}></div>
+            <div id={"l1"} className={"level"}>
+                Dropdown goes here
+            </div>
             <div id={"l2"} className={"level"}>
                 <Translator />
             </div>
-            <div id={"l3"} className={"level"}></div>
+            <div id={"l3"} className={"level"}>
+                Translate button goes here
+            </div>
         </div>
     );
 }
