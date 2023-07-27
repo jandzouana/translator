@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import '../../styles/variables.css';
 import {Color, IconType} from "../../constants/enums";
 import {getColorVarNameFromType, varFormatWithColor} from "../../utils/util";
-//@ts-ignore
 import switchIcon from '../../../assets/switch.svg';
 
 interface Props{
