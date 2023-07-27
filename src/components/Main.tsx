@@ -23,7 +23,7 @@ const Main : React.FC<Props> = (props = {}) => {
                 <Translator />
             </div>
             <div id={"l3"} className={"level"}>
-                Translate button goes here
+                <button className={"square-button"}>Translate</button>
             </div>
         </div>
     );

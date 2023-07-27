@@ -19,6 +19,11 @@
 .translator-card{
     flex: 1;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+    gap: 5px;
 }
 
 .input-card-container {
@@ -27,4 +32,21 @@
 
 .output-card-container {
     background-color: var(--red);
+    color: var(--white);
+}
+
+.translator-card--dropdown{
+    visibility: hidden;
+}
+.translator-card--textarea{
+    flex: 1;
+    resize: none;
+    background: none;
+    font-family: var(--primary-font);
+    padding: 0.7em;
+    line-height: 20px;
+}
+
+.translator-card--icon-container{
+    flex-basis: 50px;
 }

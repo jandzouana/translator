@@ -14,6 +14,7 @@ body, html{
     height: 100vh;
     min-height: 500px;
     max-height: 580px;
+    max-width: 1500px;
 }
 
 #header{
@@ -47,7 +48,7 @@ body, html{
 }
 
 .level{
-    border: 2px solid lightseagreen;
+    /*border: 2px solid lightseagreen;*/
     display: flex;
 }
 
@@ -64,8 +65,23 @@ body, html{
 #l3{
     flex-basis: 100px;
     align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .disable-select {
     user-select: none;
+}
+
+/*TODO: Move*/
+.square-button{
+    height: 50px;
+    width: 100px;
+    background: var(--blue);
+    border: none;
+    border-radius: 10px;
+    color: var(--white);
+    font-family: var(--primary-font);
+    font-weight: var(--font-weight-semi-bold);
+    cursor: pointer;
 }
