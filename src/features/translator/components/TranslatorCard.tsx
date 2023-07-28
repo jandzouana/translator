@@ -34,6 +34,7 @@ const TranslatorCard : React.FC<Props> = (props = {type:TranslateCardType.Input,
                 <option value="option3">Option 3</option>
             </select>
             <textarea disabled={type === TranslateCardType.Output}
+                      autoComplete="off"
                       className={`translator-card--textarea 
                                 ${type === TranslateCardType.Output ? "translator-card--textarea--output" : ""}`}
                       value={textValue}
