@@ -12,9 +12,7 @@ body, html{
     flex-direction: column;
     /*align-items: stretch;*/
     height: 100vh;
-    min-height: 500px;
-    max-height: 580px;
-    max-width: 1500px;
+    min-height: 400px;
 }
 
 #header{
@@ -40,11 +38,15 @@ body, html{
 #main{
     /*background-color: #007bff;*/
     flex: 1;
+    /*max-height: 580px;*/
+    /*max-width: 1500px;*/
+    /*min-height: 400px;*/
+
     display: flex;
     flex-direction: column;
     margin-right: 70px;
     margin-left: 70px;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
 }
 
 .level{
@@ -55,11 +57,14 @@ body, html{
 #l1{
     flex-basis: 50px;
     align-items: center;
+    display: none;
 }
 
 #l2{
     flex: 1;
-    align-items: center;
+    /*align-items: center;*/
+    display: flex;
+    justify-content: flex-start;
 }
 
 #l3{

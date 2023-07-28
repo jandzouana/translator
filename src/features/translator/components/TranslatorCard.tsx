@@ -26,6 +26,7 @@ const TranslatorCard : React.FC<Props> = (props = {type:TranslateCardType.Input}
 
     function handleTextAreaChange(event : any) {
         setTextValue(event.target.value);
+        handleTextChange(event.target.value);
     }
 
     return(
@@ -36,7 +37,8 @@ const TranslatorCard : React.FC<Props> = (props = {type:TranslateCardType.Input}
                 <option value="option3">Option 3</option>
             </select>
             <textarea disabled={type === TranslateCardType.Output}
-                      className="translator-card--textarea"
+                      className={`translator-card--textarea 
+                                ${type === TranslateCardType.Output ? "translator-card--textarea--output" : ""}`}
                       value={textValue}
                       onChange={handleTextAreaChange}
                       placeholder={type === TranslateCardType.Output ? "" : "What would you like to translate?"}

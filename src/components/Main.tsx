@@ -9,21 +9,12 @@ const Main : React.FC<Props> = (props = {}) => {
     console.log("top");
     const tag = createTag("Main");
 
-    useEffect(()=>{
-
-    }, []);
-
-
     return(
         <div id={"main"}>
             <div id={"l1"} className={"level"}>
-                Dropdown goes here
             </div>
             <div id={"l2"} className={"level"}>
                 <Translator />
-            </div>
-            <div id={"l3"} className={"level"}>
-                <button className={"square-button"}>Translate</button>
             </div>
         </div>
     );

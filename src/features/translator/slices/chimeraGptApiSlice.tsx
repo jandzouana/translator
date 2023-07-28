@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from '../../../shared/store';
 import { State } from '../../../shared/constants/interfaces';
 import { LoadingStates } from '../../../shared/constants/enums';
 
-const disableApi : boolean = true;
+const disableApi : boolean = false;
 const tag : string = createTag("chimeraGptApi");
 
 const initialState : State = {
@@ -14,7 +14,7 @@ const initialState : State = {
     errorMessage: ""
 };
 
-export const fetchTranslation = createAsyncThunk<string, void, {
+export const fetchTranslation = createAsyncThunk<string, string, {
     // Optional fields for defining thunkApi field types
     dispatch: AppDispatch
     state: State
@@ -22,11 +22,12 @@ export const fetchTranslation = createAsyncThunk<string, void, {
         jwt: string
     }
     rejectWithValue : any
-    }>('translations/fetchTranslation', async (_, thunkApi) => {
+    }>('translations/fetchTranslation', async (input, thunkApi) => {
     if(disableApi) return "Disabled";
     console.log(tag + "Getting translation...");
     try {
-        const response: string = await getCompletion("2 + 2", false);
+        const requestMessage = "Translate the following to Spanish: " + input;
+        const response: string = await getCompletion(requestMessage, false);
         console.log(tag + "Response: " + response);
         return response;
     }
