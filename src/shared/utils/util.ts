@@ -17,6 +17,7 @@ export const getColorVarNameFromType = (type : Color) : string => {
       case Color.Grey: return "--grey";
       case Color.DarkGrey: return "--dark-grey";
       case Color.LightGrey: return "--light-grey";
+      case Color.White: return "--white";
       default: return "";
    }
 }

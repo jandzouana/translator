@@ -79,16 +79,3 @@ body, html{
 .disable-select {
     user-select: none;
 }
-
-/*TODO: Move*/
-.square-button{
-    height: 50px;
-    width: 100px;
-    background: var(--blue);
-    border: none;
-    border-radius: 10px;
-    color: var(--white);
-    font-family: var(--primary-font);
-    font-weight: var(--font-weight-semi-bold);
-    cursor: pointer;
-}

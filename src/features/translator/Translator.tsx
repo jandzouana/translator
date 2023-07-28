@@ -8,6 +8,7 @@ import './styles/translator.css';
 import TranslatorCard from "./components/TranslatorCard";
 import CircleButton from "../../shared/components/buttons/CircleButton";
 import switchIcon from '../../assets/switch.svg';
+import SquareButton from "../../shared/components/buttons/SquareButton";
 
 interface Props {
 
@@ -54,11 +55,17 @@ const Translator : React.FC<Props> = (props = {}) => {
     }
 
     function handleSwitchButtonPress(){
-        const temp = textInput;
-        setTextInput(textOutput);
+        // console.log(tag + "handleSwitchPress " + "in: " + textInput + " out: " + textOutput);
+        const temp = textInput.slice();
+        setTextInput(textOutput); // doesn't work when empty
         setTextOutput(temp);
         // lastTranslationText.current = ""; // TODO: Good?
     }
+
+    useEffect(() => {
+        // This code will be executed after the state update is complete and the component has re-rendered
+        console.log(tag + "handleSwitchPress " + "in: " + textInput + " out: " + textOutput);
+    }, [textInput, textOutput]);
 
     return(
         <div id={"translator-container"}>
@@ -72,8 +79,8 @@ const Translator : React.FC<Props> = (props = {}) => {
                 <TranslatorCard type={TranslateCardType.Output} textToDisplay={textOutput}/>
             </div>
             <div id={"translator-container--bottom"}>
-                {/*TODO: Make into component*/}
-                <button disabled={currentStatus === LoadingStates.loading} className={"square-button"} onClick={handleClick}>Translate</button>
+                <SquareButton disabled={currentStatus === LoadingStates.loading}
+                              handlePress={handleClick} text={"Translate"} />
             </div>
         </div>
 

@@ -14,8 +14,9 @@ const TranslatorCard : React.FC<Props> = (props = {type:TranslateCardType.Input,
     const [textValue, setTextValue] = useState('');
 
     useEffect(()=>{
+        console.log("text to display: " + textToDisplay + ". Type: " + (type === TranslateCardType.Output) ? "out" : "in");
         if(!textToDisplay) return
-        else if(textToDisplay.length === 0) return;
+        // else if(textToDisplay.length === 0) return;
         else{
             setTextValue(textToDisplay);
         }

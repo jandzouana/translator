@@ -6,6 +6,7 @@ import {getColorVarNameFromType, varFormatWithColor} from "../../utils/util";
 interface Props{
     width?: number,
     height?: number,
+    sizeType? : string,
     id? : string,
     className? : string,
     iconType? : IconType,
@@ -15,14 +16,19 @@ interface Props{
     handlePress? : any
 }
 
-const CircleButton : React.FC<Props> = (props) =>{
-    const { id, width, height, className, color, enablePress, switchIcon, handlePress } = props;
+const defaultSize = 50;
+
+const CircleButton : React.FC<Props> = (props= {
+    width: defaultSize,
+    height: defaultSize,
+    sizeType: "px"
+}) =>{
+    const { id, width, height, sizeType, className, color, enablePress, switchIcon, handlePress } = props;
     const [isPressed, setIsPressed] = useState(false);
-    color && console.log("color: " + color);
 
     const buttonStyle = {
-        width: width ? width : "50px",
-        height: height ? height : "50px",
+        width: width ?? defaultSize + (sizeType ?? "px"),
+        height: height ?? defaultSize + (sizeType ?? "px"),
         borderRadius: "50%", /* Make the button circular */
         cursor: "pointer",
         // backgroundColor: color ? getColorVarNameFromType(color) : getColorVarNameFromType(Color.Blue),
