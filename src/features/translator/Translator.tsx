@@ -1,5 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react';
-import { fetchTranslation, selectCurrentTranslation, selectStatus, selectApiErrorMsg } from "./slices/chimeraGptApiSlice";
+import {
+    fetchTranslation,
+    selectCurrentTranslation,
+    selectStatus,
+    selectApiErrorMsg,
+    clearCurrentTranslation
+} from "./slices/chimeraGptApiSlice";
 import { setTextInput, selectTextOutput, selectTextInput, setTextOutput} from "./slices/translationTextsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { createTag} from "../../shared/utils/util";
@@ -31,7 +37,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     const currentStatus = useSelector(selectStatus);
     const apiErrorMsg = useSelector(selectApiErrorMsg);
 
-    console.log(tag + "Current translation: " + currentTranslation);
+    //console.log(tag + "Current translation: " + currentTranslation);
 
     useEffect(()=>{
         console.log(tag + "Setting current translation: " + currentTranslation);
@@ -45,12 +51,13 @@ const Translator : React.FC<Props> = (props = {}) => {
             dispatch(fetchTranslation(textInput));
             console.log(tag + "Current translation: " + textInput + " Last: " + lastTranslationText.current);
             lastTranslationText.current = textInput;
+            dispatch(clearCurrentTranslation());
         }
     }
 
     function handleInputChange(text : string){
         dispatch(setTextInput(text));
-        //console.log(tag + text);
+        // console.log(tag + text);
     }
 
     function handleSwitchButtonPress(){
@@ -60,11 +67,6 @@ const Translator : React.FC<Props> = (props = {}) => {
         dispatch(setTextOutput(temp));
         // lastTranslationText.current = ""; // TODO: Good?
     }
-
-    useEffect(() => {
-        // This code will be executed after the state update is complete and the component has re-rendered
-        console.log(tag + "handleSwitchPress " + "in: " + textInput + " out: " + textOutput);
-    }, [textInput, textOutput]);
 
     return(
         <div id={"translator-container"}>

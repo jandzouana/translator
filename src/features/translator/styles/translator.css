@@ -71,6 +71,10 @@
     border: none;
 }
 
+.translator-card--textarea:focus{
+    outline: 2px solid var(--light-grey);
+}
+
 .translator-card--textarea--output {
     color: var(--white);
 }

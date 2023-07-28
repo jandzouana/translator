@@ -14,20 +14,16 @@ const TranslatorCard : React.FC<Props> = (props = {type:TranslateCardType.Input,
     const [textValue, setTextValue] = useState('');
 
     useEffect(()=>{
-        console.log("text to display: " + textToDisplay + ". Type: " + (type === TranslateCardType.Output) ? "out" : "in");
-        if(!textToDisplay) return
-        // else if(textToDisplay.length === 0) return;
-        else{
-            setTextValue(textToDisplay);
-        }
+        // console.log("text to display: " + textToDisplay + ". Type: " + (type === TranslateCardType.Output) ? "out" : "in");
+        setTextValue(textToDisplay);
     }, [textToDisplay])
     function handleDropdownChange(event : any) {
         setSelectedOption(event.target.value);
     }
 
     function handleTextAreaChange(event : any) {
-        //setTextValue(event.target.value);
-        handleTextChange(event.target.value);
+        const msg = event.target.value ? event.target.value : "";
+        handleTextChange(msg);
     }
 
     return(
@@ -44,7 +40,6 @@ const TranslatorCard : React.FC<Props> = (props = {type:TranslateCardType.Input,
                       onChange={handleTextAreaChange}
                       placeholder={type === TranslateCardType.Output ? "" : "What would you like to translate?"}
             />
-
             <div className={"translator-card--icon-container"}></div>
         </div>
     )
