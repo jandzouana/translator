@@ -4,10 +4,6 @@ export const createTag = (file : string) : string => {
    return `[${file}] :: `;
 }
 
-export const getImageFromIconType = (type : IconType) : any =>{
-
-}
-
 export const getColorVarNameFromType = (type : Color) : string => {
    switch (type) {
       case Color.LightBlue: return "--light-blue";

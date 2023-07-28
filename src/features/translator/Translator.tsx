@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
-import { fetchTranslation } from "./slices/chimeraGptApiSlice";
-import { selectCurrentTranslation, selectStatus, selectApiError } from "./slices/chimeraGptApiSlice";
+import { fetchTranslation, selectCurrentTranslation, selectStatus, selectApiErrorMsg } from "./slices/chimeraGptApiSlice";
+import { setTextInput, selectTextOutput, selectTextInput, setTextOutput} from "./slices/translationTextsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { createTag} from "../../shared/utils/util";
 import {LoadingStates, TranslateCardType} from "../../shared/constants/enums";
@@ -18,26 +18,25 @@ const Translator : React.FC<Props> = (props = {}) => {
     // console.log(tag + "top");
 
     const dispatch = useDispatch();
-    // TODO: Create slices for states
-    const [textInput, setTextInput] = useState("");
-    const [textOutput, setTextOutput] = useState("");
 
     const lastTranslationText = useRef("");
 
     // useEffect(()=>{
     //
     // }, [dispatch]);
+    const textInput = useSelector(selectTextInput);
+    const textOutput = useSelector(selectTextOutput);
 
     const currentTranslation = useSelector(selectCurrentTranslation);
     const currentStatus = useSelector(selectStatus);
-    const apiErrorMsg = useSelector(selectApiError);
+    const apiErrorMsg = useSelector(selectApiErrorMsg);
 
     console.log(tag + "Current translation: " + currentTranslation);
 
     useEffect(()=>{
         console.log(tag + "Setting current translation: " + currentTranslation);
         if(!currentTranslation) return;
-        setTextOutput(currentTranslation);
+        dispatch(setTextOutput(currentTranslation));
     }, [currentTranslation])
 
     function handleClick() {
@@ -50,15 +49,15 @@ const Translator : React.FC<Props> = (props = {}) => {
     }
 
     function handleInputChange(text : string){
-        setTextInput(text);
+        dispatch(setTextInput(text));
         //console.log(tag + text);
     }
 
     function handleSwitchButtonPress(){
         // console.log(tag + "handleSwitchPress " + "in: " + textInput + " out: " + textOutput);
         const temp = textInput.slice();
-        setTextInput(textOutput); // doesn't work when empty
-        setTextOutput(temp);
+        dispatch(setTextInput(textOutput)); // doesn't work when empty
+        dispatch(setTextOutput(temp));
         // lastTranslationText.current = ""; // TODO: Good?
     }
 
@@ -87,7 +86,6 @@ const Translator : React.FC<Props> = (props = {}) => {
     );
 }
 
-// <h1>Hello World</h1>
 // <h2>{currentStatus === LoadingStates.succeeded && currentTranslation}</h2>
 // <h2>Current Status: {currentStatus}</h2>
 // <h2>{currentStatus === LoadingStates.failed && apiError}</h2>

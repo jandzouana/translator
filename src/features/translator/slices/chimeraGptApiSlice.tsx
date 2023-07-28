@@ -2,13 +2,13 @@ import { createTag } from "../../../shared/utils/util";
 import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
 import getCompletion from '../api/chimeraApi';
 import { AppDispatch, RootState } from '../../../shared/store';
-import { State } from '../../../shared/constants/interfaces';
+import { StateChimeraApi } from '../../../shared/constants/interfaces';
 import { LoadingStates } from '../../../shared/constants/enums';
 
 const disableApi : boolean = true;
 const tag : string = createTag("chimeraGptApi");
 
-const initialState : State = {
+const initialState : StateChimeraApi = {
     currentTranslation: "",
     status: LoadingStates.idle,
     errorMessage: ""
@@ -17,7 +17,7 @@ const initialState : State = {
 export const fetchTranslation = createAsyncThunk<string, string, {
     // Optional fields for defining thunkApi field types
     dispatch: AppDispatch
-    state: State
+    state: StateChimeraApi
     extra: {
         jwt: string
     }
@@ -42,22 +42,22 @@ const apiSlice : any = createSlice({
     name: 'translations',
     initialState,
     reducers: {
-        clearCurrentTranslation: (state : State) => { // state, action
+        clearCurrentTranslation: (state : StateChimeraApi) => { // state, action
             state.currentTranslation = "";
             console.log(tag + "dispatched clearCurrentTranslation");
         }
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchTranslation.pending, (state: State) => {
+            .addCase(fetchTranslation.pending, (state: StateChimeraApi) => {
                 state.status = LoadingStates.loading;
             })
-            .addCase(fetchTranslation.fulfilled, (state: State, action: PayloadAction<string>) => {
+            .addCase(fetchTranslation.fulfilled, (state: StateChimeraApi, action: PayloadAction<string>) => {
                 state.status = LoadingStates.succeeded;
                 state.currentTranslation = action.payload;
                 console.log(tag + "Success. Payload: " + action.payload);
             })
-            .addCase(fetchTranslation.rejected, (state: State, action: PayloadAction<any>) => {
+            .addCase(fetchTranslation.rejected, (state: StateChimeraApi, action: PayloadAction<any>) => {
                 state.status = LoadingStates.failed;
                 state.errorMessage = action.payload;
                 console.log(tag + "Failed to get translation: " + action.payload);
@@ -65,8 +65,8 @@ const apiSlice : any = createSlice({
     }
 });
 
-export const { clearCurrentTranslation } = apiSlice;
+export const { clearCurrentTranslation } = apiSlice.actions;
 export const selectCurrentTranslation = (state : RootState) => state.chimeraApi.currentTranslation;
 export const selectStatus = (state : RootState) => state.chimeraApi.status;
-export const selectApiError = (state : RootState) => state.chimeraApi.errorMessage;
+export const selectApiErrorMsg = (state : RootState) => state.chimeraApi.errorMessage;
 export default apiSlice.reducer;
