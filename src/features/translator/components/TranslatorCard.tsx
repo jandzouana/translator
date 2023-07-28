@@ -5,10 +5,10 @@ import {TranslateCardType} from "../../../shared/constants/enums";
 interface Props {
     type: TranslateCardType,
     handleTextChange? : any
-    textToDisplay? : string
+    textToDisplay : string
 }
 
-const TranslatorCard : React.FC<Props> = (props = {type:TranslateCardType.Input}) => {
+const TranslatorCard : React.FC<Props> = (props = {type:TranslateCardType.Input, textToDisplay: ""}) => {
     const { type, handleTextChange, textToDisplay } = props;
     const [selectedOption, setSelectedOption] = useState('');
     const [textValue, setTextValue] = useState('');
@@ -25,7 +25,7 @@ const TranslatorCard : React.FC<Props> = (props = {type:TranslateCardType.Input}
     }
 
     function handleTextAreaChange(event : any) {
-        setTextValue(event.target.value);
+        //setTextValue(event.target.value);
         handleTextChange(event.target.value);
     }
 

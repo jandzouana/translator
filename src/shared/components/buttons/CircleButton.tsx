@@ -11,11 +11,12 @@ interface Props{
     iconType? : IconType,
     color? : Color,
     enablePress? : boolean
-    switchIcon? : any
+    switchIcon? : any,
+    handlePress? : any
 }
 
 const CircleButton : React.FC<Props> = (props) =>{
-    const { id, width, height, className, color, enablePress, switchIcon } = props;
+    const { id, width, height, className, color, enablePress, switchIcon, handlePress } = props;
     const [isPressed, setIsPressed] = useState(false);
     color && console.log("color: " + color);
 
@@ -39,21 +40,22 @@ const CircleButton : React.FC<Props> = (props) =>{
     }
 
 
-    const handlePress = () => {
+    const handlePressInternal = () => {
         setIsPressed(true);
     };
 
     const handleRelease = () => {
         setIsPressed(false);
+        handlePress();
     };
 
     return(
         <div id={id}
              style={buttonStyle}
              className={`${className ? className : ""}`}
-             onMouseDown={handlePress}
+             onMouseDown={handlePressInternal}
              onMouseUp={handleRelease}
-             onTouchStart={handlePress}
+             onTouchStart={handlePressInternal}
              onTouchEnd={handleRelease}
         >
             {switchIcon && <img src={switchIcon} style={iconStyle} alt={"icon"}/>}

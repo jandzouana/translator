@@ -5,7 +5,7 @@ import { AppDispatch, RootState } from '../../../shared/store';
 import { State } from '../../../shared/constants/interfaces';
 import { LoadingStates } from '../../../shared/constants/enums';
 
-const disableApi : boolean = false;
+const disableApi : boolean = true;
 const tag : string = createTag("chimeraGptApi");
 
 const initialState : State = {

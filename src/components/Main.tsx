@@ -6,8 +6,8 @@ interface Props {
 
 }
 const Main : React.FC<Props> = (props = {}) => {
-    console.log("top");
     const tag = createTag("Main");
+    // console.log(tag + "top");
 
     return(
         <div id={"main"}>
