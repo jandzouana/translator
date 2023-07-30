@@ -27,3 +27,8 @@ export enum Color {
     OffWhite,
     Red
 }
+
+export enum Font {
+    Primary,
+    Light
+}

@@ -1,10 +1,10 @@
-import {Color, IconType} from "../constants/enums";
+import {Color, Font} from "../constants/enums";
 
 export const createTag = (file : string) : string => {
    return `[${file}] :: `;
 }
 
-export const getColorVarNameFromType = (type : Color) : string => {
+export const _getColorVarNameFromType = (type : Color) : string => {
    switch (type) {
       case Color.LightBlue: return "--light-blue";
       case Color.Blue: return "--blue";
@@ -19,6 +19,19 @@ export const getColorVarNameFromType = (type : Color) : string => {
 }
 
 export const varFormatWithColor = (type : Color) : string => {
-   const color = getColorVarNameFromType(type);
+   const color = _getColorVarNameFromType(type);
    return `var(${color})`;
+}
+
+function _getFontVarNameFromType(font: Font) : string{
+   switch (font){
+      case Font.Light: return "--primary-font-light";
+      case Font.Primary:
+      default: return "--primary-font";
+   }
+}
+
+export const varFormatWithFont = (font : Font) : string => {
+   const f = _getFontVarNameFromType(font);
+   return `var(${f})`;
 }

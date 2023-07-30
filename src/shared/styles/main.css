@@ -79,3 +79,7 @@ body, html{
 .disable-select {
     user-select: none;
 }
+
+.disable-focus:focus{
+    outline: none;
+}

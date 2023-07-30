@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {CSSProperties, useState} from 'react';
 import '../../styles/variables.css';
 import {Color, IconType} from "../../constants/enums";
-import {getColorVarNameFromType, varFormatWithColor} from "../../utils/util";
+import {_getColorVarNameFromType, varFormatWithColor} from "../../utils/util";
 
 interface Props{
     width?: number,
@@ -26,7 +26,7 @@ const CircleButton : React.FC<Props> = (props= {
     const { id, width, height, sizeType, className, color, enablePress, switchIcon, handlePress } = props;
     const [isPressed, setIsPressed] = useState(false);
 
-    const buttonStyle = {
+    const buttonStyle : CSSProperties = {
         width: width ?? defaultSize + (sizeType ?? "px"),
         height: height ?? defaultSize + (sizeType ?? "px"),
         borderRadius: "50%", /* Make the button circular */
