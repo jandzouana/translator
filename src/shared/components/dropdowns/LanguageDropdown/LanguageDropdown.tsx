@@ -13,7 +13,7 @@ interface Props{
 const LanguageDropdown : React.FC<Props> = (props=
                                                 {optionToDisplay : "", handleDropdownChange: null, languages: [], type: TranslateCardType.Input}) => {
     const {optionToDisplay, languages, type} = props;
-    const [selectedOption, setSelectedLanguage] = useState('');
+    const [selectedLanguage, setSelectedLanguage] = useState('');
     const [languageList, setLanguageList] = useState([]);
 
     const [isOpen, setIsOpen] = useState(false);
@@ -23,28 +23,29 @@ const LanguageDropdown : React.FC<Props> = (props=
         setIsOpen(!isOpen);
     };
 
-    const handleLanguageClick = (language : string) => {
+    const handleLanguageClick = (language : string, type : TranslateCardType) => {
         setSelectedLanguage(language);
         setIsOpen(false);
-        props.handleDropdownChange(language);
+        props.handleDropdownChange(language, type);
     };
 
     useEffect(()=>{
         createSelectsFromLanguageArr(languages);
-    }, [])
+    }, [selectedLanguage])
 
     useEffect(() => {
         setSelectedLanguage(optionToDisplay);
+        // createSelectsFromLanguageArr(languages);
     }, [optionToDisplay])
 
-    // TODO: Check if current option is in langauges arr
+    // TODO: Check if current option is in languages arr
     function createSelectsFromLanguageArr(langs : Array<string>){
         const selects : any = langs.map((language, idx) => {
-            if(language !== optionToDisplay)
+            if(language !== selectedLanguage)
             {
                 return <div key={idx}
                             className={"option language-dropdown-option center"}
-                            onClick={() => handleLanguageClick(language)}>
+                            onClick={() => handleLanguageClick(language, type)}>
                     {language} </div>
             }
         });
@@ -54,7 +55,7 @@ const LanguageDropdown : React.FC<Props> = (props=
     return(
         <div className={`custom-dropdown language-dropdown ${type === TranslateCardType.Input ? "language-dropdown-input" : "language-dropdown-output"}`}>
             <div className="dropdown-header language-dropdown-header center" onClick={handleToggleDropdown}>
-                {selectedOption || 'Language'}
+                {selectedLanguage || 'Language'}
                 <span className={`arrow ${isOpen ? 'up' : 'down'}`}></span>
             </div>
             {isOpen && (

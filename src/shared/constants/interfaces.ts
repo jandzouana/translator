@@ -8,5 +8,7 @@ export interface StateChimeraApi {
 
 export interface StateTranslation {
     textInput: string,
-    textOutput: string
+    textOutput: string,
+    inputLanguage : string,
+    outputLanguage : string
 }

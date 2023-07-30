@@ -5,12 +5,15 @@ import LanguageDropdown from "../../../shared/components/dropdowns/LanguageDropd
 // TODO: Move later
 interface Props {
     type: TranslateCardType,
-    handleTextChange? : any
-    textToDisplay : string
+    handleTextChange? : any,
+    textToDisplay : string,
+    language : string,
+    handleLanguageChange? : any
 }
 
-const TranslatorCard : React.FC<Props> = (props = {type:TranslateCardType.Input, textToDisplay: ""}) => {
-    const { type, handleTextChange, textToDisplay } = props;
+const TranslatorCard : React.FC<Props> = (props = {
+    type:TranslateCardType.Input, textToDisplay: "", language: "", handleLanguageChange: null}) => {
+    const { type, handleTextChange, textToDisplay, language, handleLanguageChange } = props;
     const [textValue, setTextValue] = useState('');
 
     useEffect(()=>{
@@ -18,8 +21,8 @@ const TranslatorCard : React.FC<Props> = (props = {type:TranslateCardType.Input,
         setTextValue(textToDisplay);
     }, [textToDisplay])
 
-    function handleDropdownChange(event : any) {
-        // setSelectedOption(event.target.value);
+    function handleLanguageDropdownChange(language : string, type : TranslateCardType) {
+        if(handleLanguageChange) handleLanguageChange(language, type);
     }
 
     function handleTextAreaChange(event : any) {
@@ -29,8 +32,8 @@ const TranslatorCard : React.FC<Props> = (props = {type:TranslateCardType.Input,
 
     return(
         <div className={`translator-card ${type === TranslateCardType.Output ? "output-card-container" : "input-card-container"}`}>
-            <LanguageDropdown type={type} optionToDisplay={type === TranslateCardType.Output ? "Spanish" : "English"}
-                              handleDropdownChange={handleDropdownChange}
+            <LanguageDropdown type={type} optionToDisplay={language}
+                              handleDropdownChange={handleLanguageDropdownChange}
                               languages={["English", "Spanish", "Cantonese", "Russian", "French"]}/>
             <textarea disabled={type === TranslateCardType.Output}
                       autoComplete="off"

@@ -26,7 +26,7 @@ export const fetchTranslation = createAsyncThunk<string, string, {
     if(disableApi) return "Disabled";
     console.log(tag + "Getting translation...");
     try {
-        const requestMessage = "Translate the following to Spanish: " + input;
+        const requestMessage = input;
         const response: string = await getCompletion(requestMessage, false);
         console.log(tag + "Response: " + response);
         return response;
