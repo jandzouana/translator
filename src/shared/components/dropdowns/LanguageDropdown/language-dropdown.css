@@ -1,52 +1,20 @@
-/* CustomDropdown.css */
+/*TODO: Move reused elements to custom-dropdown.css*/
 .custom-dropdown {
     position: relative;
     display: inline-block;
     width: 200px; /* Customize the width of the dropdown */
 }
 
-.dropdown-header {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
+.language-dropdown-header{
     padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
 }
 
-.arrow {
-    margin-left: 8px;
-}
-
-.arrow.down::before {
-    content: '\25BC';
-}
-
-.arrow.up::before {
-    content: '\25B2';
-}
-
-.dropdown-options {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    max-height: 150px; /* Customize the maximum height of the dropdown options */
-    overflow-y: auto;
+.language-dropdown-options-container{
     background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    z-index: 100; /* Set a higher z-index to make the dropdown appear on top of other elements */
 }
 
-.option {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    padding: 8px;
-    cursor: pointer;
-}
 
-.option:hover {
-    background-color: #f0f0f0;
-    color: #555;
+
+.language-dropdown-option{
+
 }

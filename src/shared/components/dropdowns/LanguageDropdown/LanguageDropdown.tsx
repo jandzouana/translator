@@ -2,6 +2,7 @@ import React, {useState, CSSProperties, useEffect} from 'react';
 import { varFormatWithColor, varFormatWithFont } from "../../../utils/util";
 import {Color, Font} from "../../../constants/enums";
 import "./language-dropdown.css";
+import "../custom-dropdown.css";
 
 interface Props{
     optionToDisplay: string,
@@ -80,14 +81,14 @@ const LanguageDropdown : React.FC<Props> = (props=
         //     {languageList}
         // </select>
         <div className="custom-dropdown">
-            <div className="dropdown-header" onClick={handleToggleDropdown}>
+            <div className="dropdown-header language-dropdown-header" onClick={handleToggleDropdown}>
                 {selectedOption || 'Select an option'}
                 <span className={`arrow ${isOpen ? 'up' : 'down'}`}></span>
             </div>
             {isOpen && (
-                <div className="dropdown-options">
+                <div className="dropdown-options-container language-dropdown-options-container">
                     {options.map((option : string) => (
-                        <div key={option} className="option" onClick={() => handleOptionClick(option)}>
+                        <div key={option} className="option language-dropdown-option" onClick={() => handleOptionClick(option)}>
                             {option}
                         </div>
                     ))}
