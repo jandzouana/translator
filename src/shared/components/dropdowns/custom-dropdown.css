@@ -26,7 +26,6 @@
 
 .option {
     font-family: var(--primary-font);
-    font-size: var(--font-size-med-small);
     padding: 8px;
     cursor: pointer;
 }
@@ -41,9 +40,9 @@
 }
 
 .arrow.down::before {
-    content: '\25BC';
+    content: '\25BE';
 }
 
 .arrow.up::before {
-    content: '\25B2';
+    content: '\25B4';
 }

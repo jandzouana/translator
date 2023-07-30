@@ -84,6 +84,10 @@ body, html{
     outline: none;
 }
 
+.center{
+    margin: auto;
+}
+
 /* For Webkit-based browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
     width: 6px;

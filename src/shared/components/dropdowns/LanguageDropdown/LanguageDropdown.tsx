@@ -40,18 +40,21 @@ const LanguageDropdown : React.FC<Props> = (props=
     // TODO: Check if current option is in langauges arr
     function createSelectsFromLanguageArr(langs : Array<string>){
         const selects : any = langs.map((language, idx) => {
-            return <div key={idx}
-                        className={"option language-dropdown-option"}
-                        onClick={() => handleLanguageClick(language)}>
-                        {language} </div>
+            if(language !== optionToDisplay)
+            {
+                return <div key={idx}
+                            className={"option language-dropdown-option center"}
+                            onClick={() => handleLanguageClick(language)}>
+                    {language} </div>
+            }
         });
         setLanguageList(selects);
     }
 
     return(
-        <div className="custom-dropdown language-dropdown">
-            <div className="dropdown-header language-dropdown-header" onClick={handleToggleDropdown}>
-                {selectedOption || 'Select an option'}
+        <div className={`custom-dropdown language-dropdown ${type === TranslateCardType.Input ? "language-dropdown-input" : "language-dropdown-output"}`}>
+            <div className="dropdown-header language-dropdown-header center" onClick={handleToggleDropdown}>
+                {selectedOption || 'Language'}
                 <span className={`arrow ${isOpen ? 'up' : 'down'}`}></span>
             </div>
             {isOpen && (
