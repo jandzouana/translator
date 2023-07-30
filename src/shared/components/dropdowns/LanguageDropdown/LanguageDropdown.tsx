@@ -1,56 +1,32 @@
-import React, {useState, CSSProperties, useEffect} from 'react';
-import { varFormatWithColor, varFormatWithFont } from "../../../utils/util";
-import {Color, Font} from "../../../constants/enums";
+import React, {useEffect, useState} from 'react';
+import {TranslateCardType} from "../../../constants/enums";
 import "./language-dropdown.css";
 import "../custom-dropdown.css";
 
 interface Props{
     optionToDisplay: string,
     handleDropdownChange: any,
-    color?: Color,
-    languages: Array<string>
+    languages: Array<string>,
+    type: TranslateCardType
 }
 
 const LanguageDropdown : React.FC<Props> = (props=
-                                                {optionToDisplay : "", handleDropdownChange: null, languages: []}) => {
-    const {color, optionToDisplay, languages} = props;
-    const [selectedOption, setSelectedOption] = useState('');
+                                                {optionToDisplay : "", handleDropdownChange: null, languages: [], type: TranslateCardType.Input}) => {
+    const {optionToDisplay, languages, type} = props;
+    const [selectedOption, setSelectedLanguage] = useState('');
     const [languageList, setLanguageList] = useState([]);
-
-    const dropDownStyle : CSSProperties  = {
-        fontFamily: varFormatWithFont(Font.Primary),
-        color: varFormatWithColor(color ? color : Color.White),
-        border: "none",
-        background: "none",
-        padding: "4px",
-        textAlign: "center",
-        height: "40px",
-        // maxHeight: '50px',
-        borderRadius: '0px',
-        cursor: "pointer"
-    };
-
-    const optionStyle = {
-        backgroundColor: '#f0f0f0', // Customize the background color
-        color: '#555', // Customize the text color
-        padding: '20px',
-        // height: '40px',
-        minHeight: '50px',
-        borderRadius: '0px'
-    };
 
     const [isOpen, setIsOpen] = useState(false);
 
-    const options : any = ['Option 1', 'Option 2', 'Option 3'];
 
     const handleToggleDropdown = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleOptionClick = (option : string) => {
-        setSelectedOption(option);
+    const handleLanguageClick = (language : string) => {
+        setSelectedLanguage(language);
         setIsOpen(false);
-        props.handleDropdownChange(option);
+        props.handleDropdownChange(language);
     };
 
     useEffect(()=>{
@@ -58,40 +34,29 @@ const LanguageDropdown : React.FC<Props> = (props=
     }, [])
 
     useEffect(() => {
-        setSelectedOption(optionToDisplay);
+        setSelectedLanguage(optionToDisplay);
     }, [optionToDisplay])
 
-    // function handleDropdownChange(event : any) {
-    //     setSelectedOption(event.target.value);
-    //     props.handleDropdownChange(event.target.value);
-    // }
-
+    // TODO: Check if current option is in langauges arr
     function createSelectsFromLanguageArr(langs : Array<string>){
         const selects : any = langs.map((language, idx) => {
-            return <option key={idx} style={optionStyle} value={language}>{language}</option>
+            return <div key={idx}
+                        className={"option language-dropdown-option"}
+                        onClick={() => handleLanguageClick(language)}>
+                        {language} </div>
         });
         setLanguageList(selects);
     }
 
     return(
-        // <select className="disable-focus" style={dropDownStyle} value={selectedOption} onChange={handleDropdownChange}>
-        //     {/*<option value="option1">Option 1</option>*/}
-        //     {/*<option value="option2">Option 2</option>*/}
-        //     {/*<option value="option3">Option 3</option>*/}
-        //     {languageList}
-        // </select>
-        <div className="custom-dropdown">
+        <div className="custom-dropdown language-dropdown">
             <div className="dropdown-header language-dropdown-header" onClick={handleToggleDropdown}>
                 {selectedOption || 'Select an option'}
                 <span className={`arrow ${isOpen ? 'up' : 'down'}`}></span>
             </div>
             {isOpen && (
-                <div className="dropdown-options-container language-dropdown-options-container">
-                    {options.map((option : string) => (
-                        <div key={option} className="option language-dropdown-option" onClick={() => handleOptionClick(option)}>
-                            {option}
-                        </div>
-                    ))}
+                <div className={`dropdown-options-container ld-options-container ${type === TranslateCardType.Input ? "ld-options-container--input" : "ld-options-container--output"}`}>
+                    {languageList}
                 </div>
             )}
         </div>

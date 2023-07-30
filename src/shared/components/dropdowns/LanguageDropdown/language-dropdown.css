@@ -1,20 +1,26 @@
-/*TODO: Move reused elements to custom-dropdown.css*/
-.custom-dropdown {
-    position: relative;
-    display: inline-block;
-    width: 200px; /* Customize the width of the dropdown */
+.language-dropdown{
+    width: 100%;
 }
 
 .language-dropdown-header{
     padding: 8px;
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-regular);
 }
 
-.language-dropdown-options-container{
-    background-color: #fff;
+.ld-options-container{
+    max-height: 150px; /* Customize the maximum height of the dropdown options */
 }
 
+.ld-options-container--input {
+    background-color: var(--off-white);
+}
+
+.ld-options-container--output {
+    background-color: var(--red);
+}
 
 
 .language-dropdown-option{
-
+    text-align: center;
 }

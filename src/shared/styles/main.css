@@ -83,3 +83,22 @@ body, html{
 .disable-focus:focus{
     outline: none;
 }
+
+/* For Webkit-based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
