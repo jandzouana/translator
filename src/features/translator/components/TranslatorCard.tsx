@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Color, TranslateCardType} from "../../../shared/constants/enums";
-import LanguageDropdown from "../../../shared/components/dropdowns/LanguageDropdown";
+import LanguageDropdown from "../../../shared/components/dropdowns/LanguageDropdown/LanguageDropdown";
 
 // TODO: Move later
 interface Props {
