@@ -82,7 +82,7 @@ const Translator : React.FC<Props> = (props = {}) => {
         )){
             //@ts-ignore
             dispatch(fetchTranslation(generateRequestMessage(textInput)));
-            console.log(tag + "Current translation: " + textInput + " Last: " + lastTranslationText.current);
+            //console.log(tag + "Current translation: " + textInput + " Last: " + lastTranslationText.current);
             lastTranslationText.current = textInput;
             lastInputLanguage.current = inputLanguage;
             lastOutputLanguage.current = outputLanguage;
