@@ -1,0 +1,48 @@
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    /*width: 200px; !* Customize the width of the dropdown *!*/
+}
+
+.dropdown-header {
+    font-family: var(--primary-font);
+    /*border: 1px solid #ccc;*/
+    /*border-radius: 4px;*/
+    cursor: pointer;
+    text-align: center;
+}
+
+.dropdown-options-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    /*max-height: 150px; !* Customize the maximum height of the dropdown options *!*/
+    overflow-y: auto;
+    /*border: 1px solid #ccc;*/
+    /*border-radius: 4px;*/
+    z-index: 100; /* Set a higher z-index to make the dropdown appear on top of other elements */
+}
+
+.option {
+    font-family: var(--primary-font);
+    padding: 8px;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #f0f0f0;
+    color: #555;
+}
+
+.arrow {
+    margin-left: 8px;
+}
+
+.arrow.down::before {
+    content: '\25BE';
+}
+
+.arrow.up::before {
+    content: '\25B4';
+}

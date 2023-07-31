@@ -1,33 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { fetchTranslation } from "../features/translator/slices/chimeraGptApiSlice";
-import { selectCurrentTranslation, selectStatus, selectApiError } from "../features/translator/slices/chimeraGptApiSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { createTag } from '../shared/utils/util';
-import { LoadingStates } from "../shared/constants/enums";
+import {createTag} from "../shared/utils/util";
+import Translator from "../features/translator/Translator";
 
 interface Props {
 
 }
 const Main : React.FC<Props> = (props = {}) => {
-    console.log("top");
     const tag = createTag("Main");
-    const dispatch = useDispatch();
+    // console.log(tag + "top");
 
-    useEffect(()=>{
-        // @ts-ignore
-        dispatch(fetchTranslation());
-    }, [dispatch]);
-
-    const currentTranslation = useSelector(selectCurrentTranslation);
-    const currentStatus = useSelector(selectStatus);
-    const apiError = useSelector(selectApiError);
-
-    return(<div>
-        <h1>Hello World</h1>
-        <h2>{currentStatus === LoadingStates.succeeded && currentTranslation}</h2>
-        <h2>Current Status: {currentStatus}</h2>
-        <h2>{currentStatus === LoadingStates.failed && apiError}</h2>
-    </div>);
+    return(
+        <div id={"main"}>
+            <div id={"l1"} className={"level"}>
+            </div>
+            <div id={"l2"} className={"level"}>
+                <Translator />
+            </div>
+        </div>
+    );
 }
 
 export default Main;

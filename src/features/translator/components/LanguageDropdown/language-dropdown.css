@@ -1,0 +1,44 @@
+.language-dropdown{
+    width: 100%;
+}
+
+.language-dropdown-input{
+    color: var(--blue);
+}
+
+.language-dropdown-output{
+    color: var(--white);
+}
+
+.language-dropdown-header{
+    padding: 8px;
+    height: 20px;
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-regular);
+}
+
+.ld-options-container{
+    max-height: 150px; /* Customize the maximum height of the dropdown options */
+}
+
+.ld-options-container--input {
+    background-color: var(--off-white);
+    color: var(--off-black);
+}
+
+.ld-options-container--output {
+    background-color: var(--red);
+}
+
+.language-dropdown-option{
+    text-align: center;
+    font-size: var(--font-size-small);
+    height: 20px;
+}
+
+.language-dropdown-option-red:hover {
+    /*background-color: #f0f0f0;*/
+    /*color: #555;*/
+    background-color: var(--red) !important;
+    color: var(--darkest-red) !important;
+}

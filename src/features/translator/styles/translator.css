@@ -1,0 +1,83 @@
+@import '../../../shared/styles/variables.css';
+
+/*font-size: var(--font-size);*/
+
+#translator-container{
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    min-height: 300px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    /*min-height: 500px;*/
+    max-height: 400px;
+    max-width: 1500px;
+}
+
+#translator-container--main{
+    height: 100%;
+    width: 100%;
+    /*background-color: red;*/
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    /*align-items: center;*/
+    flex: 1;
+}
+#translator-container--bottom
+{
+    flex-basis: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#switch-languages-button{
+    margin: auto;
+}
+
+.translator-card{
+    flex: 1;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 5px;
+}
+
+.input-card-container {
+    background-color: var(--off-white);
+}
+
+.output-card-container {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+.translator-card--textarea{
+    flex: 1;
+    resize: none;
+    background: none;
+    font-family: var(--primary-font);
+    font-size: var(--font-size-small);
+    padding: 0.7em;
+    line-height: 20px;
+    border: none;
+}
+
+.translator-card--textarea:focus{
+    /*outline: 2px solid var(--light-grey);*/
+}
+
+.translator-card--textarea--output {
+    color: var(--white);
+}
+
+.translator-card--icon-container{
+    flex-basis: 50px;
+}
+

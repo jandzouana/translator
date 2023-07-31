@@ -1,0 +1,6 @@
+<svg id="switch" xmlns="http://www.w3.org/2000/svg" width="49.795" height="63.5" viewBox="0 0 49.795 63.5">
+  <rect id="Rectangle_235" data-name="Rectangle 235" width="5" height="29" rx="2.5" transform="translate(0 12)" fill="#fff"/>
+  <path id="Path_198" data-name="Path 198" d="M163.6,222.752a2.19,2.19,0,0,0,2.183-2.183l-.068-32.753,8.952,7.969a2.191,2.191,0,0,0,2.911-3.275l-12.59-11.171a2.145,2.145,0,0,0-2.947.073l-11.681,11.171a2.188,2.188,0,1,0,3.02,3.166l7.933-7.605.068,32.462A2.239,2.239,0,0,0,163.6,222.752Z" transform="translate(222.891 -149.685) rotate(90)" fill="#fff"/>
+  <rect id="Rectangle_236" data-name="Rectangle 236" width="5" height="29" rx="2.5" transform="translate(49.795 51.5) rotate(180)" fill="#fff"/>
+  <path id="Path_199" data-name="Path 199" d="M163.665,223.714a2.19,2.19,0,0,0,2.183-2.183l-.129-33.715,8.952,7.969a2.191,2.191,0,0,0,2.911-3.275l-12.59-11.171a2.145,2.145,0,0,0-2.947.073l-11.681,11.171a2.188,2.188,0,1,0,3.02,3.166l7.933-7.605.129,33.424A2.239,2.239,0,0,0,163.665,223.714Z" transform="translate(-174.096 213.185) rotate(-90)" fill="#fff"/>
+</svg>

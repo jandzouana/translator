@@ -15,7 +15,7 @@ interface Msg {
 
 const messages : Array<Msg> = [];
 
-console.log(tag + "API Key: " + apiKey);
+// console.log(tag + "API Key: " + apiKey);
 
 // const getCompletion = (msg : string, keepContext : boolean = true) : string =>{
 
@@ -52,6 +52,6 @@ export default async function getCompletion(msg : string, keepContext : boolean 
     }
     catch (e: any) {
         console.log(tag + `The following error occurred ${e.message}`);
-        throw new Error(e);
+        throw new Error(e.message);
     }
 }

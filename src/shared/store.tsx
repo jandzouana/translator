@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import apiSlice from "../features/translator/slices/chimeraGptApiSlice";
+import translationSlice from "../features/translator/slices/translationTextsSlice";
 
 const store : any = configureStore({
     reducer : {
-        chimeraApi: apiSlice
+        chimeraApi: apiSlice,
+        translation: translationSlice
         // textInput
         // textOutput, api?
         // inputLanguage
