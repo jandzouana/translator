@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Color, TranslateCardType} from "../../../shared/constants/enums";
 import LanguageDropdown from "../../../shared/components/dropdowns/LanguageDropdown/LanguageDropdown";
+import {languages} from "../../../shared/constants/constants";
 
 // TODO: Move later
 interface Props {
@@ -34,7 +35,7 @@ const TranslatorCard : React.FC<Props> = (props = {
         <div className={`translator-card ${type === TranslateCardType.Output ? "output-card-container" : "input-card-container"}`}>
             <LanguageDropdown type={type} optionToDisplay={language}
                               handleDropdownChange={handleLanguageDropdownChange}
-                              languages={["English", "Spanish", "Cantonese", "Russian", "French"]}/>
+                              languages={languages}/>
             <textarea disabled={type === TranslateCardType.Output}
                       autoComplete="off"
                       className={`translator-card--textarea disable-focus

@@ -59,7 +59,7 @@ const LanguageDropdown : React.FC<Props> = (props=
                 <span className={`arrow ${isOpen ? 'up' : 'down'}`}></span>
             </div>
             {isOpen && (
-                <div className={`dropdown-options-container ld-options-container ${type === TranslateCardType.Input ? "ld-options-container--input" : "ld-options-container--output"}`}>
+                <div className={`dropdown-options-container ld-options-container ${type === TranslateCardType.Input ? "ld-options-container--input blue-scrollbar" : "ld-options-container--output red-scrollbar"}`}>
                     {languageList}
                 </div>
             )}

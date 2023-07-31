@@ -24,6 +24,7 @@ import TranslatorCard from "./components/TranslatorCard";
 import CircleButton from "../../shared/components/buttons/CircleButton";
 import switchIcon from '../../assets/sort2.svg';
 import SquareButton from "../../shared/components/buttons/SquareButton";
+import {defaultLanguages} from "../../shared/constants/constants";
 
 interface Props {
 
@@ -39,10 +40,6 @@ const Translator : React.FC<Props> = (props = {}) => {
     const lastOutputLanguage = useRef("");
 
     // TODO: Move?
-    const defaultLanguages = {
-        input: "English",
-        output: "Spanish"
-    }
 
     // useEffect(()=>{
     //
@@ -108,7 +105,6 @@ const Translator : React.FC<Props> = (props = {}) => {
         const temp = textInput.slice();
         dispatch(setTextInput(textOutput)); // doesn't work when empty
         dispatch(setTextOutput(temp));
-        // lastTranslationText.current = ""; // TODO: Good?
         const temp2 = inputLanguage.slice();
         dispatch(setInputLanguage(outputLanguage));
         dispatch(setOutputLanguage(temp2));
@@ -146,7 +142,4 @@ const Translator : React.FC<Props> = (props = {}) => {
     );
 }
 
-// <h2>{currentStatus === LoadingStates.succeeded && currentTranslation}</h2>
-// <h2>Current Status: {currentStatus}</h2>
-// <h2>{currentStatus === LoadingStates.failed && apiError}</h2>
 export default Translator;
