@@ -83,8 +83,7 @@ const Translator : React.FC<Props> = (props = {}) => {
             lastTranslationText.current = textInput;
             lastInputLanguage.current = inputLanguage;
             lastOutputLanguage.current = outputLanguage;
-            // TODO: Needed?
-            // dispatch(clearCurrentTranslation());
+            dispatch(clearCurrentTranslation());
         }
     }
 
@@ -102,10 +101,10 @@ const Translator : React.FC<Props> = (props = {}) => {
 
     function handleSwitchButtonPress(){
         // console.log(tag + "handleSwitchPress " + "in: " + textInput + " out: " + textOutput);
-        const temp = textInput.slice();
+        const temp = textInput.trim();
         dispatch(setTextInput(textOutput)); // doesn't work when empty
         dispatch(setTextOutput(temp));
-        const temp2 = inputLanguage.slice();
+        const temp2 = inputLanguage;
         dispatch(setInputLanguage(outputLanguage));
         dispatch(setOutputLanguage(temp2));
     }

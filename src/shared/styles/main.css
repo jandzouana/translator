@@ -102,6 +102,13 @@ body, html{
     visibility: hidden;
 }
 
+.drop-shadow {
+    /* horizontal offset, vertical offset, blur radius, spread radius, color */
+    box-shadow: 2px -2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Scrolls */
+
 /* For Webkit-based browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
     width: 6px;

@@ -35,7 +35,7 @@ const CircleButton : React.FC<Props> = (props= {
         // backgroundImage: `url(${baseIconUrl+"switch"+".svg"})`
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
     }
 
     const iconStyle={
@@ -57,7 +57,7 @@ const CircleButton : React.FC<Props> = (props= {
     return(
         <div id={id}
              style={buttonStyle}
-             className={`${className ? className : ""}`}
+             className={`drop-shadow ${className ? className : ""}`}
              onMouseDown={handlePressInternal}
              onMouseUp={handleRelease}
              onTouchStart={handlePressInternal}
