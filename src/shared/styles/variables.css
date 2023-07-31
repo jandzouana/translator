@@ -12,6 +12,8 @@
     --off-black: #2B2D42;
     --off-white: #F8F8F8;
     --red: #F73F4D;
+    --dark-red: #CC0918;
+    --darkest-red: darkred;
 
     /*Font*/
     --font-size-xs: 14px;

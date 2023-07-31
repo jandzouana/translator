@@ -1,27 +1,28 @@
 export const defaultLanguages = {
     input: "English",
-    output: "Spanish"
+    output: "Spanish (Español)"
 }
 
 export const languages = [
-    'Spanish (Español)',
-    'Chinese (中文)',
-    'Hindi (हिन्दी)',
     'Arabic (العربية)',
-    'Portuguese (Português)',
     'Bengali (বাংলা)',
-    'Russian (Русский)',
-    'Japanese (日本語)',
-    'Punjabi (ਪੰਜਾਬੀ)',
-    'German (Deutsch)',
-    'Javanese (Jawa)',
-    'Telugu (తెలుగు)',
-    'Vietnamese (Tiếng Việt)',
-    'Korean (한국어)',
+    'Chinese (中文)',
     'French (Français)',
-    'Marathi (मराठी)',
-    'Tamil (தமிழ்)',
-    'Turkish (Türkçe)',
+    'German (Deutsch)',
+    'Hindi (हिन्दी)',
     'Italian (Italiano)',
-    'Urdu (اردو)'
+    'Japanese (日本語)',
+    'Javanese (Jawa)',
+    'Korean (한국어)',
+    'Marathi (मराठी)',
+    'Portuguese (Português)',
+    'Punjabi (ਪੰਜਾਬੀ)',
+    'Russian (Русский)',
+    'Spanish (Español)',
+    'Tamil (தமிழ்)',
+    'Telugu (తెలుగు)',
+    'Turkish (Türkçe)',
+    'Urdu (اردو)',
+    'Vietnamese (Tiếng Việt)',
 ];
+

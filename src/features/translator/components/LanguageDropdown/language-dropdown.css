@@ -35,3 +35,10 @@
     font-size: var(--font-size-small);
     height: 20px;
 }
+
+.language-dropdown-option-red:hover {
+    /*background-color: #f0f0f0;*/
+    /*color: #555;*/
+    background-color: var(--red) !important;
+    color: var(--darkest-red) !important;
+}

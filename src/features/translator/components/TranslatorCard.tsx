@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Color, TranslateCardType} from "../../../shared/constants/enums";
-import LanguageDropdown from "../../../shared/components/dropdowns/LanguageDropdown/LanguageDropdown";
+import LanguageDropdown from "./LanguageDropdown/LanguageDropdown";
 import {languages} from "../../../shared/constants/constants";
 
 // TODO: Move later

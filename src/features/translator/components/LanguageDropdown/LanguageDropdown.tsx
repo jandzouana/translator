@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {TranslateCardType} from "../../../constants/enums";
+import {TranslateCardType} from "../../../../shared/constants/enums";
 import "./language-dropdown.css";
-import "../custom-dropdown.css";
+import "../../../../shared/styles/custom-dropdown.css";
 
 interface Props{
     optionToDisplay: string,
@@ -44,7 +44,7 @@ const LanguageDropdown : React.FC<Props> = (props=
             if(language !== selectedLanguage)
             {
                 return <div key={idx}
-                            className={"option language-dropdown-option center"}
+                            className={`option language-dropdown-option center ${type === TranslateCardType.Output? "language-dropdown-option-red" : ""}`}
                             onClick={() => handleLanguageClick(language, type)}>
                     {language} </div>
             }
