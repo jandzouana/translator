@@ -24,7 +24,7 @@ const slice : any = createSlice({
             state.textOutput = action.payload;
         },
         setInputLanguage (state : StateTranslation, action : any){
-            console.log(tag + "Setting input language");
+            //console.log(tag + "Setting input language");
             state.inputLanguage = action.payload;
         },
         setOutputLanguage (state : StateTranslation, action : any){

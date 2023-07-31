@@ -76,6 +76,8 @@ body, html{
     justify-content: center;
 }
 
+/* Minor adjustments */
+
 .disable-select {
     user-select: none;
 }
@@ -86,6 +88,18 @@ body, html{
 
 .center{
     margin: auto;
+}
+
+.rotate-image-right {
+    transform: rotate(90deg);
+}
+
+.hide{
+    display: none;
+}
+
+.invisible{
+    visibility: hidden;
 }
 
 /* For Webkit-based browsers (Chrome, Safari) */

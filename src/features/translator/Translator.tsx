@@ -22,7 +22,7 @@ import {LoadingStates, TranslateCardType} from "../../shared/constants/enums";
 import './styles/translator.css';
 import TranslatorCard from "./components/TranslatorCard";
 import CircleButton from "../../shared/components/buttons/CircleButton";
-import switchIcon from '../../assets/switch.svg';
+import switchIcon from '../../assets/sort2.svg';
 import SquareButton from "../../shared/components/buttons/SquareButton";
 
 interface Props {
@@ -87,7 +87,7 @@ const Translator : React.FC<Props> = (props = {}) => {
             lastInputLanguage.current = inputLanguage;
             lastOutputLanguage.current = outputLanguage;
             // TODO: Needed?
-            dispatch(clearCurrentTranslation());
+            // dispatch(clearCurrentTranslation());
         }
     }
 
@@ -123,9 +123,12 @@ const Translator : React.FC<Props> = (props = {}) => {
                                 language={inputLanguage}
                                 textToDisplay={textInput}/>
                 <CircleButton id={"switch-languages-button"}
-                              switchIcon={switchIcon}
+                              icon={switchIcon}
                               enablePress={false}
                               handlePress={handleSwitchButtonPress}
+                              className={"rotate-image-right"}
+                              iconRatio={.5}
+                              size={50}
                 />
                 <TranslatorCard
                     type={TranslateCardType.Output}

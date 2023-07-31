@@ -4,31 +4,30 @@ import {Color, IconType} from "../../constants/enums";
 import {_getColorVarNameFromType, varFormatWithColor} from "../../utils/util";
 
 interface Props{
-    width?: number,
-    height?: number,
+    size?: number,
     sizeType? : string,
     id? : string,
     className? : string,
     iconType? : IconType,
     color? : Color,
     enablePress? : boolean
-    switchIcon? : any,
-    handlePress? : any
+    icon? : any,
+    handlePress? : any,
+    iconRatio? : number
 }
 
 const defaultSize = 50;
 
 const CircleButton : React.FC<Props> = (props= {
-    width: defaultSize,
-    height: defaultSize,
+    size: defaultSize,
     sizeType: "px"
 }) =>{
-    const { id, width, height, sizeType, className, color, enablePress, switchIcon, handlePress } = props;
+    const { id, size, sizeType, className, color, enablePress, icon, handlePress, iconRatio } = props;
     const [isPressed, setIsPressed] = useState(false);
 
     const buttonStyle : CSSProperties = {
-        width: width ?? defaultSize + (sizeType ?? "px"),
-        height: height ?? defaultSize + (sizeType ?? "px"),
+        width: size ?? defaultSize + (sizeType ?? "px"),
+        height: size ?? defaultSize + (sizeType ?? "px"),
         borderRadius: "50%", /* Make the button circular */
         cursor: "pointer",
         // backgroundColor: color ? getColorVarNameFromType(color) : getColorVarNameFromType(Color.Blue),
@@ -40,8 +39,8 @@ const CircleButton : React.FC<Props> = (props= {
     }
 
     const iconStyle={
-        width: width ? width * .7 : "30px",
-        height: height ? height * .7 : "30px",
+        width: size ? size * (iconRatio ? iconRatio : .7) : "30px",
+        height: size ? size * (iconRatio ? iconRatio : .7) : "30px",
         // margin: "auto"
     }
 
@@ -64,7 +63,7 @@ const CircleButton : React.FC<Props> = (props= {
              onTouchStart={handlePressInternal}
              onTouchEnd={handleRelease}
         >
-            {switchIcon && <img src={switchIcon} style={iconStyle} alt={"icon"}/>}
+            {icon && <img src={icon} style={iconStyle} alt={"icon"}/>}
         </div>
     )
 }
