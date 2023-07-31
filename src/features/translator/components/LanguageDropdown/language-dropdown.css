@@ -18,7 +18,16 @@
 }
 
 .ld-options-container{
-    max-height: 150px; /* Customize the maximum height of the dropdown options */
+    /*max-height: 150px; !* Customize the maximum height of the dropdown options *!*/
+    max-height: 240px;
+    border-radius: 20px;
+    width: calc(100% - 20px) !important;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.ld-options-container::-webkit-scrollbar-track {
+    margin-bottom: 15px;
 }
 
 .ld-options-container--input {

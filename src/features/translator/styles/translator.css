@@ -6,14 +6,13 @@
     display: flex;
     flex-direction: column;
     height: 70%;
-    min-height: 300px;
     width: 100%;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
 
-    /*min-height: 500px;*/
-    max-height: 400px;
+    min-height: 300px;
+    max-height: 412px;
     max-width: 1500px;
 }
 
@@ -45,7 +44,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px;
+    /*padding: 10px;*/
+    padding-bottom: 10px;
+    padding-top: 10px;
     gap: 5px;
 }
 
@@ -65,8 +66,10 @@
     font-family: var(--primary-font);
     font-size: var(--font-size-small);
     padding: 0.7em;
-    line-height: 20px;
+    line-height: 24px;
     border: none;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .translator-card--textarea:focus{
