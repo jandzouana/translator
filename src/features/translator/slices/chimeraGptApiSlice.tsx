@@ -7,7 +7,7 @@ import { LoadingStates } from '../../../shared/constants/enums';
 
 const disableApi : boolean = true;
 const tag : string = createTag("chimeraGptApi");
-
+const disabledText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget dignissim nisl. Nulla facilisi. Nunc sodales tincidunt dui, eu condimentum urna vestibulum non.";
 const initialState : StateChimeraApi = {
     currentTranslation: "",
     status: LoadingStates.idle,
@@ -23,7 +23,7 @@ export const fetchTranslation = createAsyncThunk<string, string, {
     }
     rejectWithValue : any
     }>('translations/fetchTranslation', async (input, thunkApi) => {
-    if(disableApi) return "Disabled";
+    if(disableApi) return disabledText + disabledText + disabledText;
     console.log(tag + "Getting translation...");
     try {
         const requestMessage = input;
