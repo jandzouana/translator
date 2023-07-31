@@ -51,3 +51,21 @@
     background-color: var(--red) !important;
     color: var(--darkest-red) !important;
 }
+
+@media (max-height: 680px) {
+    .ld-options-container {
+        max-height: 205px; /* Set the height you want for screens below 680px */
+    }
+}
+
+@media (max-height: 630px) {
+    .ld-options-container {
+        max-height: 170px; /* Set the height you want for screens below 680px */
+    }
+}
+
+@media (max-height: 585px) {
+    .ld-options-container {
+        max-height: 140px; /* Set the height you want for screens below 680px */
+    }
+}
