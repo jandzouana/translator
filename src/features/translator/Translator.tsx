@@ -67,7 +67,10 @@ const Translator : React.FC<Props> = (props = {}) => {
     }, [currentTranslation])
 
     function generateRequestMessage(input : string){
-        const msg = `Translate the following from ${inputLanguage} to ${outputLanguage}: ${input}`;
+        const inputLanguageShort = inputLanguage.split(' ')[0];
+        const outputLanguageShort = outputLanguage.split(' ')[0];
+
+        const msg = `Translate the following from ${inputLanguageShort} to ${outputLanguageShort}: ${input}`;
         console.log(tag + "Request message: " + msg);
         return msg;
     }
