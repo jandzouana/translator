@@ -7,6 +7,7 @@ export const languages = [
     'Arabic (العربية)',
     'Bengali (বাংলা)',
     'Chinese (中文)',
+    'English',
     'French (Français)',
     'German (Deutsch)',
     'Hindi (हिन्दी)',

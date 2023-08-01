@@ -18,9 +18,9 @@
 }
 
 .ld-options-container{
-    /*max-height: 150px; !* Customize the maximum height of the dropdown options *!*/
-    max-height: 240px;
-    border-radius: 20px;
+    max-height: 260px;
+    flex: 1 1 100px;
+    overflow-y: auto;
     width: calc(100% - 20px) !important;
     margin-left: 10px;
     margin-right: 10px;
@@ -31,12 +31,14 @@
 }
 
 .ld-options-container--input {
-    background-color: var(--off-white);
+    /*background-color: var(--off-white);*/
+    background-color: transparent;
     color: var(--off-black);
 }
 
 .ld-options-container--output {
-    background-color: var(--red);
+    background-color: transparent;
+    /*background-color: var(--red);*/
 }
 
 .language-dropdown-option{
@@ -46,26 +48,11 @@
 }
 
 .language-dropdown-option-red:hover {
-    /*background-color: #f0f0f0;*/
-    /*color: #555;*/
-    background-color: var(--red) !important;
+    background-color: transparent !important;
     color: var(--darkest-red) !important;
 }
 
-@media (max-height: 680px) {
-    .ld-options-container {
-        max-height: 205px; /* Set the height you want for screens below 680px */
-    }
-}
-
-@media (max-height: 630px) {
-    .ld-options-container {
-        max-height: 170px; /* Set the height you want for screens below 680px */
-    }
-}
-
-@media (max-height: 585px) {
-    .ld-options-container {
-        max-height: 140px; /* Set the height you want for screens below 680px */
-    }
+.language-dropdown-option-blue:hover {
+    background-color: transparent !important;
+    color: var(--blue) !important;
 }
