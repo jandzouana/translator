@@ -1,5 +1,7 @@
 import React, {CSSProperties, useState} from 'react';
 import '../../styles/variables.css';
+import '../../styles/clickable-icon.css';
+
 import {Color, IconType} from "../../constants/enums";
 import { varFormatWithColor } from "../../utils/util";
 
@@ -38,7 +40,8 @@ const ClickableIcon : React.FC<Props> = (props= {
         cursor: "pointer",
         padding: `${padding ? padding : defaultPadding}${sizeType ? sizeType : 'px'}`,
         borderRadius: "50%",
-        backgroundColor: "green"
+        // backgroundColor: "green",
+        transition: "background-color 0.1s ease" /* Define the transition property */
     }
 
     const iconStyle : CSSProperties = {
@@ -60,11 +63,11 @@ const ClickableIcon : React.FC<Props> = (props= {
     };
 
     return(
-        <div style={buttonStyle}>
+        <div style={buttonStyle} className={"clickable-icon"}>
             {icon && <img src={icon}
                           id={id}
                           style={iconStyle}
-                          className={`${className ? className : ""}`}
+                          className={`${className ? className : ""} clickable-icon-img`}
                           onMouseDown={handlePressInternal}
                           onMouseUp={handleRelease}
                           onTouchStart={handlePressInternal}
