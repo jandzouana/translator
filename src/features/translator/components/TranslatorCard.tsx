@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {IconType, TranslateCardType} from "../../../shared/constants/enums";
+import {Color, IconType, TranslateCardType} from "../../../shared/constants/enums";
 import {LanguageDropdownBody, LanguageDropdownHeader} from "./LanguageDropdown/LanguageDropdown";
 import {languages} from "../../../shared/constants/constants";
 import ClickableIcon from "../../../shared/components/buttons/ClickableIcon";
@@ -68,7 +68,10 @@ const TranslatorCard : React.FC<Props> = (props = {
                       placeholder={type === TranslateCardType.Output ? "" : "What would you like to translate?"}
             />
             <div className={`translator-card--icon-container ${isOpen? "hide" : ""}`}>
-                <ClickableIcon icon={copyIcon} handlePress={handleIconPress} iconType={IconType.Copy}/>
+                <ClickableIcon icon={copyIcon}
+                               handlePress={handleIconPress}
+                               color={type === TranslateCardType.Input? Color.Blue : Color.White}
+                               iconType={IconType.Copy}/>
             </div>
         </div>
     )
