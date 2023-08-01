@@ -9,7 +9,8 @@ interface Props{
     id? : string,
     className? : string,
     color? : Color,
-    enablePress? : boolean
+    enablePressStyling? : boolean,
+    disabled? : boolean,
     icon? : any,
     handlePress? : any,
     iconRatio? : number
@@ -21,7 +22,7 @@ const CircleButton : React.FC<Props> = (props= {
     size: defaultSize,
     sizeType: "px"
 }) =>{
-    const { id, size, sizeType, className, color, enablePress, icon, handlePress, iconRatio } = props;
+    const { id, size, sizeType, className, color, disabled, enablePressStyling, icon, handlePress, iconRatio } = props;
     const [isPressed, setIsPressed] = useState(false);
 
     const buttonStyle : CSSProperties = {
@@ -30,7 +31,7 @@ const CircleButton : React.FC<Props> = (props= {
         borderRadius: "50%", /* Make the button circular */
         cursor: "pointer",
         // backgroundColor: color ? getColorVarNameFromType(color) : getColorVarNameFromType(Color.Blue),
-        backgroundColor: isPressed && !color && enablePress ? varFormatWithColor(Color.DarkBlue): color ? varFormatWithColor(color) : varFormatWithColor(Color.Blue),
+        backgroundColor: isPressed && !color && enablePressStyling ? varFormatWithColor(Color.DarkBlue): color ? varFormatWithColor(color) : varFormatWithColor(Color.Blue),
         // backgroundImage: `url(${baseIconUrl+"switch"+".svg"})`
         display: "flex",
         justifyContent: "center",
@@ -50,7 +51,7 @@ const CircleButton : React.FC<Props> = (props= {
 
     const handleRelease = () => {
         setIsPressed(false);
-        handlePress();
+        if(handlePress && !disabled) handlePress();
     };
 
     return(

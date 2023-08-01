@@ -74,7 +74,7 @@ const TranslatorCard : React.FC<Props> = (props = {
                         <ClickableIcon icon={deleteIcon}
                                        handlePress={handleIconPress}
                                        color={Color.Blue}
-                                       padding={15}
+                                       iconRatio={35}
                                        iconType={IconType.Delete}/>
                     </div>
                 }

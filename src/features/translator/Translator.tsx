@@ -80,8 +80,14 @@ const Translator : React.FC<Props> = (props = {}) => {
 
     function handleIconClick(icon : IconType, type : TranslateCardType){
         switch(icon){
-            case IconType.Copy: copyToClipboard(type);
-            case IconType.Delete: dispatch(setTextInput(""));
+            case IconType.Copy: {
+                copyToClipboard(type);
+                break;
+            }
+            case IconType.Delete: {
+                dispatch(setTextInput(""));
+                break;
+            }
         }
     }
 
@@ -133,7 +139,7 @@ const Translator : React.FC<Props> = (props = {}) => {
                                 textToDisplay={textInput}/>
                 <CircleButton id={"switch-languages-button"}
                               icon={switchIcon}
-                              enablePress={false}
+                              enablePressStyling={false}
                               handlePress={handleSwitchButtonPress}
                               className={"rotate-image-right"}
                               iconRatio={.5}

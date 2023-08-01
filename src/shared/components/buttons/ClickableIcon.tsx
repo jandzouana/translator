@@ -7,50 +7,51 @@ import { varFormatWithColor } from "../../utils/util";
 
 interface Props{
     size?: number,
-    padding? : number,
     sizeType? : string,
     id? : string,
     className? : string,
     color? : Color,
-    enablePress? : boolean
+    disable? : boolean
     icon : any,
     iconType : IconType,
     handlePress? : (icon : IconType) => void,
     iconRatio ? : number
 }
 
-const defaultSize = 30;
-const defaultPadding = 10;
+const defaultSize : number = 40;
+const defaultIconRatio : number = 50;
 
 const ClickableIcon : React.FC<Props> = (props= {
     size: defaultSize,
+    iconRatio: defaultIconRatio,
     sizeType: "px",
     icon: null,
     iconType: IconType.Undefined
 }) =>{
-    const { id, size, padding, sizeType, className, color, enablePress, icon, handlePress, iconRatio, iconType } = props;
+    const { id, size, sizeType, className, color, disable, icon, handlePress, iconRatio, iconType } = props;
     const [isPressed, setIsPressed] = useState(false);
 
-    function getSize(size : number, padding : number, sizeType : string) : string{
-        return `calc(${size}${sizeType} - ${padding}${sizeType})`;
+    function getSize(size : number, sizeType : string) : string{
+        // return `calc(${size}${sizeType} - ${padding}${sizeType})`;
+        return `${size}${sizeType}`;
     }
     const buttonStyle : CSSProperties = {
-        width: getSize(size ? size : defaultSize, padding ? padding : defaultPadding, sizeType ? sizeType : "px"),
-        height: getSize(size ? size : defaultSize, padding ? padding : defaultPadding,sizeType ? sizeType : "px"),
+        width: getSize(size ? size : defaultSize, sizeType ? sizeType : "px"),
+        height: getSize(size ? size : defaultSize, sizeType ? sizeType : "px"),
         cursor: "pointer",
-        padding: `${padding ? padding : defaultPadding}${sizeType ? sizeType : 'px'}`,
+        // padding: `${padding ? padding : defaultPadding}${sizeType ? sizeType : 'px'}`,
         borderRadius: "50%",
         // backgroundColor: "green",
-        transition: "background-color 0.1s ease" /* Define the transition property */
+        transition: "background-color 0.1s ease", /* Define the transition property */
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
     }
 
     const iconStyle : CSSProperties = {
-        width: "100%",
-        height: "100%",
+        width: `${iconRatio ? iconRatio : defaultIconRatio}%`,
+        height: `${iconRatio ? iconRatio : defaultIconRatio}%`,
         margin: "auto",
-        // fill: color ? varFormatWithColor(color) : varFormatWithColor(Color.White)
-        // width: size ? size * (iconRatio ? iconRatio : .7) : "30px",
-        // height: size ? size * (iconRatio ? iconRatio : .7) : "30px",
     }
 
     const handlePressInternal = () => {
@@ -59,7 +60,7 @@ const ClickableIcon : React.FC<Props> = (props= {
 
     const handleRelease = () => {
         setIsPressed(false);
-        if (handlePress) handlePress(iconType);
+        if (handlePress && !disable) handlePress(iconType);
     };
 
     return(
