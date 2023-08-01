@@ -35,3 +35,12 @@ export const varFormatWithFont = (font : Font) : string => {
    const f = _getFontVarNameFromType(font);
    return `var(${f})`;
 }
+
+export const copyToClipboardUtil = async (text: string): Promise<void> => {
+   try {
+      await navigator.clipboard.writeText(text);
+      // console.log('Text copied to clipboard:', text);
+   } catch (err) {
+      console.error('Failed to copy text:', err);
+   }
+};

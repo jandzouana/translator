@@ -17,7 +17,7 @@ import {
     setTextOutput
 } from "./slices/translationTextsSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {createTag} from "../../shared/utils/util";
+import {copyToClipboardUtil, createTag} from "../../shared/utils/util";
 import {IconType, LoadingStates, TranslateCardType} from "../../shared/constants/enums";
 import './styles/translator.css';
 import TranslatorCard from "./components/TranslatorCard";
@@ -74,7 +74,8 @@ const Translator : React.FC<Props> = (props = {}) => {
     }
 
     function copyToClipboard(type : TranslateCardType){
-
+        const text = type === TranslateCardType.Output ? textOutput.slice() : textInput.slice();
+        copyToClipboardUtil(text);
     }
 
     function handleIconClick(icon : IconType, type : TranslateCardType){
