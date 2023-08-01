@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const Dotenv = require('dotenv-webpack');
+const webpack = require("webpack");
 const htmlPlugin = new HtmlWebPackPlugin({
     template: "./src/index.html",
     filename: "./index.html"
@@ -44,5 +45,11 @@ module.exports = {
         ]
     },
     devtool: 'source-map',
-    plugins: [new Dotenv(), htmlPlugin]
+    plugins: [
+        new Dotenv(),
+        // new webpack.DefinePlugin({
+        //     'process.env.MY_API_KEY': JSON.stringify(process.env.API_KEY),
+        // }),
+        htmlPlugin
+    ]
 };
