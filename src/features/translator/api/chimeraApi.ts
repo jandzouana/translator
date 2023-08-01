@@ -1,4 +1,4 @@
-const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+const apiKey = process.env.API_KEY;
 import { createTag } from '../../../shared/utils/util';
 const apiUrl =  'https://chimeragpt.adventblocks.cc/api/v1';
 const endpointCompletions = "/chat/completions";
