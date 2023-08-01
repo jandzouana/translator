@@ -1,7 +1,7 @@
 import React, {CSSProperties, useState} from 'react';
 import '../../styles/variables.css';
-import {Color, Font, IconType} from "../../constants/enums";
-import {_getColorVarNameFromType, varFormatWithColor, varFormatWithFont} from "../../utils/util";
+import { Color, Font } from "../../constants/enums";
+import { varFormatWithColor, varFormatWithFont } from "../../utils/util";
 
 interface Props{
     width?: number,

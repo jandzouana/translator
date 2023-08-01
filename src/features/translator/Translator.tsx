@@ -18,7 +18,7 @@ import {
 } from "./slices/translationTextsSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {createTag} from "../../shared/utils/util";
-import {LoadingStates, TranslateCardType} from "../../shared/constants/enums";
+import {IconType, LoadingStates, TranslateCardType} from "../../shared/constants/enums";
 import './styles/translator.css';
 import TranslatorCard from "./components/TranslatorCard";
 import CircleButton from "../../shared/components/buttons/CircleButton";
@@ -38,8 +38,6 @@ const Translator : React.FC<Props> = (props = {}) => {
     const lastTranslationText = useRef("");
     const lastInputLanguage = useRef("");
     const lastOutputLanguage = useRef("");
-
-    // TODO: Move?
 
     // useEffect(()=>{
     //
@@ -73,6 +71,16 @@ const Translator : React.FC<Props> = (props = {}) => {
         const msg = `Translate the following from ${inputLanguageShort} to ${outputLanguageShort}: ${input}`;
         console.log(tag + "Request message: " + msg);
         return msg;
+    }
+
+    function copyToClipboard(type : TranslateCardType){
+
+    }
+
+    function handleIconClick(icon : IconType, type : TranslateCardType){
+        switch(icon){
+            case IconType.Copy: copyToClipboard(type);
+        }
     }
 
     function handleTranslateBtnClick() {
@@ -118,6 +126,7 @@ const Translator : React.FC<Props> = (props = {}) => {
                 <TranslatorCard type={TranslateCardType.Input}
                                 handleTextChange={handleTextInputChange}
                                 handleLanguageChange={handleLanguageChange}
+                                handleIconClick={handleIconClick}
                                 language={inputLanguage}
                                 textToDisplay={textInput}/>
                 <CircleButton id={"switch-languages-button"}
@@ -131,6 +140,7 @@ const Translator : React.FC<Props> = (props = {}) => {
                 <TranslatorCard
                     type={TranslateCardType.Output}
                     handleLanguageChange={handleLanguageChange}
+                    handleIconClick={handleIconClick}
                     textToDisplay={textOutput}
                     language={outputLanguage}
                 />

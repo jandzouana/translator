@@ -1,14 +1,13 @@
 import React, {CSSProperties, useState} from 'react';
 import '../../styles/variables.css';
-import {Color, IconType} from "../../constants/enums";
-import {_getColorVarNameFromType, varFormatWithColor} from "../../utils/util";
+import { Color } from "../../constants/enums";
+import { varFormatWithColor } from "../../utils/util";
 
 interface Props{
     size?: number,
     sizeType? : string,
     id? : string,
     className? : string,
-    iconType? : IconType,
     color? : Color,
     enablePress? : boolean
     icon? : any,

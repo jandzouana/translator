@@ -10,10 +10,6 @@ export enum TranslateCardType {
     Output
 }
 
-export enum IconType {
-    switch
-}
-
 export enum Color {
     LightBlue,
     DarkBlue,
@@ -26,6 +22,14 @@ export enum Color {
     OffBlack,
     OffWhite,
     Red
+}
+
+export enum IconType {
+    Undefined,
+    Copy,
+    Delete,
+    Sound,
+    Voice,
 }
 
 export enum Font {

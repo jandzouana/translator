@@ -1,19 +1,25 @@
 import React, {useEffect, useState} from 'react';
-import {Color, TranslateCardType} from "../../../shared/constants/enums";
-import { LanguageDropdownHeader, LanguageDropdownBody } from "./LanguageDropdown/LanguageDropdown";
+import {IconType, TranslateCardType} from "../../../shared/constants/enums";
+import {LanguageDropdownBody, LanguageDropdownHeader} from "./LanguageDropdown/LanguageDropdown";
 import {languages} from "../../../shared/constants/constants";
+import ClickableIcon from "../../../shared/components/buttons/ClickableIcon";
+import copyIcon from "../../../assets/copy-file.svg";
 
 interface Props {
     type: TranslateCardType,
-    handleTextChange? : any,
+    handleTextChange? : (text : string) => void,
+    handleIconClick? : (icon : IconType, type : TranslateCardType) => void,
     textToDisplay : string,
     language : string,
-    handleLanguageChange? : any
+    handleLanguageChange? : (text : string, type : TranslateCardType) => void
 }
 
 const TranslatorCard : React.FC<Props> = (props = {
-    type:TranslateCardType.Input, textToDisplay: "", language: "", handleLanguageChange: null}) => {
-    const { type, handleTextChange, textToDisplay, language, handleLanguageChange } = props;
+    type:TranslateCardType.Input,
+    textToDisplay: "", language: "",
+    handleLanguageChange: (text : string, type : TranslateCardType) =>{},
+}) => {
+    const { type, handleTextChange, textToDisplay, language, handleLanguageChange, handleIconClick } = props;
     const [textValue, setTextValue] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     // console.log("isOpen: " + isOpen);
@@ -29,10 +35,14 @@ const TranslatorCard : React.FC<Props> = (props = {
 
     function handleTextAreaChange(event : any) {
         const msg = event.target.value ? event.target.value : "";
-        handleTextChange(msg);
+        if(handleTextChange) handleTextChange(msg);
     }
 
-    function handleHeaderClick(isOpen : true){
+    function handleIconPress(icon : IconType){
+        if(handleIconClick) handleIconClick(icon, type);
+    }
+
+    function handleHeaderClick(isOpen : boolean){
         setIsOpen(isOpen);
     }
 
@@ -57,7 +67,9 @@ const TranslatorCard : React.FC<Props> = (props = {
                       onChange={handleTextAreaChange}
                       placeholder={type === TranslateCardType.Output ? "" : "What would you like to translate?"}
             />
-            <div className={`translator-card--icon-container ${isOpen? "hide" : ""}`}></div>
+            <div className={`translator-card--icon-container ${isOpen? "hide" : ""}`}>
+                <ClickableIcon icon={copyIcon} handlePress={handleIconPress} iconType={IconType.Copy}/>
+            </div>
         </div>
     )
 }
