@@ -48,7 +48,7 @@ const ClickableIcon : React.FC<Props> = (props= {
         width: "100%",
         height: "100%",
         margin: "auto",
-        fill: color ? varFormatWithColor(color) : varFormatWithColor(Color.White)
+        // fill: color ? varFormatWithColor(color) : varFormatWithColor(Color.White)
         // width: size ? size * (iconRatio ? iconRatio : .7) : "30px",
         // height: size ? size * (iconRatio ? iconRatio : .7) : "30px",
     }
@@ -67,7 +67,7 @@ const ClickableIcon : React.FC<Props> = (props= {
             {icon && <img src={icon}
                           id={id}
                           style={iconStyle}
-                          className={`${className ? className : ""} clickable-icon-img`}
+                          className={`${className ? className : ""} clickable-icon-img ${color === Color.Blue ? 'clickable-icon-blue' : ''}`}
                           onMouseDown={handlePressInternal}
                           onMouseUp={handleRelease}
                           onTouchStart={handlePressInternal}
