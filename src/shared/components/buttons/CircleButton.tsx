@@ -17,6 +17,7 @@ interface Props{
 }
 
 const defaultSize = 50;
+const defaultRatio = 70;
 
 const CircleButton : React.FC<Props> = (props= {
     size: defaultSize,
@@ -39,9 +40,8 @@ const CircleButton : React.FC<Props> = (props= {
     }
 
     const iconStyle={
-        width: size ? size * (iconRatio ? iconRatio : .7) : "30px",
-        height: size ? size * (iconRatio ? iconRatio : .7) : "30px",
-        // margin: "auto"
+        width: `${iconRatio ? iconRatio : defaultRatio}%`,
+        height: `${iconRatio ? iconRatio : defaultRatio}%`
     }
 
 

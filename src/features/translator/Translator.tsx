@@ -142,7 +142,7 @@ const Translator : React.FC<Props> = (props = {}) => {
                               enablePressStyling={false}
                               handlePress={handleSwitchButtonPress}
                               className={"rotate-image-right"}
-                              iconRatio={.5}
+                              iconRatio={50}
                               size={50}
                 />
                 <TranslatorCard
