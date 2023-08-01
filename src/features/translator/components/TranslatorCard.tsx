@@ -59,12 +59,10 @@ const TranslatorCard : React.FC<Props> = (props = {
                                   handleDropdownChange={handleLanguageDropdownChange}
                                   isOpen={isOpen}
             />
-            <div className={"translator-card--textarea-container"}>
+            <div className={`translator-card--textarea-container ${isOpen? 'hide' : ''}`}>
                 <textarea disabled={type === TranslateCardType.Output}
                           autoComplete="off"
-                          className={`translator-card--textarea disable-focus
-                    ${isOpen? "hide" : ""}
-                    ${type === TranslateCardType.Output ? "translator-card--textarea--output red-scrollbar" : "blue-scrollbar"}`}
+                          className={`translator-card--textarea disable-focus ${type === TranslateCardType.Output ? "translator-card--textarea--output red-scrollbar" : "blue-scrollbar"}`}
                           value={textValue}
                           onChange={handleTextAreaChange}
                           placeholder={type === TranslateCardType.Output ? "" : "What would you like to translate?"}
