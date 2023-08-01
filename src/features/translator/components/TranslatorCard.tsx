@@ -4,6 +4,7 @@ import {LanguageDropdownBody, LanguageDropdownHeader} from "./LanguageDropdown/L
 import {languages} from "../../../shared/constants/constants";
 import ClickableIcon from "../../../shared/components/buttons/ClickableIcon";
 import copyIcon from "../../../assets/copy-file.svg";
+import deleteIcon from "../../../assets/x.svg";
 
 interface Props {
     type: TranslateCardType,
@@ -58,15 +59,26 @@ const TranslatorCard : React.FC<Props> = (props = {
                                   handleDropdownChange={handleLanguageDropdownChange}
                                   isOpen={isOpen}
             />
-            <textarea disabled={type === TranslateCardType.Output}
-                      autoComplete="off"
-                      className={`translator-card--textarea disable-focus
-                                ${isOpen? "hide" : ""}
-                                ${type === TranslateCardType.Output ? "translator-card--textarea--output red-scrollbar" : "blue-scrollbar"}`}
-                      value={textValue}
-                      onChange={handleTextAreaChange}
-                      placeholder={type === TranslateCardType.Output ? "" : "What would you like to translate?"}
-            />
+            <div className={"translator-card--textarea-container"}>
+                <textarea disabled={type === TranslateCardType.Output}
+                          autoComplete="off"
+                          className={`translator-card--textarea disable-focus
+                    ${isOpen? "hide" : ""}
+                    ${type === TranslateCardType.Output ? "translator-card--textarea--output red-scrollbar" : "blue-scrollbar"}`}
+                          value={textValue}
+                          onChange={handleTextAreaChange}
+                          placeholder={type === TranslateCardType.Output ? "" : "What would you like to translate?"}
+                />
+                {type === TranslateCardType.Input &&
+                    <div className={`translator-card--textarea-btns ${!textToDisplay ? 'hide' : ''}`}>
+                        <ClickableIcon icon={deleteIcon}
+                                       handlePress={handleIconPress}
+                                       color={Color.Blue}
+                                       padding={15}
+                                       iconType={IconType.Delete}/>
+                    </div>
+                }
+            </div>
             <div className={`translator-card--icon-container ${isOpen? "hide" : ""}`}>
                 <ClickableIcon icon={copyIcon}
                                handlePress={handleIconPress}

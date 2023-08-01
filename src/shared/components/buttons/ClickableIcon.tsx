@@ -63,15 +63,16 @@ const ClickableIcon : React.FC<Props> = (props= {
     };
 
     return(
-        <div style={buttonStyle} className={"clickable-icon"}>
+        <div style={buttonStyle}
+             onMouseDown={handlePressInternal}
+             onMouseUp={handleRelease}
+             onTouchStart={handlePressInternal}
+             onTouchEnd={handleRelease}
+             className={"clickable-icon"}>
             {icon && <img src={icon}
                           id={id}
                           style={iconStyle}
                           className={`${className ? className : ""} clickable-icon-img ${color === Color.Blue ? 'clickable-icon-blue' : ''}`}
-                          onMouseDown={handlePressInternal}
-                          onMouseUp={handleRelease}
-                          onTouchStart={handlePressInternal}
-                          onTouchEnd={handleRelease}
                           alt={"icon"}
             />}
         </div>

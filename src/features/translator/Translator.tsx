@@ -81,6 +81,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     function handleIconClick(icon : IconType, type : TranslateCardType){
         switch(icon){
             case IconType.Copy: copyToClipboard(type);
+            case IconType.Delete: dispatch(setTextInput(""));
         }
     }
 

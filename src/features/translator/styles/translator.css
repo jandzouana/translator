@@ -72,6 +72,23 @@
     margin-left: 10px;
 }
 
+.translator-card--textarea-container{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    /*background-color: blue;*/
+}
+
+.translator-card--textarea{
+    flex: 1;
+    /*background-color: yellow;*/
+}
+
+.translator-card--textarea-btns{
+    flex-basis: 50px;
+    /*background-color: green;*/
+}
+
 .translator-card--textarea:focus{
     /*outline: 2px solid var(--light-grey);*/
 }
