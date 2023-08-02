@@ -2,6 +2,7 @@ import React, {CSSProperties, useState} from 'react';
 import '../../styles/variables.css';
 import { Color } from "../../constants/enums";
 import { varFormatWithColor } from "../../utils/util";
+import Image from "next/image";
 
 interface Props{
     size?: number,
@@ -63,7 +64,7 @@ const CircleButton : React.FC<Props> = (props= {
              onTouchStart={handlePressInternal}
              onTouchEnd={handleRelease}
         >
-            {icon && <img src={icon} style={iconStyle} alt={"icon"}/>}
+            {icon && <Image src={icon} style={iconStyle} alt={"icon"}/>}
         </div>
     )
 }

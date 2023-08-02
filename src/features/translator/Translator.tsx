@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import { useRef, useEffect } from 'react';
 import {
     clearCurrentTranslation,
     fetchTranslation,

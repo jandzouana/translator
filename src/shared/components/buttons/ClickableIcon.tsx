@@ -1,9 +1,10 @@
-import React, {CSSProperties, useState} from 'react';
+import { CSSProperties, useState } from 'react';
 import '../../styles/variables.css';
 import '../../styles/clickable-icon.css';
 
 import {Color, IconType} from "../../constants/enums";
 import { varFormatWithColor } from "../../utils/util";
+import Image from "next/image";
 
 interface Props{
     size?: number,
@@ -70,7 +71,7 @@ const ClickableIcon : React.FC<Props> = (props= {
              onTouchStart={handlePressInternal}
              onTouchEnd={handleRelease}
              className={"clickable-icon"}>
-            {icon && <img src={icon}
+            {icon && <Image src={icon}
                           id={id}
                           style={iconStyle}
                           className={`${className ? className : ""} clickable-icon-img ${color === Color.Blue ? 'clickable-icon-blue' : ''}`}
