@@ -15,7 +15,7 @@ interface Msg {
 
 const messages : Array<Msg> = [];
 
-// console.log(tag + "API Key: " + apiKey);
+console.log(tag + "API Key: " + apiKey);
 
 // const getCompletion = (msg : string, keepContext : boolean = true) : string =>{
 

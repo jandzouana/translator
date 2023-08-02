@@ -1,11 +1,11 @@
 import { createTag } from "../../../shared/utils/util";
 import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
 import getCompletion from '../api/chimeraApi';
-import { AppDispatch, RootState } from '../../../shared/store';
-import { StateChimeraApi } from '../../../shared/constants/interfaces';
-import { LoadingStates } from '../../../shared/constants/enums';
+import { AppDispatch, RootState } from '@/shared/store';
+import { StateChimeraApi } from '@/shared/constants/interfaces';
+import { LoadingStates } from '@/shared/constants/enums';
 
-const disableApi : boolean = true;
+const disableApi : boolean = false;
 
 const tag : string = createTag("chimeraGptApi");
 const disabledText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget dignissim nisl. Nulla facilisi. Nunc sodales tincidunt dui, eu condimentum urna vestibulum non.";
