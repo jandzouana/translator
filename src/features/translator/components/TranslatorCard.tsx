@@ -5,6 +5,8 @@ import {languages} from "../../../shared/constants/constants";
 import ClickableIcon from "../../../shared/components/buttons/ClickableIcon";
 import copyIcon from "../../../assets/copy-file.svg";
 import deleteIcon from "../../../assets/x.svg";
+import {createTag} from "@/shared/utils/util";
+import Spinner from "@/shared/components/spinner/spinner";
 
 interface Props {
     type: TranslateCardType,
@@ -12,7 +14,8 @@ interface Props {
     handleIconClick? : (icon : IconType, type : TranslateCardType) => void,
     textToDisplay : string,
     language : string,
-    handleLanguageChange? : (text : string, type : TranslateCardType) => void
+    handleLanguageChange? : (text : string, type : TranslateCardType) => void,
+    showLoader ? : boolean
 }
 
 const TranslatorCard : React.FC<Props> = (props = {
@@ -20,7 +23,9 @@ const TranslatorCard : React.FC<Props> = (props = {
     textToDisplay: "", language: "",
     handleLanguageChange: (text : string, type : TranslateCardType) =>{},
 }) => {
-    const { type, handleTextChange, textToDisplay, language, handleLanguageChange, handleIconClick } = props;
+    const { type, handleTextChange, textToDisplay, language, handleLanguageChange, handleIconClick, showLoader } = props;
+    const tag = createTag("TranslatorCard");
+    if (type === TranslateCardType.Output) console.log(tag + "Show loader: " + showLoader + ". Type: " + type);
     const [textValue, setTextValue] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     // console.log("isOpen: " + isOpen);
@@ -59,10 +64,14 @@ const TranslatorCard : React.FC<Props> = (props = {
                                   handleDropdownChange={handleLanguageDropdownChange}
                                   isOpen={isOpen}
             />
-            <div className={`translator-card--textarea-container ${isOpen? 'hide' : ''}`}>
+            <div className={`translator-card--loader-container ${(showLoader && type === TranslateCardType.Output) ? "" : "hide"}`}>
+                <Spinner show={true} className={"translator-card--spinner"}/>
+            </div>
+            <div className={`translator-card--textarea-container ${(isOpen || showLoader)? 'hide' : ''}`}>
                 <textarea disabled={type === TranslateCardType.Output}
                           autoComplete="off"
-                          className={`translator-card--textarea disable-focus ${type === TranslateCardType.Output ? "translator-card--textarea--output red-scrollbar" : "blue-scrollbar"}`}
+                          className={`translator-card--textarea disable-focus 
+                            ${type === TranslateCardType.Output ? "translator-card--textarea--output red-scrollbar" : "blue-scrollbar"}`}
                           value={textValue}
                           onChange={handleTextAreaChange}
                           placeholder={type === TranslateCardType.Output ? "" : "What would you like to translate?"}

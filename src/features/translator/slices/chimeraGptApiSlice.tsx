@@ -6,6 +6,7 @@ import { StateChimeraApi } from '@/shared/constants/interfaces';
 import { LoadingStates } from '@/shared/constants/enums';
 
 const disableApi : boolean = false;
+const delaySeconds : number = 3;
 
 const tag : string = createTag("chimeraGptApi");
 const disabledText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget dignissim nisl. Nulla facilisi. Nunc sodales tincidunt dui, eu condimentum urna vestibulum non.";
@@ -24,18 +25,24 @@ export const fetchTranslation = createAsyncThunk<string, string, {
     }
     rejectWithValue : any
     }>('translations/fetchTranslation', async (input, thunkApi) => {
-    if(disableApi) return disabledText + disabledText + disabledText;
-    console.log(tag + "Getting translation...");
-    try {
-        const requestMessage = input;
-        const response: string = await getCompletion(requestMessage, false);
-        console.log(tag + "Response: " + response);
-        return response;
+    if(disableApi) {
+        // await setTimeout(() => {
+        //     return disabledText + disabledText + disabledText;
+        // }, delaySeconds * 1000);
+        return disabledText + disabledText + disabledText;
     }
-    catch (e : any) {
-        // Handle the error and return a rejected action using rejectWithValue
-        const errorMessage = e.message; // Or any other error-related data you want to include
-        return thunkApi.rejectWithValue(errorMessage);
+    else {
+        console.log(tag + "Getting translation...");
+        try {
+            const requestMessage = input;
+            const response: string = await getCompletion(requestMessage, false);
+            console.log(tag + "Response: " + response);
+            return response;
+        } catch (e: any) {
+            // Handle the error and return a rejected action using rejectWithValue
+            const errorMessage = e.message; // Or any other error-related data you want to include
+            return thunkApi.rejectWithValue(errorMessage);
+        }
     }
 });
 

@@ -72,7 +72,19 @@
     margin-left: 10px;
 }
 
+.translator-card--spinner {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
 .translator-card--textarea-container{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    /*background-color: blue;*/
+}
+
+.translator-card--loader-container{
     display: flex;
     flex-direction: row;
     flex: 1;

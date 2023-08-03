@@ -151,6 +151,7 @@ const Translator : React.FC<Props> = (props = {}) => {
                     handleIconClick={handleIconClick}
                     textToDisplay={textOutput}
                     language={outputLanguage}
+                    showLoader={currentStatus === LoadingStates.loading}
                 />
             </div>
             <div id={"translator-container--bottom"}>
