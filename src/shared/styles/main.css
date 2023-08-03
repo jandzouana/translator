@@ -59,7 +59,7 @@ body, html{
 #l1{
     flex-basis: 50px;
     align-items: center;
-    display: none;
+    /*display: none;*/
 }
 
 #l2{

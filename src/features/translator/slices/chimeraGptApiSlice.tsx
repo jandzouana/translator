@@ -1,4 +1,4 @@
-import { createTag } from "../../../shared/utils/util";
+import { createTag } from "@/shared/utils/util";
 import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
 import getCompletion from '../api/chimeraApi';
 import { AppDispatch, RootState } from '@/shared/store';

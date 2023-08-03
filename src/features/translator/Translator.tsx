@@ -10,7 +10,7 @@ import {
     selectInputLanguage,
     selectOutputLanguage,
     selectTextInput,
-    selectTextOutput,
+    selectTextOutput, selectTone,
     setInputLanguage,
     setOutputLanguage,
     setTextInput,
@@ -38,6 +38,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     const lastTranslationText = useRef("");
     const lastInputLanguage = useRef("");
     const lastOutputLanguage = useRef("");
+    const lastTone = useRef("");
 
     // useEffect(()=>{
     //
@@ -49,6 +50,7 @@ const Translator : React.FC<Props> = (props = {}) => {
 
     const currentTranslation = useSelector(selectCurrentTranslation);
     const currentStatus = useSelector(selectStatus);
+    const currentTone = useSelector(selectTone);
     const apiErrorMsg = useSelector(selectApiErrorMsg);
 
     //console.log(tag + "Current translation: " + currentTranslation);
@@ -68,7 +70,7 @@ const Translator : React.FC<Props> = (props = {}) => {
         const inputLanguageShort = inputLanguage.split(' ')[0];
         const outputLanguageShort = outputLanguage.split(' ')[0];
 
-        const msg = `Translate the following from ${inputLanguageShort} to ${outputLanguageShort}: ${input}`;
+        const msg = `Translate the following with a ${currentTone} tone from ${inputLanguageShort} to ${outputLanguageShort}: ${input}`;
         console.log(tag + "Request message: " + msg);
         return msg;
     }
@@ -95,6 +97,7 @@ const Translator : React.FC<Props> = (props = {}) => {
         if(textInput.length !== 0 && (textInput !== lastTranslationText.current
             || inputLanguage !== lastInputLanguage.current
             || outputLanguage !== lastOutputLanguage.current
+            || currentTone !== lastTone.current
         )){
             //@ts-ignore
             dispatch(fetchTranslation(generateRequestMessage(textInput)));
@@ -102,6 +105,7 @@ const Translator : React.FC<Props> = (props = {}) => {
             lastTranslationText.current = textInput;
             lastInputLanguage.current = inputLanguage;
             lastOutputLanguage.current = outputLanguage;
+            lastTone.current = currentTone;
             dispatch(clearCurrentTranslation());
         }
     }

@@ -3,6 +3,9 @@ export const defaultLanguages = {
     output: "Spanish (Español)"
 }
 
+export const defaultTone = "Formal";
+
+
 export const languages = [
     'Arabic (العربية)',
     'Bengali (বাংলা)',

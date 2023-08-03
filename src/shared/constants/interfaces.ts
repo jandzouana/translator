@@ -10,5 +10,6 @@ export interface StateTranslation {
     textInput: string,
     textOutput: string,
     inputLanguage : string,
-    outputLanguage : string
+    outputLanguage : string,
+    tone : string
 }

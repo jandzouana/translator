@@ -1,0 +1,29 @@
+.tone-dropdown{
+}
+
+.tone-dropdown-header{
+    /*box-shadow: 1px 1px 4px 0 var(--grey);*/
+    color: var(--white);
+    background-color: var(--blue);
+    border-radius: 5px;
+    height: 24px;
+    /*width: 50px;*/
+    text-align: center;
+    padding: 4px 10px 4px 10px;
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-xs);
+}
+
+.tone-dropdown-options-container{
+    max-height: 150px;
+    background-color: var(--white);
+    /*padding-top: 10px;*/
+}
+
+.tone-dropdown-option{
+    height: 20px;
+    font-size: var(--font-size-xs);
+    text-align: center;
+    color: var(--off-black);
+}

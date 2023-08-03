@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Color, IconType, TranslateCardType} from "../../../shared/constants/enums";
+import {Color, IconType, TranslateCardType} from "@/shared/constants/enums";
 import {LanguageDropdownBody, LanguageDropdownHeader} from "./LanguageDropdown/LanguageDropdown";
-import {languages} from "../../../shared/constants/constants";
+import {languages} from "@/shared/constants/constants";
 import ClickableIcon from "../../../shared/components/buttons/ClickableIcon";
 import copyIcon from "../../../assets/copy-file.svg";
 import deleteIcon from "../../../assets/x.svg";
@@ -25,7 +25,7 @@ const TranslatorCard : React.FC<Props> = (props = {
 }) => {
     const { type, handleTextChange, textToDisplay, language, handleLanguageChange, handleIconClick, showLoader } = props;
     const tag = createTag("TranslatorCard");
-    if (type === TranslateCardType.Output) console.log(tag + "Show loader: " + showLoader + ". Type: " + type);
+    // if (type === TranslateCardType.Output) console.log(tag + "Show loader: " + showLoader + ". Type: " + type);
     const [textValue, setTextValue] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     // console.log("isOpen: " + isOpen);
