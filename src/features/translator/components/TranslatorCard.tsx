@@ -14,6 +14,7 @@ interface Props {
     handleIconClick? : (icon : IconType, type : TranslateCardType) => void,
     textToDisplay : string,
     language : string,
+    otherLanguage : string,
     handleLanguageChange? : (text : string, type : TranslateCardType) => void,
     showLoader ? : boolean
 }
@@ -21,9 +22,10 @@ interface Props {
 const TranslatorCard : React.FC<Props> = (props = {
     type:TranslateCardType.Input,
     textToDisplay: "", language: "",
+    otherLanguage : "",
     handleLanguageChange: (text : string, type : TranslateCardType) =>{},
 }) => {
-    const { type, handleTextChange, textToDisplay, language, handleLanguageChange, handleIconClick, showLoader } = props;
+    const { type, handleTextChange, textToDisplay, language, otherLanguage, handleLanguageChange, handleIconClick, showLoader } = props;
     const tag = createTag("TranslatorCard");
     // if (type === TranslateCardType.Output) console.log(tag + "Show loader: " + showLoader + ". Type: " + type);
     const [textValue, setTextValue] = useState('');
@@ -48,8 +50,8 @@ const TranslatorCard : React.FC<Props> = (props = {
         if(handleIconClick) handleIconClick(icon, type);
     }
 
-    function handleHeaderClick(isOpen : boolean){
-        setIsOpen(isOpen);
+    function handleHeaderClick(){
+        setIsOpen(lastOpen => !lastOpen);
     }
 
     return(
@@ -57,9 +59,11 @@ const TranslatorCard : React.FC<Props> = (props = {
             <LanguageDropdownHeader type={type}
                                     optionToDisplay={language}
                                     handleHeaderClick={handleHeaderClick}
+                                    isOpen={isOpen}
                                     />
             <LanguageDropdownBody type={type}
                                   optionToDisplay={language}
+                                  optionToHide={otherLanguage}
                                   languages={languages}
                                   handleDropdownChange={handleLanguageDropdownChange}
                                   isOpen={isOpen}

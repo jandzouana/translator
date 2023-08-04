@@ -6,11 +6,13 @@ import "../../../../shared/styles/custom-dropdown.css";
 interface PropsHeader{
     optionToDisplay: string,
     type: TranslateCardType,
-    handleHeaderClick : (isOpen : boolean) => void
+    handleHeaderClick : (isOpen : boolean) => void,
+    isOpen : boolean
 }
 
 interface PropsBody{
     optionToDisplay: string,
+    optionToHide : string,
     type: TranslateCardType,
     handleDropdownChange: (language : string, type : TranslateCardType) => void,
     languages: Array<string>,
@@ -18,16 +20,12 @@ interface PropsBody{
 }
 
 export const LanguageDropdownHeader : React.FC<PropsHeader> = (props=
-                                                {optionToDisplay : "", handleHeaderClick: (isOpen : boolean) => {}, type: TranslateCardType.Input}) => {
-    const {optionToDisplay, type, handleHeaderClick} = props;
-
-    const [isOpen, setIsOpen] = useState(false);
-
+                                                {optionToDisplay : "", isOpen : false,
+                                                    handleHeaderClick: () => {}, type: TranslateCardType.Input}) => {
+    const {optionToDisplay, type, handleHeaderClick, isOpen} = props;
 
     const handleToggleDropdown = () => {
-        const newState = !isOpen;
-        setIsOpen(newState);
-        handleHeaderClick(newState);
+        handleHeaderClick();
     };
 
     return(
@@ -42,14 +40,14 @@ export const LanguageDropdownHeader : React.FC<PropsHeader> = (props=
 }
 
 export const LanguageDropdownBody: React.FC<PropsBody> = (props) => {
-    const { isOpen, type, languages, optionToDisplay } = props;
+    const { isOpen, type, languages, optionToDisplay, optionToHide } = props;
     const [languageList, setLanguageList] = useState([]);
     const [selectedLanguage, setSelectedLanguage] = useState('');
     // console.log("isOpen: " + isOpen);
 
     useEffect(()=>{
         createSelectsFromLanguageArr(languages);
-    }, [selectedLanguage])
+    }, [selectedLanguage, optionToHide])
 
     useEffect(() => {
         setSelectedLanguage(optionToDisplay);
@@ -58,7 +56,7 @@ export const LanguageDropdownBody: React.FC<PropsBody> = (props) => {
 
     function createSelectsFromLanguageArr(langs : Array<string>){
         const selects : any = langs.map((language, idx) => {
-            if(language !== selectedLanguage)
+            if(language !== selectedLanguage && language !==optionToHide)
             {
                 return <div key={idx}
                             className={`option language-dropdown-option center ${type === TranslateCardType.Output? "language-dropdown-option-red" : "language-dropdown-option-blue"}`}
