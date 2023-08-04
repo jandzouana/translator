@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {TranslateCardType} from "../../../../shared/constants/enums";
+import {TranslateCardType} from "@/shared/constants/enums";
 import "./language-dropdown.css";
 import "../../../../shared/styles/custom-dropdown.css";
 
 interface PropsHeader{
     optionToDisplay: string,
     type: TranslateCardType,
-    handleHeaderClick : (isOpen : boolean) => void,
+    handleHeaderClick : () => void,
     isOpen : boolean
 }
 
