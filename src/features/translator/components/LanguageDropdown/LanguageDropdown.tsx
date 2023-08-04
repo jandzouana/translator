@@ -6,7 +6,8 @@ import "../../../../shared/styles/custom-dropdown.css";
 interface PropsHeader{
     optionToDisplay: string,
     type: TranslateCardType,
-    handleHeaderClick : (isOpen : boolean) => void
+    handleHeaderClick : (isOpen : boolean) => void,
+    isOpen : boolean
 }
 
 interface PropsBody{
@@ -19,16 +20,12 @@ interface PropsBody{
 }
 
 export const LanguageDropdownHeader : React.FC<PropsHeader> = (props=
-                                                {optionToDisplay : "", handleHeaderClick: (isOpen : boolean) => {}, type: TranslateCardType.Input}) => {
-    const {optionToDisplay, type, handleHeaderClick} = props;
-
-    const [isOpen, setIsOpen] = useState(false);
-
+                                                {optionToDisplay : "", isOpen : false,
+                                                    handleHeaderClick: () => {}, type: TranslateCardType.Input}) => {
+    const {optionToDisplay, type, handleHeaderClick, isOpen} = props;
 
     const handleToggleDropdown = () => {
-        const newState = !isOpen;
-        setIsOpen(newState);
-        handleHeaderClick(newState);
+        handleHeaderClick();
     };
 
     return(

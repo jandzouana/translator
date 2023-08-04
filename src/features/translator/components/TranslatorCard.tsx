@@ -50,8 +50,8 @@ const TranslatorCard : React.FC<Props> = (props = {
         if(handleIconClick) handleIconClick(icon, type);
     }
 
-    function handleHeaderClick(isOpen : boolean){
-        setIsOpen(isOpen);
+    function handleHeaderClick(){
+        setIsOpen(lastOpen => !lastOpen);
     }
 
     return(
@@ -59,6 +59,7 @@ const TranslatorCard : React.FC<Props> = (props = {
             <LanguageDropdownHeader type={type}
                                     optionToDisplay={language}
                                     handleHeaderClick={handleHeaderClick}
+                                    isOpen={isOpen}
                                     />
             <LanguageDropdownBody type={type}
                                   optionToDisplay={language}
