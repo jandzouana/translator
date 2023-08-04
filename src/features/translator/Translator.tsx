@@ -70,7 +70,7 @@ const Translator : React.FC<Props> = (props = {}) => {
         const inputLanguageShort = inputLanguage.split(' ')[0];
         const outputLanguageShort = outputLanguage.split(' ')[0];
 
-        const msg = `Translate the following with a ${currentTone} tone from ${inputLanguageShort} to ${outputLanguageShort}: ${input}`;
+        const msg = `Translate the following with a ${currentTone} tone directly without any extra information from ${inputLanguageShort} to ${outputLanguageShort}: ${input}`;
         console.log(tag + "Request message: " + msg);
         return msg;
     }
@@ -140,6 +140,7 @@ const Translator : React.FC<Props> = (props = {}) => {
                                 handleLanguageChange={handleLanguageChange}
                                 handleIconClick={handleIconClick}
                                 language={inputLanguage}
+                                otherLanguage={outputLanguage}
                                 textToDisplay={textInput}/>
                 <CircleButton id={"switch-languages-button"}
                               icon={switchIcon}
@@ -155,6 +156,7 @@ const Translator : React.FC<Props> = (props = {}) => {
                     handleIconClick={handleIconClick}
                     textToDisplay={textOutput}
                     language={outputLanguage}
+                    otherLanguage={inputLanguage}
                     showLoader={currentStatus === LoadingStates.loading}
                 />
             </div>
