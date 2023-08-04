@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Color, IconType, TranslateCardType} from "@/shared/constants/enums";
 import {LanguageDropdownBody, LanguageDropdownHeader} from "./LanguageDropdown/LanguageDropdown";
-import {languages} from "@/shared/constants/constants";
+import {languages, maxCharLimit} from "@/shared/constants/constants";
 import ClickableIcon from "../../../shared/components/buttons/ClickableIcon";
 import copyIcon from "../../../assets/copy-file.svg";
 import deleteIcon from "../../../assets/x.svg";
@@ -73,6 +73,7 @@ const TranslatorCard : React.FC<Props> = (props = {
             </div>
             <div className={`translator-card--textarea-container ${(isOpen || showLoader)? 'hide' : ''}`}>
                 <textarea disabled={type === TranslateCardType.Output}
+                          maxLength={maxCharLimit}
                           autoComplete="off"
                           className={`translator-card--textarea disable-focus 
                             ${type === TranslateCardType.Output ? "translator-card--textarea--output red-scrollbar" : "blue-scrollbar"}`}
@@ -91,6 +92,7 @@ const TranslatorCard : React.FC<Props> = (props = {
                 }
             </div>
             <div className={`translator-card--icon-container ${isOpen? "hide" : ""}`}>
+                <div className={`tc--icon-char-container ${type === TranslateCardType.Output ? 'hide' : ''} ${textValue.length === maxCharLimit ? 'tc--icon-char-container-max' : ''}`}><span>{textValue.length}</span>/<span>{maxCharLimit}</span></div>
                 <ClickableIcon icon={copyIcon}
                                handlePress={handleIconPress}
                                color={type === TranslateCardType.Input? Color.Blue : Color.White}

@@ -118,5 +118,16 @@
     display: flex;
     margin-right: 10px;
     justify-content: flex-end;
+    align-items: center;
+    gap: 3px;
 }
 
+.tc--icon-char-container{
+    text-align: center;
+    color: var(--grey);
+    font-size: var(--font-size-xs);
+}
+
+.tc--icon-char-container-max{
+    color: var(--red);
+}
