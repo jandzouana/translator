@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {createTag} from "../shared/utils/util";
+import {createTag} from "@/shared/utils/util";
 import Translator from "../features/translator/Translator";
 import ToneDropdown from "@/features/options/dropdown/ToneDropdown";
 import {useDispatch, useSelector} from "react-redux";

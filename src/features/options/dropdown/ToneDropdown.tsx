@@ -1,4 +1,3 @@
-import {TranslateCardType} from "@/shared/constants/enums";
 import React, {useEffect, useState} from "react";
 import "./tone-dropdown.css";
 
