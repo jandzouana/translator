@@ -6,7 +6,7 @@ import "../../../../shared/styles/custom-dropdown.css";
 interface PropsHeader{
     optionToDisplay: string,
     type: TranslateCardType,
-    handleHeaderClick : (isOpen : boolean) => void,
+    handleHeaderClick : () => void,
     isOpen : boolean
 }
 
