@@ -3,10 +3,12 @@ export const defaultLanguages = {
     output: "Spanish (Español)"
 }
 
-export const defaultTone = "Formal";
+export const defaultTone : string = "Formal";
+
+export const tones : Array<string> = ["Formal", "Informal", "Professional"];
 
 
-export const languages = [
+export const languages : Array<string> = [
     'Arabic (العربية)',
     'Bengali (বাংলা)',
     'Chinese (中文)',

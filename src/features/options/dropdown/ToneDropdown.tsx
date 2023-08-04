@@ -42,9 +42,9 @@ const ToneDropdown : React.FC<Props> = (props) => {
     };
 
     return(
-      <div>
+      <>
           <div className={`custom-dropdown tone-dropdown`}>
-              <div className="dropdown-header tone-dropdown-header center" onClick={handleToggleDropdown}>
+              <div className={`dropdown-header tone-dropdown-header center ${isOpen ? "tone-dropdown-header-open" : "tone-dropdown-header-closed"}`} onClick={handleToggleDropdown}>
                   {optionToDisplay || 'Tone'}
                   <span className={`arrow ${isOpen ? 'up' : 'down'}`}></span>
               </div>
@@ -54,7 +54,7 @@ const ToneDropdown : React.FC<Props> = (props) => {
                   </div>
               )}
           </div>
-      </div>
+      </>
     );
 }
 

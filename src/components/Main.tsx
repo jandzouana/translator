@@ -4,6 +4,7 @@ import Translator from "../features/translator/Translator";
 import ToneDropdown from "@/features/options/dropdown/ToneDropdown";
 import {useDispatch, useSelector} from "react-redux";
 import {selectTone, setTone} from "@/features/translator/slices/translationTextsSlice";
+import {tones} from "@/shared/constants/constants";
 
 interface Props {
 
@@ -23,7 +24,7 @@ const Main : React.FC<Props> = (props = {}) => {
     return(
         <div id={"main"}>
             <div id={"l1"} className={"level"}>
-                <ToneDropdown optionToDisplay={currentTone} handleToneClick={handleToneClick} options={["Formal", "Informal"]}/>
+                <ToneDropdown optionToDisplay={currentTone} handleToneClick={handleToneClick} options={tones}/>
             </div>
             <div id={"l2"} className={"level"}>
                 <Translator />
