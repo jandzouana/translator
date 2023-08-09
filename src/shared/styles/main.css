@@ -15,6 +15,7 @@ body, html{
     min-height: 400px;
     max-width: 1400px;
     min-width: 700px;
+    margin: auto;
 }
 
 #header{
