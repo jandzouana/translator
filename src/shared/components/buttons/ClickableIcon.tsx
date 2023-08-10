@@ -5,6 +5,7 @@ import '../../styles/clickable-icon.css';
 import {Color, IconType} from "../../constants/enums";
 import { varFormatWithColor } from "../../utils/util";
 import Image from "next/image";
+import {TouchOrMouseEvent} from "@/shared/constants/types";
 
 interface Props{
     size?: number,
@@ -55,12 +56,12 @@ const ClickableIcon : React.FC<Props> = (props= {
         margin: "auto",
     }
 
-    const handlePressInternal = (event) => {
+    const handlePressInternal = (event : TouchOrMouseEvent) => {
         // event.preventDefault();
         setIsPressed(true);
     };
 
-    const handleRelease = (event) => {
+    const handleRelease = (event : TouchOrMouseEvent) => {
         event.preventDefault();
         setIsPressed(false);
         if (handlePress && !disable) handlePress(iconType);

@@ -3,6 +3,7 @@ import '../../styles/variables.css';
 import { Color } from "../../constants/enums";
 import { varFormatWithColor } from "../../utils/util";
 import Image from "next/image";
+import {TouchOrMouseEvent} from "@/shared/constants/types";
 
 interface Props{
     size?: number,
@@ -46,13 +47,13 @@ const CircleButton : React.FC<Props> = (props= {
     }
 
 
-    const handlePressInternal = (event) => {
+    const handlePressInternal = (event : TouchOrMouseEvent) => {
         // event.preventDefault();
         // console.log("handlePressInternal");
         setIsPressed(true);
     };
 
-    const handleRelease = (event) => {
+    const handleRelease = (event : TouchOrMouseEvent) => {
         event.preventDefault();
         // console.log("handleRelease");
         setIsPressed(false);

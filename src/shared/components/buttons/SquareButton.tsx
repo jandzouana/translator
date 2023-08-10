@@ -2,6 +2,7 @@ import React, {CSSProperties, useState} from 'react';
 import '../../styles/variables.css';
 import { Color, Font } from "../../constants/enums";
 import { varFormatWithColor, varFormatWithFont } from "../../utils/util";
+import {TouchOrMouseEvent} from "@/shared/constants/types";
 
 interface Props{
     width?: number,
@@ -42,26 +43,27 @@ const SquareButton : React.FC<Props> = (props= {
         color: textColor? varFormatWithColor(textColor) : varFormatWithColor(Color.White)
     }
 
-    const handlePressInternal = (event) => {
+    const handlePressInternal = (event : TouchOrMouseEvent) => {
         // event.preventDefault();
         setIsPressed(true);
     };
 
-    const handleRelease = (event) => {
+    const handleRelease = (event : TouchOrMouseEvent) => {
         event.preventDefault();
         setIsPressed(false);
         handlePress();
     };
 
     return(
-        <button id={id}
-                disabled={disabled}
-                style={buttonStyle}
-                className={`${className ? className : ""}`}
-                onMouseDown={handlePressInternal}
-                onMouseUp={handleRelease}
-                onTouchStart={handlePressInternal}
-                onTouchEnd={handleRelease}
+        <button
+            id={id}
+            disabled={disabled}
+            style={buttonStyle}
+            className={`${className ? className : ""}`}
+            onMouseDown={handlePressInternal as React.MouseEventHandler<HTMLButtonElement>}
+            onMouseUp={handleRelease as React.MouseEventHandler<HTMLButtonElement>}
+            onTouchStart={handlePressInternal as React.TouchEventHandler<HTMLButtonElement>}
+            onTouchEnd={handleRelease as React.TouchEventHandler<HTMLButtonElement>}
         >
             {text}
         </button>
