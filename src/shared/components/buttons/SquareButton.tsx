@@ -6,7 +6,8 @@ import { varFormatWithColor, varFormatWithFont } from "../../utils/util";
 interface Props{
     width?: number,
     height?: number,
-    sizeType?: string,
+    heightType?: string,
+    widthType? : string,
     id? : string,
     className? : string,
     color? : Color,
@@ -26,12 +27,12 @@ const SquareButton : React.FC<Props> = (props= {
     sizeType: "px",
     text: "Button"
 }) =>{
-    const { id, width, height, sizeType, className, color, enablePress, handlePress, disabled, text, textColor } = props;
+    const { id, width, height, heightType, widthType, className, color, enablePress, handlePress, disabled, text, textColor } = props;
     const [isPressed, setIsPressed] = useState(false);
 
     const buttonStyle : CSSProperties = {
-        width: width ?? defaultWidth + (sizeType ?? "px"),
-        height: height ?? defaultHeight + (sizeType ?? "px"),
+        width: (width ? width : defaultWidth) + (widthType ? widthType : "px"),
+        height: (height ? height : defaultHeight) + (heightType ? heightType : "px"),
         borderRadius: "10px", /* Make the button circular */
         cursor: "pointer",
         backgroundColor: isPressed && !color && enablePress ? varFormatWithColor(Color.DarkBlue): color ? varFormatWithColor(color) : varFormatWithColor(Color.Blue),

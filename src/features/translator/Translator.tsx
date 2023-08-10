@@ -17,14 +17,15 @@ import {
     setTextOutput
 } from "./slices/translationTextsSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {copyToClipboardUtil, createTag} from "../../shared/utils/util";
-import {IconType, LoadingStates, TranslateCardType} from "../../shared/constants/enums";
+import {copyToClipboardUtil, createTag} from "@/shared/utils/util";
+import {IconType, LoadingStates, TranslateCardType} from "@/shared/constants/enums";
 import './styles/translator.css';
 import TranslatorCard from "./components/TranslatorCard";
 import CircleButton from "../../shared/components/buttons/CircleButton";
 import switchIcon from '../../assets/sort2.svg';
 import SquareButton from "../../shared/components/buttons/SquareButton";
-import {defaultLanguages} from "../../shared/constants/constants";
+import {defaultLanguages} from "@/shared/constants/constants";
+import useWindowSize from "@/shared/utils/useWindowSize";
 
 interface Props {
 
@@ -52,6 +53,8 @@ const Translator : React.FC<Props> = (props = {}) => {
     const currentStatus = useSelector(selectStatus);
     const currentTone = useSelector(selectTone);
     const apiErrorMsg = useSelector(selectApiErrorMsg);
+    const { width } = useWindowSize();
+    const isMobile = width < 700;
 
     //console.log(tag + "Current translation: " + currentTranslation);
 
@@ -76,6 +79,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     }
 
     function copyToClipboard(type : TranslateCardType){
+        console.log("copy");
         const text = type === TranslateCardType.Output ? textOutput.slice() : textInput.slice();
         copyToClipboardUtil(text);
     }
@@ -162,7 +166,12 @@ const Translator : React.FC<Props> = (props = {}) => {
             </div>
             <div id={"translator-container--bottom"}>
                 <SquareButton disabled={currentStatus === LoadingStates.loading}
-                              handlePress={handleTranslateBtnClick} text={"Translate"} />
+                              handlePress={handleTranslateBtnClick}
+                              width={100}
+                              height={isMobile ? 70 : 50}
+                              widthType={isMobile ? "%" : "px"}
+                              heightType={"px"}
+                              text={"Translate"} />
             </div>
         </div>
 

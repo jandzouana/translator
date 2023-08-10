@@ -30,6 +30,7 @@ const TranslatorCard : React.FC<Props> = (props = {
     // if (type === TranslateCardType.Output) console.log(tag + "Show loader: " + showLoader + ". Type: " + type);
     const [textValue, setTextValue] = useState('');
     const [isOpen, setIsOpen] = useState(false);
+
     // console.log("isOpen: " + isOpen);
     useEffect(()=>{
         // console.log("text to display: " + textToDisplay + ". Type: " + (type === TranslateCardType.Output) ? "out" : "in");
