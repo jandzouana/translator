@@ -10,17 +10,14 @@ body, html{
 #app-container{
     display: flex;
     flex-direction: column;
-    /*align-items: stretch;*/
     height: 100vh;
-    min-height: 400px;
-    max-width: 1400px;
-    min-width: 700px;
+    min-height: var(--min-app-height);
+    min-width: calc(var(--mobile-breakpoint-width) - 1px);
+    max-width: var(--max-app-width);
     margin: auto;
 }
 
 #header{
-    /*background-color: gray;*/
-    /*height: 100px;*/
     flex-basis: 100px;
     width: 100%;
     display: flex;
@@ -39,33 +36,24 @@ body, html{
 }
 
 #main{
-    /*background-color: #007bff;*/
     flex: 1;
-    /*max-height: 580px;*/
-    /*max-width: 1500px;*/
-    /*min-height: 400px;*/
-
     display: flex;
     flex-direction: column;
     margin-right: 70px;
     margin-left: 70px;
-    /*margin-bottom: 20px;*/
 }
 
 .level{
-    /*border: 2px solid lightseagreen;*/
     display: flex;
 }
 
 #l1{
     flex-basis: 50px;
     align-items: center;
-    /*display: none;*/
 }
 
 #l2{
     flex: 1;
-    /*align-items: center;*/
     display: flex;
     justify-content: flex-start;
 }
@@ -157,4 +145,14 @@ body, html{
 
 .red-scrollbar::-webkit-scrollbar-thumb:hover {
     background-color: var(--light-grey);
+}
+
+@media (max-width: 700px) and (orientation: portrait){
+    #app-container{
+        min-width: 100vw;
+    }
+    #main{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }

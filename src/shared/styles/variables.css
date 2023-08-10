@@ -35,4 +35,9 @@
     --font-weight-bold: 600;
     --font-weight-extra-bold: 700;
     --font-weight-black: 800;
+
+    /* Sizes */
+    --mobile-breakpoint-width: 700px;
+    --min-app-height: 400px;
+    --max-app-width: 1400px;
 }
