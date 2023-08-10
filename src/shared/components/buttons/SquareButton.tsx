@@ -16,7 +16,8 @@ interface Props{
     handlePress? : any,
     disabled? : boolean,
     text? : string,
-    textColor? : Color
+    textColor? : Color,
+    fontSize? : string
 }
 
 const defaultWidth = 100;
@@ -29,7 +30,7 @@ const SquareButton : React.FC<Props> = (props= {
     widthType: "px",
     text: "Button"
 }) =>{
-    const { id, width, height, heightType, widthType, className, color, enablePress, handlePress, disabled, text, textColor } = props;
+    const { id, width, height, heightType, widthType, fontSize, className, color, enablePress, handlePress, disabled, text, textColor } = props;
     const [isPressed, setIsPressed] = useState(false);
 
     const buttonStyle : CSSProperties = {
@@ -41,7 +42,8 @@ const SquareButton : React.FC<Props> = (props= {
         fontFamily: varFormatWithFont(Font.Primary),
         fontWeight: "var(--font-weight-semi-bold)",
         border: "none",
-        color: textColor? varFormatWithColor(textColor) : varFormatWithColor(Color.White)
+        color: textColor? varFormatWithColor(textColor) : varFormatWithColor(Color.White),
+        fontSize: fontSize ? fontSize : "var(--font-size-small)"
     }
 
     const handlePressInternal = (event : any) => {

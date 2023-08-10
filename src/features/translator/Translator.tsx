@@ -168,12 +168,14 @@ const Translator : React.FC<Props> = (props = {}) => {
             </div>
             <div id={"translator-container--bottom"}>
                 {mobileCheckDidLoad && <SquareButton disabled={currentStatus === LoadingStates.loading}
-                               handlePress={handleTranslateBtnClick}
-                               width={100}
-                               height={isMobileSize ? 70 : 50}
-                               widthType={isMobileSize ? "%" : "px"}
-                               heightType={"px"}
-                               text={"Translate"}/>}
+                                                        handlePress={handleTranslateBtnClick}
+                                                        width={isMobileSize ? 100 : 120}
+                                                        height={isMobileSize ? 70 : 50}
+                                                        widthType={isMobileSize ? "%" : "px"}
+                                                        heightType={"px"}
+                                                        text={"Translate"}
+                                                        fontSize={isMobileSize ? "var(--font-size-med)" : ""}
+                />}
             </div>
         </div>
 
