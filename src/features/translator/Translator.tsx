@@ -30,6 +30,7 @@ import useWindowSize from "@/shared/utils/useWindowSize";
 interface Props {
 
 }
+
 const Translator : React.FC<Props> = (props = {}) => {
     const tag = createTag("Translator");
     // console.log(tag + "top");
@@ -54,7 +55,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     const currentTone = useSelector(selectTone);
     const apiErrorMsg = useSelector(selectApiErrorMsg);
     const { width } = useWindowSize();
-    const mobileLoaded = width !== -1;
+    const mobileCheckDidLoad = width !== -1;
     const isMobile = width < 700;
 
     //console.log(tag + "Current translation: " + currentTranslation);
@@ -147,14 +148,14 @@ const Translator : React.FC<Props> = (props = {}) => {
                                 language={inputLanguage}
                                 otherLanguage={outputLanguage}
                                 textToDisplay={textInput}/>
-                <CircleButton id={"switch-languages-button"}
-                              icon={switchIcon}
-                              enablePressStyling={false}
-                              handlePress={handleSwitchButtonPress}
-                              className={"rotate-image-right"}
-                              iconRatio={50}
-                              size={50}
-                />
+                {mobileCheckDidLoad && !isMobile && <CircleButton id={"switch-languages-button"}
+                               icon={switchIcon}
+                               enablePressStyling={false}
+                               handlePress={handleSwitchButtonPress}
+                               className={"rotate-image-right drop-shadow"}
+                               iconRatio={50}
+                               size={50}
+                />}
                 <TranslatorCard
                     type={TranslateCardType.Output}
                     handleLanguageChange={handleLanguageChange}
@@ -166,7 +167,7 @@ const Translator : React.FC<Props> = (props = {}) => {
                 />
             </div>
             <div id={"translator-container--bottom"}>
-                {mobileLoaded && <SquareButton disabled={currentStatus === LoadingStates.loading}
+                {mobileCheckDidLoad && <SquareButton disabled={currentStatus === LoadingStates.loading}
                                handlePress={handleTranslateBtnClick}
                                width={100}
                                height={isMobile ? 70 : 50}

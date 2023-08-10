@@ -63,7 +63,7 @@ const CircleButton : React.FC<Props> = (props= {
     return(
         <div id={id}
              style={buttonStyle}
-             className={`drop-shadow ${className ? className : ""}`}
+             className={`${className ? className : ""}`}
              onMouseDown={handlePressInternal}
              onMouseUp={handleRelease}
              onTouchStart={handlePressInternal}
