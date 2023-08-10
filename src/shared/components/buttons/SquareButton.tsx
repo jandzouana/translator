@@ -44,12 +44,12 @@ const SquareButton : React.FC<Props> = (props= {
         color: textColor? varFormatWithColor(textColor) : varFormatWithColor(Color.White)
     }
 
-    const handlePressInternal = (event : TouchOrMouseEvent) => {
+    const handlePressInternal = (event : any) => {
         // event.preventDefault();
         setIsPressed(true);
     };
 
-    const handleRelease = (event : TouchOrMouseEvent) => {
+    const handleRelease = (event : any) => {
         event.preventDefault();
         setIsPressed(false);
         handlePress();
@@ -61,10 +61,10 @@ const SquareButton : React.FC<Props> = (props= {
             disabled={disabled}
             style={buttonStyle}
             className={`${className ? className : ""}`}
-            onMouseDown={handlePressInternal as React.MouseEventHandler<HTMLButtonElement>}
-            onMouseUp={handleRelease as React.MouseEventHandler<HTMLButtonElement>}
-            onTouchStart={handlePressInternal as React.TouchEventHandler<HTMLButtonElement>}
-            onTouchEnd={handleRelease as React.TouchEventHandler<HTMLButtonElement>}
+            onMouseDown={handlePressInternal}
+            onMouseUp={handleRelease}
+            onTouchStart={handlePressInternal}
+            onTouchEnd={handleRelease}
         >
             {text}
         </button>
