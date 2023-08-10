@@ -46,11 +46,15 @@ const CircleButton : React.FC<Props> = (props= {
     }
 
 
-    const handlePressInternal = () => {
+    const handlePressInternal = (event) => {
+        // event.preventDefault();
+        // console.log("handlePressInternal");
         setIsPressed(true);
     };
 
-    const handleRelease = () => {
+    const handleRelease = (event) => {
+        event.preventDefault();
+        // console.log("handleRelease");
         setIsPressed(false);
         if(handlePress && !disabled) handlePress();
     };

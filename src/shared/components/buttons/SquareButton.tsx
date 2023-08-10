@@ -41,11 +41,13 @@ const SquareButton : React.FC<Props> = (props= {
         color: textColor? varFormatWithColor(textColor) : varFormatWithColor(Color.White)
     }
 
-    const handlePressInternal = () => {
+    const handlePressInternal = (event) => {
+        // event.preventDefault();
         setIsPressed(true);
     };
 
-    const handleRelease = () => {
+    const handleRelease = (event) => {
+        event.preventDefault();
         setIsPressed(false);
         handlePress();
     };

@@ -55,11 +55,13 @@ const ClickableIcon : React.FC<Props> = (props= {
         margin: "auto",
     }
 
-    const handlePressInternal = () => {
+    const handlePressInternal = (event) => {
+        // event.preventDefault();
         setIsPressed(true);
     };
 
-    const handleRelease = () => {
+    const handleRelease = (event) => {
+        event.preventDefault();
         setIsPressed(false);
         if (handlePress && !disable) handlePress(iconType);
     };
