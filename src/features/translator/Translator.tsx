@@ -54,6 +54,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     const currentTone = useSelector(selectTone);
     const apiErrorMsg = useSelector(selectApiErrorMsg);
     const { width } = useWindowSize();
+    const mobileLoaded = width !== -1;
     const isMobile = width < 700;
 
     //console.log(tag + "Current translation: " + currentTranslation);
@@ -165,13 +166,13 @@ const Translator : React.FC<Props> = (props = {}) => {
                 />
             </div>
             <div id={"translator-container--bottom"}>
-                <SquareButton disabled={currentStatus === LoadingStates.loading}
-                              handlePress={handleTranslateBtnClick}
-                              width={100}
-                              height={isMobile ? 70 : 50}
-                              widthType={isMobile ? "%" : "px"}
-                              heightType={"px"}
-                              text={"Translate"} />
+                {mobileLoaded && <SquareButton disabled={currentStatus === LoadingStates.loading}
+                               handlePress={handleTranslateBtnClick}
+                               width={100}
+                               height={isMobile ? 70 : 50}
+                               widthType={isMobile ? "%" : "px"}
+                               heightType={"px"}
+                               text={"Translate"}/>}
             </div>
         </div>
 
