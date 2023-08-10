@@ -30,7 +30,7 @@ const OptionBar = () => {
 
     const { width } = useWindowSize();
     const mobileCheckDidLoad = width !== -1;
-    const isMobile = width < 700;
+    const isMobileSize = width < 700;
 
     function handleToneClick(tone : string){
         console.log(tag + "Tone chosen: " + tone);
@@ -50,7 +50,7 @@ const OptionBar = () => {
     return(
         <div className={"option-bar"}>
             <ToneDropdown optionToDisplay={currentTone} handleToneClick={handleToneClick} options={tones}/>
-            {mobileCheckDidLoad && isMobile && <CircleButton id={"option-bar-switch"}
+            {mobileCheckDidLoad && isMobileSize && <CircleButton id={"option-bar-switch"}
                            icon={switchIcon}
                            enablePressStyling={false}
                            handlePress={handleSwitchButtonPress}

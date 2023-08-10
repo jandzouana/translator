@@ -48,7 +48,7 @@ body, html{
 }
 
 #l1{
-    flex-basis: 50px;
+    flex-basis: 70px;
     align-items: center;
 }
 
@@ -154,5 +154,8 @@ body, html{
     #main{
         margin-left: 10px;
         margin-right: 10px;
+    }
+    #header{
+        flex-basis: 72px;
     }
 }

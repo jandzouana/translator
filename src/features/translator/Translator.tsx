@@ -56,7 +56,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     const apiErrorMsg = useSelector(selectApiErrorMsg);
     const { width } = useWindowSize();
     const mobileCheckDidLoad = width !== -1;
-    const isMobile = width < 700;
+    const isMobileSize = width < 700;
 
     //console.log(tag + "Current translation: " + currentTranslation);
 
@@ -148,7 +148,7 @@ const Translator : React.FC<Props> = (props = {}) => {
                                 language={inputLanguage}
                                 otherLanguage={outputLanguage}
                                 textToDisplay={textInput}/>
-                {mobileCheckDidLoad && !isMobile && <CircleButton id={"switch-languages-button"}
+                {mobileCheckDidLoad && !isMobileSize && <CircleButton id={"switch-languages-button"}
                                icon={switchIcon}
                                enablePressStyling={false}
                                handlePress={handleSwitchButtonPress}
@@ -170,8 +170,8 @@ const Translator : React.FC<Props> = (props = {}) => {
                 {mobileCheckDidLoad && <SquareButton disabled={currentStatus === LoadingStates.loading}
                                handlePress={handleTranslateBtnClick}
                                width={100}
-                               height={isMobile ? 70 : 50}
-                               widthType={isMobile ? "%" : "px"}
+                               height={isMobileSize ? 70 : 50}
+                               widthType={isMobileSize ? "%" : "px"}
                                heightType={"px"}
                                text={"Translate"}/>}
             </div>
