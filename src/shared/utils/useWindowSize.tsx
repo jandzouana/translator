@@ -1,23 +1,16 @@
 import { useState, useEffect } from 'react';
 
-interface WindowSize {
-    width: number;
-    height: number;
-}
-
-const useWindowSize = (): WindowSize => {
-    const isClient = typeof window === 'object';
-
-    const [windowSize, setWindowSize] = useState<WindowSize>({
-        width: isClient ? window.innerWidth : 0,
-        height: isClient ? window.innerHeight : 0,
+const useWindowSize = () => {
+    const [windowSize, setWindowSize] = useState({
+        // width: window.innerWidth,
+        // height: window.innerHeight,
     });
 
     useEffect(() => {
-        if (!isClient) {
-            return;
-        }
-
+        setWindowSize({
+            width: window.innerWidth,
+            height: window.innerHeight,
+        });
         const handleResize = () => {
             setWindowSize({
                 width: window.innerWidth,
@@ -30,7 +23,7 @@ const useWindowSize = (): WindowSize => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [isClient]);
+    }, []);
 
     return windowSize;
 };
