@@ -25,7 +25,8 @@ const defaultHeight = 50;
 const SquareButton : React.FC<Props> = (props= {
     width: defaultWidth,
     height: defaultHeight,
-    sizeType: "px",
+    heightType: "px",
+    widthType: "px",
     text: "Button"
 }) =>{
     const { id, width, height, heightType, widthType, className, color, enablePress, handlePress, disabled, text, textColor } = props;
