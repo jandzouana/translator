@@ -90,7 +90,7 @@ const TranslatorCard : React.FC<Props> = (props = {
                         {mobile && <ClickableIcon icon={arrowIcon}
                                         handlePress={handleIconPress}
                                         color={Color.White}
-                                        iconRatio={35}
+                                        iconRatio={45}
                                         className={"rotate-image-left"}
                                         backgroundColor={Color.Blue}
                                         iconType={IconType.Arrow}/>}

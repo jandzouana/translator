@@ -97,7 +97,8 @@ const Translator : React.FC<Props> = (props = {}) => {
                 break;
             }
             case IconType.Arrow:{
-                console.log("Arrow");
+                //console.log("Arrow");
+                handleTranslateBtnClick();
                 break;
             }
             default:

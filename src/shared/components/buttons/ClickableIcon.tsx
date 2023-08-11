@@ -34,18 +34,29 @@ const ClickableIcon : React.FC<Props> = (props= {
     const { id, backgroundColor, size, sizeType, className, color, disable, icon, handlePress, iconRatio, iconType } = props;
     const [isPressed, setIsPressed] = useState(false);
 
-    function getSize(size : number, sizeType : string) : string{
+    function getSize(size : number, sizeType : string, backgroundColor : Color, inner : boolean = false) : string{
         // return `calc(${size}${sizeType} - ${padding}${sizeType})`;
-        return `${size}${sizeType}`;
+        const newSize = (backgroundColor && inner) ? size * .7 : size;
+        return `${newSize}${sizeType}`;
     }
-    const buttonStyle : CSSProperties = {
-        width: getSize(size ? size : defaultSize, sizeType ? sizeType : "px"),
-        height: getSize(size ? size : defaultSize, sizeType ? sizeType : "px"),
+    const outerButtonStyle : CSSProperties = {
+        width: getSize(size ? size : defaultSize, sizeType ? sizeType : "px", backgroundColor),
+        height: getSize(size ? size : defaultSize, sizeType ? sizeType : "px", backgroundColor),
         cursor: "pointer",
         // padding: `${padding ? padding : defaultPadding}${sizeType ? sizeType : 'px'}`,
         borderRadius: "50%",
         // backgroundColor: "green",
         transition: "background-color 0.1s ease", /* Define the transition property */
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    }
+
+    const innerButtonStyle : CSSProperties = {
+        width: getSize(size ? size : defaultSize, sizeType ? sizeType : "px", backgroundColor, true),
+        height: getSize(size ? size : defaultSize, sizeType ? sizeType : "px", backgroundColor, true),
+        borderRadius: "50%",
+        // backgroundColor: "green",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -70,18 +81,20 @@ const ClickableIcon : React.FC<Props> = (props= {
     };
 
     return(
-        <div style={buttonStyle}
+        <div style={outerButtonStyle}
              onMouseDown={handlePressInternal}
              onMouseUp={handleRelease}
              onTouchStart={handlePressInternal}
              onTouchEnd={handleRelease}
              className={"clickable-icon"}>
-            {icon && <Image src={icon}
-                          id={id}
-                          style={iconStyle}
-                          className={`${className ? className : ""} clickable-icon-img ${color === Color.Blue ? 'clickable-icon-blue' : ''}`}
-                          alt={"icon"}
-            />}
+            <div style={innerButtonStyle}>
+                {icon && <Image src={icon}
+                                id={id}
+                                style={iconStyle}
+                                className={`${className ? className : ""} clickable-icon-img ${color === Color.Blue ? 'clickable-icon-blue' : ''}`}
+                                alt={"icon"}
+                />}
+            </div>
         </div>
     )
 }
