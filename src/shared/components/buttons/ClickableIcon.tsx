@@ -17,7 +17,8 @@ interface Props{
     icon : any,
     iconType : IconType,
     handlePress? : (icon : IconType) => void,
-    iconRatio ? : number
+    iconRatio? : number,
+    backgroundColor ? : Color
 }
 
 const defaultSize : number = 40;
@@ -30,7 +31,7 @@ const ClickableIcon : React.FC<Props> = (props= {
     icon: null,
     iconType: IconType.Undefined
 }) =>{
-    const { id, size, sizeType, className, color, disable, icon, handlePress, iconRatio, iconType } = props;
+    const { id, backgroundColor, size, sizeType, className, color, disable, icon, handlePress, iconRatio, iconType } = props;
     const [isPressed, setIsPressed] = useState(false);
 
     function getSize(size : number, sizeType : string) : string{
@@ -47,7 +48,8 @@ const ClickableIcon : React.FC<Props> = (props= {
         transition: "background-color 0.1s ease", /* Define the transition property */
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor : backgroundColor? varFormatWithColor(backgroundColor) : ""
     }
 
     const iconStyle : CSSProperties = {

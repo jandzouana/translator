@@ -89,9 +89,10 @@ const TranslatorCard : React.FC<Props> = (props = {
                     <div className={`translator-card--textarea-btns ${!textToDisplay ? 'hide' : ''}`}>
                         {mobile && <ClickableIcon icon={arrowIcon}
                                         handlePress={handleIconPress}
-                                        color={Color.Blue}
+                                        color={Color.White}
                                         iconRatio={35}
                                         className={"rotate-image-left"}
+                                        backgroundColor={Color.Blue}
                                         iconType={IconType.Arrow}/>}
                         <ClickableIcon icon={deleteIcon}
                                        handlePress={handleIconPress}
