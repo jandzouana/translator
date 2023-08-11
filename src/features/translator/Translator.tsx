@@ -175,7 +175,7 @@ const Translator : React.FC<Props> = (props = {}) => {
                 />
             </div>
             <div id={"translator-container--bottom"}>
-                {mobileCheckDidLoad && <SquareButton disabled={currentStatus === LoadingStates.loading}
+                {mobileCheckDidLoad && !isMobileSize && <SquareButton disabled={currentStatus === LoadingStates.loading}
                                                         handlePress={handleTranslateBtnClick}
                                                         width={isMobileSize ? 100 : 120}
                                                         height={isMobileSize ? 70 : 50}

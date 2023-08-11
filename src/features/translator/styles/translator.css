@@ -148,5 +148,6 @@
     }
     #translator-container--bottom{
         /*background-color: yellow;*/
+        flex-basis: 10px;
     }
 }
