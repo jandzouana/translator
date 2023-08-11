@@ -40,17 +40,21 @@ const useWindowSize = () => {
 
         if (divElement) {
             let newHeight = "";
+            let minHeight = "";
             if(width > mobileWidthBreakpoint) { // Desktop
                 newHeight = "100vh";
+                minHeight = "var(--min-app-height)";
             }
             else { // Mobile
                 newHeight = `${windowHeight}px`;
+                minHeight = newHeight;
             }
             if(lastWindowHeight.current.length !== 0 && lastWindowHeight.current === newHeight) {
                 console.log(tag + "same height : " + divElement.style.height);
                 return;
             }
             divElement.style.height = newHeight;
+            divElement.style.minHeight = minHeight;
             lastWindowHeight.current = newHeight;
         }
         else{

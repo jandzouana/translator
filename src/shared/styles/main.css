@@ -10,7 +10,7 @@ body, html{
 #app-container{
     display: flex;
     flex-direction: column;
-    min-height: var(--min-app-height);
+    /*min-height: var(--min-app-height);*/
     min-width: calc(var(--mobile-breakpoint-width) - 1px);
     max-width: var(--max-app-width);
     margin: auto;
