@@ -1,5 +1,5 @@
 import ToneDropdown from "@/features/option-bar/option-dropdown/ToneDropdown";
-import {tones} from "@/shared/constants/constants";
+import {mobileWidthBreakpoint, tones} from "@/shared/constants/constants";
 import CircleButton from "@/shared/components/buttons/CircleButton";
 import switchIcon from "@/assets/sort2.svg";
 import React from "react";
@@ -30,7 +30,7 @@ const OptionBar = () => {
 
     const { width } = useWindowSize();
     const mobileCheckDidLoad = width !== -1;
-    const isMobileSize = width < 700;
+    const isMobileSize = width < mobileWidthBreakpoint;
 
     function handleToneClick(tone : string){
         console.log(tag + "Tone chosen: " + tone);

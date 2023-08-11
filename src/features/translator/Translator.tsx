@@ -24,7 +24,7 @@ import TranslatorCard from "./components/TranslatorCard";
 import CircleButton from "../../shared/components/buttons/CircleButton";
 import switchIcon from '../../assets/sort2.svg';
 import SquareButton from "../../shared/components/buttons/SquareButton";
-import {defaultLanguages} from "@/shared/constants/constants";
+import {defaultLanguages, mobileWidthBreakpoint} from "@/shared/constants/constants";
 import useWindowSize from "@/shared/utils/useWindowSize";
 
 interface Props {
@@ -56,7 +56,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     const apiErrorMsg = useSelector(selectApiErrorMsg);
     const { width } = useWindowSize();
     const mobileCheckDidLoad = width !== -1;
-    const isMobileSize = width < 700;
+    const isMobileSize = width < mobileWidthBreakpoint;
 
     //console.log(tag + "Current translation: " + currentTranslation);
 
