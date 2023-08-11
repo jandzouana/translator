@@ -61,8 +61,10 @@ const Translator : React.FC<Props> = (props = {}) => {
     //console.log(tag + "Current translation: " + currentTranslation);
 
     useEffect(()=>{
-        dispatch(setOutputLanguage(defaultLanguages.output));
-        dispatch(setInputLanguage(defaultLanguages.input));
+        const inLanguage = localStorage.getItem("inputLanguage") || defaultLanguages.input;
+        const outLanguage = localStorage.getItem("outputLanguage") || defaultLanguages.output;
+        dispatch(setInputLanguage(inLanguage));
+        dispatch(setOutputLanguage(outLanguage));
     }, [])
 
     useEffect(()=>{
@@ -75,7 +77,7 @@ const Translator : React.FC<Props> = (props = {}) => {
         const inputLanguageShort = inputLanguage.split(' ')[0];
         const outputLanguageShort = outputLanguage.split(' ')[0];
 
-        const msg = `Translate the following with a ${currentTone} tone directly without any extra information from ${inputLanguageShort} to ${outputLanguageShort}: ${input}`;
+        const msg = `Translate the following with a ${currentTone} tone directly without any extra information without quotes without explanations from ${inputLanguageShort} to ${outputLanguageShort}: ${input}`;
         console.log(tag + "Request message: " + msg);
         return msg;
     }
@@ -84,6 +86,11 @@ const Translator : React.FC<Props> = (props = {}) => {
         console.log("copy");
         const text = type === TranslateCardType.Output ? textOutput.slice() : textInput.slice();
         copyToClipboardUtil(text);
+    }
+
+    function clearLocalStorage(){
+        localStorage.removeItem("inputLanguage");
+        localStorage.removeItem("outputLanguage");
     }
 
     function handleIconClick(icon : IconType, type : TranslateCardType){
@@ -135,8 +142,12 @@ const Translator : React.FC<Props> = (props = {}) => {
     function handleLanguageChange(language : string, type : TranslateCardType){
         if(type === TranslateCardType.Input){
             dispatch(setInputLanguage(language));
+            localStorage.setItem("inputLanguage", language);
         }
-        else dispatch(setOutputLanguage(language));
+        else {
+            dispatch(setOutputLanguage(language));
+            localStorage.setItem("outputLanguage", language);
+        }
     }
 
     function handleSwitchButtonPress(){
@@ -159,14 +170,17 @@ const Translator : React.FC<Props> = (props = {}) => {
                                 language={inputLanguage}
                                 otherLanguage={outputLanguage}
                                 mobile={mobileCheckDidLoad && isMobileSize}
+                                currentStatus={currentStatus}
                                 textToDisplay={textInput}/>
-                {mobileCheckDidLoad && !isMobileSize && <CircleButton id={"switch-languages-button"}
-                               icon={switchIcon}
-                               enablePressStyling={false}
-                               handlePress={handleSwitchButtonPress}
-                               className={"rotate-image-right drop-shadow"}
-                               iconRatio={50}
-                               size={50}
+                {mobileCheckDidLoad && !isMobileSize &&
+                    <CircleButton id={"switch-languages-button"}
+                        icon={switchIcon}
+                        disabled={currentStatus === LoadingStates.loading}
+                        enablePressStyling={false}
+                        handlePress={handleSwitchButtonPress}
+                        className={"rotate-image-right drop-shadow"}
+                        iconRatio={50}
+                        size={50}
                 />}
                 <TranslatorCard
                     type={TranslateCardType.Output}
@@ -175,6 +189,7 @@ const Translator : React.FC<Props> = (props = {}) => {
                     textToDisplay={textOutput}
                     language={outputLanguage}
                     otherLanguage={inputLanguage}
+                    currentStatus={currentStatus}
                     showLoader={currentStatus === LoadingStates.loading}
                 />
             </div>

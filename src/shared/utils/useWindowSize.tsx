@@ -50,7 +50,7 @@ const useWindowSize = () => {
                 minHeight = "var(--min-app-height-mobile)";
             }
             if(lastWindowHeight.current.length !== 0 && lastWindowHeight.current === newHeight) {
-                console.log(tag + "same height : " + divElement.style.height);
+                // console.log(tag + "same height : " + divElement.style.height);
                 return;
             }
             divElement.style.height = newHeight;
@@ -60,7 +60,7 @@ const useWindowSize = () => {
         else{
             console.log("No div");
         }
-        console.log(tag + "Adjusting height to: " + divElement.style.height);
+        // console.log(tag + "Adjusting height to: " + divElement.style.height);
     };
 
     return windowSize;

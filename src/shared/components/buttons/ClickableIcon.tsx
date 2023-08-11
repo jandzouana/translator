@@ -13,7 +13,7 @@ interface Props{
     id? : string,
     className? : string,
     color? : Color,
-    disable? : boolean
+    disabled? : boolean
     icon : any,
     iconType : IconType,
     handlePress? : (icon : IconType) => void,
@@ -31,7 +31,7 @@ const ClickableIcon : React.FC<Props> = (props= {
     icon: null,
     iconType: IconType.Undefined
 }) =>{
-    const { id, backgroundColor, size, sizeType, className, color, disable, icon, handlePress, iconRatio, iconType } = props;
+    const { id, backgroundColor, size, sizeType, className, color, disabled, icon, handlePress, iconRatio, iconType } = props;
     const [isPressed, setIsPressed] = useState(false);
 
     function getSize(size : number, sizeType : string, backgroundColor : Color, inner : boolean = false) : string{
@@ -77,7 +77,7 @@ const ClickableIcon : React.FC<Props> = (props= {
     const handleRelease = (event : TouchOrMouseEvent) => {
         event.preventDefault();
         setIsPressed(false);
-        if (handlePress && !disable) handlePress(iconType);
+        if (handlePress && !disabled) handlePress(iconType);
     };
 
     return(

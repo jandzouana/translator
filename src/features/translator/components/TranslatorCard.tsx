@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Color, IconType, TranslateCardType} from "@/shared/constants/enums";
+import {Color, IconType, LoadingStates, TranslateCardType} from "@/shared/constants/enums";
 import {LanguageDropdownBody, LanguageDropdownHeader} from "./LanguageDropdown/LanguageDropdown";
 import {languages, maxCharLimit} from "@/shared/constants/constants";
 import ClickableIcon from "../../../shared/components/buttons/ClickableIcon";
@@ -17,7 +17,8 @@ interface Props {
     language : string,
     otherLanguage : string,
     handleLanguageChange? : (text : string, type : TranslateCardType) => void,
-    showLoader ? : boolean
+    showLoader ? : boolean,
+    currentStatus ? : LoadingStates,
     mobile ? : boolean
 }
 
@@ -27,7 +28,7 @@ const TranslatorCard : React.FC<Props> = (props = {
     otherLanguage : "",
     handleLanguageChange: (text : string, type : TranslateCardType) =>{},
 }) => {
-    const { type, mobile, handleTextChange, textToDisplay, language, otherLanguage, handleLanguageChange, handleIconClick, showLoader } = props;
+    const { type, currentStatus, mobile, handleTextChange, textToDisplay, language, otherLanguage, handleLanguageChange, handleIconClick, showLoader } = props;
     const tag = createTag("TranslatorCard");
     // if (type === TranslateCardType.Output) console.log(tag + "Show loader: " + showLoader + ". Type: " + type);
     const [textValue, setTextValue] = useState('');
@@ -50,7 +51,7 @@ const TranslatorCard : React.FC<Props> = (props = {
     }
 
     function handleIconPress(icon : IconType){
-        console.log(tag + "icon type : " + icon);
+        console.log(tag + "icon type : ", icon);
         if(handleIconClick) handleIconClick(icon, type);
     }
 
@@ -92,7 +93,8 @@ const TranslatorCard : React.FC<Props> = (props = {
                     <div className={`translator-card--textarea-btns ${!textToDisplay ? 'hide' : ''}`}>
                         {mobile && <ClickableIcon icon={arrowIcon}
                                         handlePress={handleIconPress}
-                                        color={Color.White}
+                                        disabled={currentStatus === LoadingStates.loading}
+                                                  color={Color.White}
                                         iconRatio={45}
                                         className={"rotate-image-left"}
                                         backgroundColor={Color.Blue}

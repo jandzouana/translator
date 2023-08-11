@@ -15,7 +15,7 @@ interface Props{
     disabled? : boolean,
     icon? : any,
     handlePress? : any,
-    iconRatio? : number
+    iconRatio? : number,
 }
 
 const defaultSize = 50;
