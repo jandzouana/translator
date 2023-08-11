@@ -21,7 +21,9 @@ export enum Color {
     White,
     OffBlack,
     OffWhite,
-    Red
+    Red,
+    DarkRed,
+    DarkestRed,
 }
 
 export enum IconType {

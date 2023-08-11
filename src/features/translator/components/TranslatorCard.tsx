@@ -73,7 +73,10 @@ const TranslatorCard : React.FC<Props> = (props = {
                                   isOpen={isOpen}
             />
             <div className={`translator-card--loader-container ${(showLoader && type === TranslateCardType.Output) ? "" : "hide"}`}>
-                <Spinner show={true} className={"translator-card--spinner"}/>
+                <Spinner show={true}
+                         borderColor={Color.DarkRed}
+                         spinColor={Color.White}
+                         className={"translator-card--spinner"}/>
             </div>
             <div className={`translator-card--textarea-container ${(isOpen || showLoader)? 'hide' : ''}`}>
                 <textarea disabled={type === TranslateCardType.Output}
