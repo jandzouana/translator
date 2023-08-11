@@ -36,12 +36,12 @@ const ClickableIcon : React.FC<Props> = (props= {
 
     function getSize(size : number, sizeType : string, backgroundColor : Color, inner : boolean = false) : string{
         // return `calc(${size}${sizeType} - ${padding}${sizeType})`;
-        const newSize = (backgroundColor && inner) ? size * .7 : size;
+        const newSize = (backgroundColor !== Color.Undefined && inner) ? size * .7 : size;
         return `${newSize}${sizeType}`;
     }
     const outerButtonStyle : CSSProperties = {
-        width: getSize(size ? size : defaultSize, sizeType ? sizeType : "px", backgroundColor),
-        height: getSize(size ? size : defaultSize, sizeType ? sizeType : "px", backgroundColor),
+        width: getSize(size ? size : defaultSize, sizeType ? sizeType : "px", backgroundColor ? backgroundColor : Color.Undefined),
+        height: getSize(size ? size : defaultSize, sizeType ? sizeType : "px", backgroundColor ? backgroundColor : Color.Undefined),
         cursor: "pointer",
         // padding: `${padding ? padding : defaultPadding}${sizeType ? sizeType : 'px'}`,
         borderRadius: "50%",

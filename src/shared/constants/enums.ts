@@ -11,6 +11,7 @@ export enum TranslateCardType {
 }
 
 export enum Color {
+    Undefined,
     LightBlue,
     DarkBlue,
     Midnight,
