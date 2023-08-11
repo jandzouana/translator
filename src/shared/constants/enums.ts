@@ -30,6 +30,7 @@ export enum IconType {
     Delete,
     Sound,
     Voice,
+    Arrow,
 }
 
 export enum Font {

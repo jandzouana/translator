@@ -100,6 +100,10 @@
 .translator-card--textarea-btns{
     flex-basis: 50px;
     /*background-color: green;*/
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    justify-content: space-between;
 }
 
 .translator-card--textarea:focus{

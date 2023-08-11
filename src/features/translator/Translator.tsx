@@ -96,6 +96,12 @@ const Translator : React.FC<Props> = (props = {}) => {
                 dispatch(setTextInput(""));
                 break;
             }
+            case IconType.Arrow:{
+                console.log("Arrow");
+                break;
+            }
+            default:
+                break;
         }
     }
 
@@ -147,6 +153,7 @@ const Translator : React.FC<Props> = (props = {}) => {
                                 handleIconClick={handleIconClick}
                                 language={inputLanguage}
                                 otherLanguage={outputLanguage}
+                                mobile={mobileCheckDidLoad && isMobileSize}
                                 textToDisplay={textInput}/>
                 {mobileCheckDidLoad && !isMobileSize && <CircleButton id={"switch-languages-button"}
                                icon={switchIcon}

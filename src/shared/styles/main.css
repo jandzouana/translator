@@ -83,6 +83,14 @@ body, html{
     transform: rotate(90deg);
 }
 
+.rotate-image-left{
+    transform: rotate(-90deg);
+}
+
+.rotate-image-upside-down {
+    transform: rotate(180deg);
+}
+
 .hide{
     display: none;
 }
