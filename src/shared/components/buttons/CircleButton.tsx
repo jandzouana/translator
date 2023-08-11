@@ -3,6 +3,7 @@ import '../../styles/variables.css';
 import { Color } from "../../constants/enums";
 import { varFormatWithColor } from "../../utils/util";
 import Image from "next/image";
+import {TouchOrMouseEvent} from "@/shared/constants/types";
 
 interface Props{
     size?: number,
@@ -14,7 +15,7 @@ interface Props{
     disabled? : boolean,
     icon? : any,
     handlePress? : any,
-    iconRatio? : number
+    iconRatio? : number,
 }
 
 const defaultSize = 50;
@@ -46,11 +47,15 @@ const CircleButton : React.FC<Props> = (props= {
     }
 
 
-    const handlePressInternal = () => {
+    const handlePressInternal = (event : TouchOrMouseEvent) => {
+        // event.preventDefault();
+        // console.log("handlePressInternal");
         setIsPressed(true);
     };
 
-    const handleRelease = () => {
+    const handleRelease = (event : TouchOrMouseEvent) => {
+        event.preventDefault();
+        // console.log("handleRelease");
         setIsPressed(false);
         if(handlePress && !disabled) handlePress();
     };
@@ -58,7 +63,7 @@ const CircleButton : React.FC<Props> = (props= {
     return(
         <div id={id}
              style={buttonStyle}
-             className={`drop-shadow ${className ? className : ""}`}
+             className={`${className ? className : ""}`}
              onMouseDown={handlePressInternal}
              onMouseUp={handleRelease}
              onTouchStart={handlePressInternal}

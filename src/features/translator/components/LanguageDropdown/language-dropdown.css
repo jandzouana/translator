@@ -14,7 +14,7 @@
     padding: 8px;
     height: 20px;
     font-size: var(--font-size-small);
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-medium);
 }
 
 .ld-options-container{

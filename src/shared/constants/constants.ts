@@ -9,6 +9,7 @@ export const tones : Array<string> = ["Formal", "Informal", "Professional"];
 
 export const maxCharLimit : number = 1000;
 
+export const mobileWidthBreakpoint = 700;
 
 export const languages : Array<string> = [
     'Arabic (العربية)',

@@ -56,7 +56,7 @@ export const LanguageDropdownBody: React.FC<PropsBody> = (props) => {
 
     function createSelectsFromLanguageArr(langs : Array<string>){
         const selects : any = langs.map((language, idx) => {
-            if(language !== selectedLanguage && language !==optionToHide)
+            if(language !== selectedLanguage && language !== optionToHide)
             {
                 return <div key={idx}
                             className={`option language-dropdown-option center ${type === TranslateCardType.Output? "language-dropdown-option-red" : "language-dropdown-option-blue"}`}

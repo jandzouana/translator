@@ -11,6 +11,7 @@ export enum TranslateCardType {
 }
 
 export enum Color {
+    Undefined,
     LightBlue,
     DarkBlue,
     Midnight,
@@ -21,7 +22,9 @@ export enum Color {
     White,
     OffBlack,
     OffWhite,
-    Red
+    Red,
+    DarkRed,
+    DarkestRed,
 }
 
 export enum IconType {
@@ -30,6 +33,7 @@ export enum IconType {
     Delete,
     Sound,
     Voice,
+    Arrow,
 }
 
 export enum Font {

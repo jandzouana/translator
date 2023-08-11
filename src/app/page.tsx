@@ -12,7 +12,7 @@ interface Props{
 const App : React.FC<Props> = (props = {}) => {
     return(<Provider store={store}>
         <AdobeFonts kitId="ylo6zft" />
-        <div id={"app-container"}>
+        <div id={"app-container"} className={"full-height"}>
             <Header/>
             <Main/>
         </div>

@@ -15,6 +15,7 @@
     align-items: center;
     justify-content: center;
     font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
 }
 
 .tone-dropdown-header-open{

@@ -17,7 +17,7 @@
 }
 
 #translator-container--main{
-    height: 100%;
+    /*height: 100%;*/
     width: 100%;
     /*background-color: red;*/
     display: flex;
@@ -32,6 +32,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 #switch-languages-button{
@@ -99,6 +100,10 @@
 .translator-card--textarea-btns{
     flex-basis: 50px;
     /*background-color: green;*/
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    justify-content: space-between;
 }
 
 .translator-card--textarea:focus{
@@ -130,4 +135,19 @@
 
 .tc--icon-char-container-max{
     color: var(--red);
+}
+
+@media (max-width: 700px) and (orientation: portrait){
+    #translator-container{
+        height: 100%;
+        /*background-color: green;*/
+        max-height: none;
+    }
+    #translator-container--main{
+        flex-direction: column;
+    }
+    #translator-container--bottom{
+        /*background-color: yellow;*/
+        flex-basis: 10px;
+    }
 }
