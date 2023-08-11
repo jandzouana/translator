@@ -99,6 +99,10 @@ const Translator : React.FC<Props> = (props = {}) => {
             case IconType.Arrow:{
                 //console.log("Arrow");
                 handleTranslateBtnClick();
+                const inputField = document.activeElement as HTMLElement;
+                if (inputField) {
+                    inputField.blur(); // Remove focus from the input field
+                }
                 break;
             }
             default:
