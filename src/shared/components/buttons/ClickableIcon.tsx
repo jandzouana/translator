@@ -34,7 +34,7 @@ const ClickableIcon : React.FC<Props> = (props= {
     const { id, backgroundColor, size, sizeType, className, color, disable, icon, handlePress, iconRatio, iconType } = props;
     const [isPressed, setIsPressed] = useState(false);
 
-    function getSize(size : number, sizeType : string, backgroundColor : (Color | undefined), inner : boolean = false) : string{
+    function getSize(size : number, sizeType : string, backgroundColor : Color, inner : boolean = false) : string{
         // return `calc(${size}${sizeType} - ${padding}${sizeType})`;
         const newSize = (backgroundColor !== Color.Undefined && inner) ? size * .7 : size;
         return `${newSize}${sizeType}`;
@@ -53,8 +53,8 @@ const ClickableIcon : React.FC<Props> = (props= {
     }
 
     const innerButtonStyle : CSSProperties = {
-        width: getSize(size ? size : defaultSize, sizeType ? sizeType : "px", backgroundColor, true),
-        height: getSize(size ? size : defaultSize, sizeType ? sizeType : "px", backgroundColor, true),
+        width: getSize(size ? size : defaultSize, sizeType ? sizeType : "px", backgroundColor || Color.Undefined, true),
+        height: getSize(size ? size : defaultSize, sizeType ? sizeType : "px", backgroundColor || Color.Undefined, true),
         borderRadius: "50%",
         // backgroundColor: "green",
         display: "flex",

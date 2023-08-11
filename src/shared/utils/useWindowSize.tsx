@@ -16,6 +16,7 @@ const useWindowSize = () => {
             width: window.innerWidth,
             height: window.innerHeight,
         });
+        adjustDivHeight(window.innerWidth);
         const handleResize = () => {
             adjustDivHeight(window.innerWidth);
             setWindowSize({
