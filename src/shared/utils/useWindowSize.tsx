@@ -8,6 +8,7 @@ const useWindowSize = () => {
         height: -1
     });
     const lastWindowHeight = useRef("");
+    const lastWindowTypeMobile = useRef(false);
 
     const tag = createTag("useWindowSize");
 
@@ -16,6 +17,7 @@ const useWindowSize = () => {
             width: window.innerWidth,
             height: window.innerHeight,
         });
+        lastWindowTypeMobile.current = window.innerWidth < mobileWidthBreakpoint;
         adjustDivHeight(window.innerWidth);
         const handleResize = () => {
             adjustDivHeight(window.innerWidth);
@@ -35,19 +37,24 @@ const useWindowSize = () => {
     const adjustDivHeight = (width : number) => {
         const windowHeight = window.innerHeight;
         const divElement = document.querySelector('.full-height') as HTMLElement;
-        if(lastWindowHeight.current === divElement.style.height) {
-            console.log(tag + "same height");
-            return;
-        }
+
         if (divElement) {
+            let newHeight = "";
             if(width > mobileWidthBreakpoint) { // Desktop
-                divElement.style.height = `100vh`;
-                lastWindowHeight.current = "100vh";
+                newHeight = "100vh";
             }
             else { // Mobile
-                divElement.style.height = `${windowHeight}px`;
-                lastWindowHeight.current = `${windowHeight}px`;
+                newHeight = `${windowHeight}px`;
             }
+            if(lastWindowHeight.current.length !== 0 && lastWindowHeight.current === newHeight) {
+                console.log(tag + "same height : " + divElement.style.height);
+                return;
+            }
+            divElement.style.height = newHeight;
+            lastWindowHeight.current = newHeight;
+        }
+        else{
+            console.log("No div");
         }
         console.log(tag + "Adjusting height to: " + divElement.style.height);
     };
