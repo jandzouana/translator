@@ -2,7 +2,7 @@ import { createTag } from "@/shared/utils/util";
 import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
 import getCompletion from '../api/chimeraApi';
 import { AppDispatch, RootState } from '@/shared/store';
-import { StateChimeraApi } from '@/shared/constants/interfaces';
+import {CompletionMessage, StateChimeraApi} from '@/shared/constants/interfaces';
 import { LoadingStates } from '@/shared/constants/enums';
 
 const disableApi : boolean = false;
@@ -49,7 +49,7 @@ export const fetchTranslation = createAsyncThunk<string, string, {
                 "Example 2 Output: Bonjour comment allez-vous ?\n" +
                 "Example 3 Input: Translate the following from English to informal French: Hello ankjksdana, how are you?\n" +
                 "Example 3 Output: Salut ankjksdana, comment ça va ?\n";
-            const initialMessage = {"role": "user", "content": prompt};
+            const initialMessage : CompletionMessage = {"role": "user", "content": prompt};
             const response: string = await getCompletion(requestMessage, false, initialMessage);
             console.log(tag + "Response: " + response);
             return response;

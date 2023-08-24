@@ -13,3 +13,8 @@ export interface StateTranslation {
     outputLanguage : string,
     tone : string
 }
+
+export interface CompletionMessage {
+    role: string;
+    content: string;
+}
