@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {Color, IconType, LoadingStates, TranslateCardType} from "@/shared/constants/enums";
 import {LanguageDropdownBody, LanguageDropdownHeader} from "./LanguageDropdown/LanguageDropdown";
 import {languages, maxCharLimit} from "@/shared/constants/constants";
@@ -32,13 +32,21 @@ const TranslatorCard : React.FC<Props> = (props = {
     const tag = createTag("TranslatorCard");
     // if (type === TranslateCardType.Output) console.log(tag + "Show loader: " + showLoader + ". Type: " + type);
     const [textValue, setTextValue] = useState('');
+    const cursorPositionRef = useRef(0);
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
     const [isOpen, setIsOpen] = useState(false);
 
     // console.log("isOpen: " + isOpen);
     useEffect(()=>{
         // console.log("text to display: " + textToDisplay + ". Type: " + (type === TranslateCardType.Output) ? "out" : "in");
         setTextValue(textToDisplay);
-    }, [textToDisplay])
+    }, [textToDisplay]);
+
+    useEffect(()=>{
+        // console.log("Cursor position: " + cursorPositionRef.current);
+        // console.log("Text area: " + textareaRef);
+        textareaRef.current?.setSelectionRange(cursorPositionRef.current, cursorPositionRef.current);
+    }, [textValue]);
 
     function handleLanguageDropdownChange(language : string, type : TranslateCardType) {
         if(handleLanguageChange) handleLanguageChange(language, type);
@@ -46,6 +54,7 @@ const TranslatorCard : React.FC<Props> = (props = {
     }
 
     function handleTextAreaChange(event : any) {
+        cursorPositionRef.current = event.target.selectionStart;
         const msg = event.target.value ? event.target.value : "";
         if(handleTextChange) handleTextChange(msg);
     }
@@ -81,6 +90,7 @@ const TranslatorCard : React.FC<Props> = (props = {
             </div>
             <div className={`translator-card--textarea-container ${(isOpen || showLoader)? 'hide' : ''}`}>
                 <textarea disabled={type === TranslateCardType.Output}
+                          ref={textareaRef} // Attach the ref to the textarea element
                           maxLength={maxCharLimit}
                           autoComplete="off"
                           className={`translator-card--textarea disable-focus 
