@@ -19,11 +19,14 @@ const messages : Array<Msg> = [];
 
 // const getCompletion = (msg : string, keepContext : boolean = true) : string =>{
 
-export default async function getCompletion(msg : string, keepContext : boolean = true){
+export default async function getCompletion(msg : string, keepContext : boolean = true, initialMessage = null){
     if(!keepContext) messages.length = 0;
+    if(messages.length === 0 && initialMessage){
+        messages.push(initialMessage);
+    }
     const temp : Msg = {"role": "user", "content": msg};
     messages.push(temp);
-
+    console.log(tag + "Messages: ", messages);
     try {
         const response = await fetch(`${apiUrl}${endpointCompletions}`, {
             method: 'POST',

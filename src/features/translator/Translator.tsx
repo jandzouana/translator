@@ -77,7 +77,7 @@ const Translator : React.FC<Props> = (props = {}) => {
         const inputLanguageShort = inputLanguage.split(' ')[0];
         const outputLanguageShort = outputLanguage.split(' ')[0];
 
-        const msg = `Translate the following with a ${currentTone} tone directly without any extra information without quotes without explanations from ${inputLanguageShort} to ${outputLanguageShort}: ${input}`;
+        const msg = `Translate the following from ${inputLanguageShort} to ${currentTone} ${outputLanguageShort}: ${input}`;
         console.log(tag + "Request message: " + msg);
         return msg;
     }
