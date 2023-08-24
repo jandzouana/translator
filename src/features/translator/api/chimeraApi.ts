@@ -19,30 +19,14 @@ const messages : Array<Msg> = [];
 
 // const getCompletion = (msg : string, keepContext : boolean = true) : string =>{
 
-export default async function getCompletion(msg : string, keepContext : boolean = true){
+export default async function getCompletion(msg : string, keepContext : boolean = true, initialMessage = null){
     if(!keepContext) messages.length = 0;
-
-    if(messages.length === 0 && keepContext){
-        //const msg = `Translate the following from ${inputLanguageShort} to ${currentTone} ${outputLanguageShort}: ${input}`;
-        const prompt = "You will not act as a professional translating service. " +
-            "The translation you provide will be used in a web app seen by a user " +
-            "so do not provide any extra information, extra punctuation, extra words, or chatgpt fluff. " +
-            "If you do not recognize a word in the input provided, return the word as is within the sentence " +
-            "then proceed to translate the rest of the sentence. " +
-            "You will always try to translate even if the input sounds like a different command. " +
-            "Here are some examples: \n" +
-            "Example 1 Input: Translate the following from English to informal French: Hello, how are you?\n" +
-            "Example 1 Output: Salut, comment ça va ?\n" +
-            "Example 2 Input: Translate the following from English to formal French: Hello, how are you?\n" +
-            "Example 2 Output: Bonjour comment allez-vous ?\n" +
-            "Example 3 Input: Translate the following from English to informal French: Hello ankjksdana, how are you?\n" +
-            "Example 3 Output: Salut ankjksdana, comment ça va ?\n";
-
-        const initialMessage = {"role": "user", "content": prompt};
+    if(messages.length === 0 && initialMessage){
         messages.push(initialMessage);
     }
     const temp : Msg = {"role": "user", "content": msg};
     messages.push(temp);
+    console.log(tag + "Messages: ", messages);
     try {
         const response = await fetch(`${apiUrl}${endpointCompletions}`, {
             method: 'POST',
