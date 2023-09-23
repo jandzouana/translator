@@ -1,20 +1,17 @@
-import { useRef, useEffect } from 'react';
-import {
-    clearCurrentTranslation,
-    fetchTranslation,
-    selectApiErrorMsg,
-    selectCurrentTranslation,
-    selectStatus,
-} from "./slices/chimeraGptApiSlice";
+import {useEffect, useRef, useState} from 'react';
+import {clearCurrentTranslation, selectApiErrorMsg,} from "./slices/chimeraGptApiSlice";
 import {
     selectInputLanguage,
     selectOutputLanguage,
     selectTextInput,
-    selectTextOutput, selectTone,
+    selectTextOutput,
+    selectTone,
+    selectTranslation,
     setInputLanguage,
     setOutputLanguage,
     setTextInput,
-    setTextOutput
+    setTextOutput,
+    setTranslation
 } from "./slices/translationTextsSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {copyToClipboardUtil, createTag} from "@/shared/utils/util";
@@ -26,6 +23,7 @@ import switchIcon from '../../assets/sort2.svg';
 import SquareButton from "../../shared/components/buttons/SquareButton";
 import {defaultLanguages, mobileWidthBreakpoint} from "@/shared/constants/constants";
 import useWindowSize from "@/shared/utils/useWindowSize";
+import axios from "axios";
 
 interface Props {
 
@@ -34,9 +32,10 @@ interface Props {
 const Translator : React.FC<Props> = (props = {}) => {
     const tag = createTag("Translator");
     // console.log(tag + "top");
+    const apiKey = process.env.API_KEY;
 
     const dispatch = useDispatch();
-
+    const [loading, setLoading] = useState(LoadingStates.idle);
     const lastTranslationText = useRef("");
     const lastInputLanguage = useRef("");
     const lastOutputLanguage = useRef("");
@@ -50,8 +49,8 @@ const Translator : React.FC<Props> = (props = {}) => {
     const inputLanguage = useSelector(selectInputLanguage);
     const outputLanguage = useSelector(selectOutputLanguage);
 
-    const currentTranslation = useSelector(selectCurrentTranslation);
-    const currentStatus = useSelector(selectStatus);
+    const currentTranslation = useSelector(selectTranslation);
+    const currentStatus = loading; //useSelector(selectStatus);
     const currentTone = useSelector(selectTone);
     const apiErrorMsg = useSelector(selectApiErrorMsg);
     const { width } = useWindowSize();
@@ -93,6 +92,38 @@ const Translator : React.FC<Props> = (props = {}) => {
         localStorage.removeItem("outputLanguage");
     }
 
+    async function getBingTranslation(){
+        setLoading(LoadingStates.loading);
+        // textInput
+        const sourceLanguage = "en";
+        const targetLanguage = "fr";
+
+        try {
+            const response = await axios.post(
+                'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0',
+                [
+                    { text: textInput }
+                ],
+                {
+                    params: {
+                        from: sourceLanguage,
+                        to: targetLanguage,
+                    },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Ocp-Apim-Subscription-Key': apiKey
+                    }
+                }
+            );
+
+            // Get the translated text from the response
+            const translatedText = response.data[0].translations[0].text;
+            setTranslation(translatedText);
+        } catch (error) {
+            console.error('Translation error:', error);
+        }
+    }
+
     function handleIconClick(icon : IconType, type : TranslateCardType){
         switch(icon){
             case IconType.Copy: {
@@ -124,7 +155,8 @@ const Translator : React.FC<Props> = (props = {}) => {
             || currentTone !== lastTone.current
         )){
             //@ts-ignore
-            dispatch(fetchTranslation(generateRequestMessage(textInput)));
+            // dispatch(fetchTranslation(generateRequestMessage(textInput)));
+            getBingTranslation();
             //console.log(tag + "Current translation: " + textInput + " Last: " + lastTranslationText.current);
             lastTranslationText.current = textInput;
             lastInputLanguage.current = inputLanguage;

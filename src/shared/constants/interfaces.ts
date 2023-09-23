@@ -7,11 +7,12 @@ export interface StateChimeraApi {
 }
 
 export interface StateTranslation {
-    textInput: string,
-    textOutput: string,
-    inputLanguage : string,
-    outputLanguage : string,
-    tone : string
+    textInput: string;
+    textOutput: string;
+    inputLanguage : string;
+    outputLanguage : string;
+    tone : string;
+    translation : string;
 }
 
 export interface CompletionMessage {

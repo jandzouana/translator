@@ -13,6 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.5.0",
+    "bing-translate-api": "^2.9.1",
     "dotenv-webpack": "^8.0.1",
     "react": "^18.2.0",
     "react-adobe-fonts": "^0.1.0",

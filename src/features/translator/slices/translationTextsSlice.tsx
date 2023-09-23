@@ -12,6 +12,7 @@ const initialState : StateTranslation = {
     textOutput: "",
     inputLanguage : "",
     outputLanguage : "",
+    translation: "",
     tone : defaultTone
 };
 
@@ -19,6 +20,9 @@ const slice : any = createSlice({
     name: 'translationTexts',
     initialState,
     reducers: {
+        setTranslation (state : StateTranslation, action : any){
+          state.translation = action.payload;
+        },
         setTextInput (state : StateTranslation, action : any){
           state.textInput = action.payload;
         },
@@ -38,11 +42,12 @@ const slice : any = createSlice({
     },
 });
 
-export const { setTextInput, setTextOutput, setInputLanguage, setOutputLanguage, setTone } = slice.actions;
+export const { setTextInput, setTextOutput, setInputLanguage, setOutputLanguage, setTone, setTranslation } = slice.actions;
 export const selectTextInput = (state : RootState) => state.translation.textInput;
 export const selectTextOutput = (state : RootState) => state.translation.textOutput;
 export const selectInputLanguage = (state : RootState) => state.translation.inputLanguage;
 export const selectOutputLanguage = (state : RootState) => state.translation.outputLanguage;
 export const selectTone = (state : RootState) => state.translation.tone;
+export const selectTranslation = (state : RootState) => state.translation.translation;
 
 export default slice.reducer;
