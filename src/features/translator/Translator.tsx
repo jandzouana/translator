@@ -33,7 +33,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     const tag = createTag("Translator");
     // console.log(tag + "top");
     const apiKey = process.env.API_KEY;
-
+    const location = "West US 2";
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(LoadingStates.idle);
     const lastTranslationText = useRef("");
@@ -93,14 +93,14 @@ const Translator : React.FC<Props> = (props = {}) => {
     }
 
     async function getBingTranslation(){
+        console.log("API key: " + apiKey);
         setLoading(LoadingStates.loading);
         // textInput
         const sourceLanguage = "en";
         const targetLanguage = "fr";
-
         try {
             const response = await axios.post(
-                'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0',
+                'https://api.cognitive.microsofttranslator.com',
                 [
                     { text: textInput }
                 ],
@@ -111,7 +111,8 @@ const Translator : React.FC<Props> = (props = {}) => {
                     },
                     headers: {
                         'Content-Type': 'application/json',
-                        'Ocp-Apim-Subscription-Key': apiKey
+                        'Ocp-Apim-Subscription-Key': apiKey,
+                        'Ocp-Apim-Subscription-Region': location
                     }
                 }
             );
@@ -119,8 +120,11 @@ const Translator : React.FC<Props> = (props = {}) => {
             // Get the translated text from the response
             const translatedText = response.data[0].translations[0].text;
             setTranslation(translatedText);
+            setLoading(LoadingStates.succeeded);
         } catch (error) {
             console.error('Translation error:', error);
+            window.alert('Translation error: ' + error);
+            setLoading(LoadingStates.failed);
         }
     }
 
@@ -152,6 +156,7 @@ const Translator : React.FC<Props> = (props = {}) => {
         if(textInput.length !== 0 && (textInput !== lastTranslationText.current
             || inputLanguage !== lastInputLanguage.current
             || outputLanguage !== lastOutputLanguage.current
+            || currentStatus === LoadingStates.failed
             || currentTone !== lastTone.current
         )){
             //@ts-ignore
