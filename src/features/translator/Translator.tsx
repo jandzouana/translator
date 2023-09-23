@@ -33,7 +33,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     const tag = createTag("Translator");
     // console.log(tag + "top");
     const apiKey = process.env.API_KEY;
-    const location = "West US 2";
+    const location = "westus2";
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(LoadingStates.idle);
     const lastTranslationText = useRef("");
@@ -93,19 +93,20 @@ const Translator : React.FC<Props> = (props = {}) => {
     }
 
     async function getBingTranslation(){
-        console.log("API key: " + apiKey);
+        //console.log("API key: " + apiKey);
         setLoading(LoadingStates.loading);
         // textInput
         const sourceLanguage = "en";
         const targetLanguage = "fr";
         try {
             const response = await axios.post(
-                'https://api.cognitive.microsofttranslator.com',
+                'https://api.cognitive.microsofttranslator.com/translate',
                 [
                     { text: textInput }
                 ],
                 {
                     params: {
+                        'api-version': '3.0',
                         from: sourceLanguage,
                         to: targetLanguage,
                     },
@@ -167,7 +168,7 @@ const Translator : React.FC<Props> = (props = {}) => {
             lastInputLanguage.current = inputLanguage;
             lastOutputLanguage.current = outputLanguage;
             lastTone.current = currentTone;
-            dispatch(clearCurrentTranslation());
+            //dispatch(clearCurrentTranslation());
         }
     }
 
