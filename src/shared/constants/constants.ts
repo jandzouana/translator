@@ -35,7 +35,11 @@ export const languages : Array<string> = [
     'Vietnamese (Tiếng Việt)',
 ];
 
-export const bingLanguages = {
+interface LanguageObject {
+    [code: string]: string;
+}
+
+export const bingLanguages : LanguageObject = {
     af: "Afrikaans",
     sq: "Albanian",
     am: "Amharic",
@@ -166,7 +170,7 @@ export const bingLanguages = {
     zu: "Zulu"
 };
 
-export const bingLanguagesArray = Object.keys(bingLanguages).map((code) => ({
+export const bingLanguagesArray: { code: string; value: string }[] = Object.keys(bingLanguages).map((code) => ({
     code: code,
     value: bingLanguages[code],
 }));
