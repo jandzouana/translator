@@ -122,6 +122,7 @@ const Translator : React.FC<Props> = (props = {}) => {
             || inputLanguage !== lastInputLanguage.current
             || outputLanguage !== lastOutputLanguage.current
             || currentTone !== lastTone.current
+            || currentStatus === LoadingStates.failed
         )){
             //@ts-ignore
             dispatch(fetchTranslation(generateRequestMessage(textInput)));

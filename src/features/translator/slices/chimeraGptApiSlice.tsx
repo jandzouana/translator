@@ -56,6 +56,7 @@ export const fetchTranslation = createAsyncThunk<string, string, {
         } catch (e: any) {
             // Handle the error and return a rejected action using rejectWithValue
             const errorMessage = e.message; // Or any other error-related data you want to include
+            window.alert("Error getting translation. Please try again later");
             return thunkApi.rejectWithValue(errorMessage);
         }
     }
