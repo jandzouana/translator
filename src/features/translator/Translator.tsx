@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import {useRef, useEffect, useState} from 'react';
 import {
     clearCurrentTranslation,
     fetchTranslation,
@@ -34,7 +34,7 @@ interface Props {
 const Translator : React.FC<Props> = (props = {}) => {
     const tag = createTag("Translator");
     // console.log(tag + "top");
-
+    const enableTranslateLimit = true;
     const dispatch = useDispatch();
 
     const lastTranslationText = useRef("");
@@ -57,8 +57,6 @@ const Translator : React.FC<Props> = (props = {}) => {
     const { width } = useWindowSize();
     const mobileCheckDidLoad = width !== -1;
     const isMobileSize = width < mobileWidthBreakpoint;
-
-    //console.log(tag + "Current translation: " + currentTranslation);
 
     useEffect(()=>{
         const inLanguage = localStorage.getItem("inputLanguage") || defaultLanguages.input;
@@ -91,6 +89,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     function clearLocalStorage(){
         localStorage.removeItem("inputLanguage");
         localStorage.removeItem("outputLanguage");
+        localStorage.removeItem("translationUsageCount");
     }
 
     function handleIconClick(icon : IconType, type : TranslateCardType){
@@ -118,6 +117,15 @@ const Translator : React.FC<Props> = (props = {}) => {
     }
 
     function handleTranslateBtnClick() {
+        const storedUsageCount = localStorage.getItem('translationUsageCount');
+        if(storedUsageCount && enableTranslateLimit) {
+            const usageCount = parseInt(storedUsageCount, 10);
+            if (usageCount >= 10) {
+                alert('You have exceeded the limit of 10 free translations.');
+                return;
+            }
+        }
+
         if(textInput.length !== 0 && (textInput !== lastTranslationText.current
             || inputLanguage !== lastInputLanguage.current
             || outputLanguage !== lastOutputLanguage.current

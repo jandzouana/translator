@@ -8,7 +8,7 @@ import { LoadingStates } from '@/shared/constants/enums';
 
 const disableApi : boolean = false;
 const delaySeconds : number = 3;
-
+const useSimplePrompt = false;
 const tag : string = createTag("apiSlice");
 const disabledText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget dignissim nisl. Nulla facilisi. Nunc sodales tincidunt dui, eu condimentum urna vestibulum non.";
 const initialState : StateChimeraApi = {
@@ -36,7 +36,7 @@ export const fetchTranslation = createAsyncThunk<string, string, {
         console.log(tag + "Getting translation...");
         try {
             const requestMessage = input;
-            //const msg = `Translate the following from ${inputLanguageShort} to ${currentTone} ${outputLanguageShort}: ${input}`;
+            const promptSimple = "You are a professional translating service";
             const prompt = "You will now act as a professional translating service. " +
                 "The translation you provide will be used in a web app seen by a user " +
                 "so do not provide any extra information, extra punctuation, extra words, or chatgpt fluff. " +
@@ -50,7 +50,7 @@ export const fetchTranslation = createAsyncThunk<string, string, {
                 "Example 2 Output: Bonjour comment allez-vous ?\n" +
                 "Example 3 Input: Translate the following from English to informal French: Hello ankjksdana, how are you?\n" +
                 "Example 3 Output: Salut ankjksdana, comment ça va ?\n";
-            const initialMessage : CompletionMessage = {"role": "user", "content": prompt};
+            const initialMessage : CompletionMessage = {"role": "user", "content": useSimplePrompt? promptSimple : prompt};
             const response: string = await getCompletion(requestMessage, false, initialMessage);
             console.log(tag + "Response: " + response);
             return response;
@@ -81,6 +81,12 @@ const apiSlice : any = createSlice({
                 state.status = LoadingStates.succeeded;
                 state.currentTranslation = action.payload;
                 console.log(tag + "Success. Payload: " + action.payload);
+// TODO: Add usage to state instead
+                const storedUsageCount = localStorage.getItem('translationUsageCount');
+                const usageCount = storedUsageCount ? parseInt(storedUsageCount, 10) : 0;
+                const newUsageCount = usageCount + 1;
+                localStorage.setItem('translationUsageCount', newUsageCount.toString());
+                console.log("Translation count: " + newUsageCount);
             })
             .addCase(fetchTranslation.rejected, (state: StateChimeraApi, action: PayloadAction<any>) => {
                 state.status = LoadingStates.failed;
