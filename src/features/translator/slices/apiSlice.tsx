@@ -1,6 +1,7 @@
 import { createTag } from "@/shared/utils/util";
 import { createAsyncThunk, createSlice, PayloadAction, Slice } from '@reduxjs/toolkit';
-import getCompletion from '../api/chimeraApi';
+// import getCompletion from '../api/chimeraApi';
+import getCompletion from '../api/openAIApi';
 import { AppDispatch, RootState } from '@/shared/store';
 import {CompletionMessage, StateChimeraApi} from '@/shared/constants/interfaces';
 import { LoadingStates } from '@/shared/constants/enums';
@@ -8,7 +9,7 @@ import { LoadingStates } from '@/shared/constants/enums';
 const disableApi : boolean = false;
 const delaySeconds : number = 3;
 
-const tag : string = createTag("chimeraGptApi");
+const tag : string = createTag("apiSlice");
 const disabledText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget dignissim nisl. Nulla facilisi. Nunc sodales tincidunt dui, eu condimentum urna vestibulum non.";
 const initialState : StateChimeraApi = {
     currentTranslation: "",

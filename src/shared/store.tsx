@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import apiSlice from "../features/translator/slices/chimeraGptApiSlice";
+import apiSlice from "../features/translator/slices/apiSlice";
 import translationSlice from "../features/translator/slices/translationTextsSlice";
 
 const store : any = configureStore({

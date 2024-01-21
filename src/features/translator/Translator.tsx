@@ -5,7 +5,7 @@ import {
     selectApiErrorMsg,
     selectCurrentTranslation,
     selectStatus,
-} from "./slices/chimeraGptApiSlice";
+} from "./slices/apiSlice";
 import {
     selectInputLanguage,
     selectOutputLanguage,
@@ -26,7 +26,6 @@ import switchIcon from '../../assets/sort2.svg';
 import SquareButton from "../../shared/components/buttons/SquareButton";
 import {defaultLanguages, mobileWidthBreakpoint} from "@/shared/constants/constants";
 import useWindowSize from "@/shared/utils/useWindowSize";
-import getCompletion from "@/features/translator/api/openAIApi";
 
 interface Props {
 
@@ -36,7 +35,6 @@ const Translator : React.FC<Props> = (props = {}) => {
     const tag = createTag("Translator");
     // console.log(tag + "top");
 
-    getCompletion();
     const dispatch = useDispatch();
 
     const lastTranslationText = useRef("");
