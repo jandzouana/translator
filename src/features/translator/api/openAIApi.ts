@@ -1,5 +1,5 @@
 import {CompletionMessage} from "@/shared/constants/interfaces";
-const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
+const apiKey = process.env.OPENAI_API_KEY;
 console.log("API: " + apiKey);
 import { createTag } from '@/shared/utils/util';
 const apiUrl =  'https://api.openai.com/v1';
