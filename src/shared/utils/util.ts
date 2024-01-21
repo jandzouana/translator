@@ -14,6 +14,8 @@ export const _getColorVarNameFromType = (type : Color) : string => {
       case Color.DarkGrey: return "--dark-grey";
       case Color.LightGrey: return "--light-grey";
       case Color.White: return "--white";
+      case Color.DarkRed: return "--dark-red";
+      case Color.DarkestRed: return "--darkest-red";
       default: return "";
    }
 }
@@ -35,3 +37,12 @@ export const varFormatWithFont = (font : Font) : string => {
    const f = _getFontVarNameFromType(font);
    return `var(${f})`;
 }
+
+export const copyToClipboardUtil = async (text: string): Promise<void> => {
+   try {
+      await navigator.clipboard.writeText(text);
+      // console.log('Text copied to clipboard:', text);
+   } catch (err) {
+      console.error('Failed to copy text:', err);
+   }
+};

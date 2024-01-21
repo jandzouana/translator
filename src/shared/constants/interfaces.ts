@@ -10,5 +10,11 @@ export interface StateTranslation {
     textInput: string,
     textOutput: string,
     inputLanguage : string,
-    outputLanguage : string
+    outputLanguage : string,
+    tone : string
+}
+
+export interface CompletionMessage {
+    role: string;
+    content: string;
 }

@@ -3,6 +3,7 @@ import {StateTranslation} from "../../../shared/constants/interfaces";
 import {RootState} from "../../../shared/store";
 import {createTag} from "../../../shared/utils/util";
 import {Root} from "react-dom/client";
+import {defaultTone} from "@/shared/constants/constants";
 
 const tag = createTag("translationTextsSlice");
 
@@ -10,7 +11,8 @@ const initialState : StateTranslation = {
     textInput: "",
     textOutput: "",
     inputLanguage : "",
-    outputLanguage : ""
+    outputLanguage : "",
+    tone : defaultTone
 };
 
 const slice : any = createSlice({
@@ -30,13 +32,17 @@ const slice : any = createSlice({
         setOutputLanguage (state : StateTranslation, action : any){
             state.outputLanguage = action.payload;
         },
+        setTone (state : StateTranslation, action : any){
+            state.tone = action.payload;
+        }
     },
 });
 
-export const { setTextInput, setTextOutput, setInputLanguage, setOutputLanguage } = slice.actions;
+export const { setTextInput, setTextOutput, setInputLanguage, setOutputLanguage, setTone } = slice.actions;
 export const selectTextInput = (state : RootState) => state.translation.textInput;
 export const selectTextOutput = (state : RootState) => state.translation.textOutput;
 export const selectInputLanguage = (state : RootState) => state.translation.inputLanguage;
 export const selectOutputLanguage = (state : RootState) => state.translation.outputLanguage;
+export const selectTone = (state : RootState) => state.translation.tone;
 
 export default slice.reducer;

@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Header = () =>{
     return(<nav id={"header"}>
         <div id={"title"} className={"disable-select"}>

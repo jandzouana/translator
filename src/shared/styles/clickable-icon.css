@@ -1,0 +1,11 @@
+.clickable-icon:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.clickable-icon:active{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.clickable-icon-blue{
+    filter: brightness(0) saturate(100%) invert(45%) sepia(58%) saturate(2163%) hue-rotate(162deg) brightness(96%) contrast(101%);
+}

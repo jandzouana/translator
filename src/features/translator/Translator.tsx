@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import { useRef, useEffect } from 'react';
 import {
     clearCurrentTranslation,
     fetchTranslation,
@@ -10,25 +10,27 @@ import {
     selectInputLanguage,
     selectOutputLanguage,
     selectTextInput,
-    selectTextOutput,
+    selectTextOutput, selectTone,
     setInputLanguage,
     setOutputLanguage,
     setTextInput,
     setTextOutput
 } from "./slices/translationTextsSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {createTag} from "../../shared/utils/util";
-import {LoadingStates, TranslateCardType} from "../../shared/constants/enums";
+import {copyToClipboardUtil, createTag} from "@/shared/utils/util";
+import {IconType, LoadingStates, TranslateCardType} from "@/shared/constants/enums";
 import './styles/translator.css';
 import TranslatorCard from "./components/TranslatorCard";
 import CircleButton from "../../shared/components/buttons/CircleButton";
 import switchIcon from '../../assets/sort2.svg';
 import SquareButton from "../../shared/components/buttons/SquareButton";
-import {defaultLanguages} from "../../shared/constants/constants";
+import {defaultLanguages, mobileWidthBreakpoint} from "@/shared/constants/constants";
+import useWindowSize from "@/shared/utils/useWindowSize";
 
 interface Props {
 
 }
+
 const Translator : React.FC<Props> = (props = {}) => {
     const tag = createTag("Translator");
     // console.log(tag + "top");
@@ -38,8 +40,7 @@ const Translator : React.FC<Props> = (props = {}) => {
     const lastTranslationText = useRef("");
     const lastInputLanguage = useRef("");
     const lastOutputLanguage = useRef("");
-
-    // TODO: Move?
+    const lastTone = useRef("");
 
     // useEffect(()=>{
     //
@@ -51,13 +52,19 @@ const Translator : React.FC<Props> = (props = {}) => {
 
     const currentTranslation = useSelector(selectCurrentTranslation);
     const currentStatus = useSelector(selectStatus);
+    const currentTone = useSelector(selectTone);
     const apiErrorMsg = useSelector(selectApiErrorMsg);
+    const { width } = useWindowSize();
+    const mobileCheckDidLoad = width !== -1;
+    const isMobileSize = width < mobileWidthBreakpoint;
 
     //console.log(tag + "Current translation: " + currentTranslation);
 
     useEffect(()=>{
-        dispatch(setOutputLanguage(defaultLanguages.output));
-        dispatch(setInputLanguage(defaultLanguages.input));
+        const inLanguage = localStorage.getItem("inputLanguage") || defaultLanguages.input;
+        const outLanguage = localStorage.getItem("outputLanguage") || defaultLanguages.output;
+        dispatch(setInputLanguage(inLanguage));
+        dispatch(setOutputLanguage(outLanguage));
     }, [])
 
     useEffect(()=>{
@@ -67,24 +74,64 @@ const Translator : React.FC<Props> = (props = {}) => {
     }, [currentTranslation])
 
     function generateRequestMessage(input : string){
-        const msg = `Translate the following from ${inputLanguage} to ${outputLanguage}: ${input}`;
+        const inputLanguageShort = inputLanguage.split(' ')[0];
+        const outputLanguageShort = outputLanguage.split(' ')[0];
+
+        const msg = `Translate the following from ${inputLanguageShort} to ${currentTone} ${outputLanguageShort}: ${input}`;
         console.log(tag + "Request message: " + msg);
         return msg;
+    }
+
+    function copyToClipboard(type : TranslateCardType){
+        console.log("copy");
+        const text = type === TranslateCardType.Output ? textOutput.slice() : textInput.slice();
+        copyToClipboardUtil(text);
+    }
+
+    function clearLocalStorage(){
+        localStorage.removeItem("inputLanguage");
+        localStorage.removeItem("outputLanguage");
+    }
+
+    function handleIconClick(icon : IconType, type : TranslateCardType){
+        switch(icon){
+            case IconType.Copy: {
+                copyToClipboard(type);
+                break;
+            }
+            case IconType.Delete: {
+                dispatch(setTextInput(""));
+                break;
+            }
+            case IconType.Arrow:{
+                //console.log("Arrow");
+                handleTranslateBtnClick();
+                const inputField = document.activeElement as HTMLElement;
+                if (inputField) {
+                    inputField.blur(); // Remove focus from the input field
+                }
+                break;
+            }
+            default:
+                break;
+        }
     }
 
     function handleTranslateBtnClick() {
         if(textInput.length !== 0 && (textInput !== lastTranslationText.current
             || inputLanguage !== lastInputLanguage.current
             || outputLanguage !== lastOutputLanguage.current
+            || currentTone !== lastTone.current
+            || currentStatus === LoadingStates.failed
         )){
             //@ts-ignore
             dispatch(fetchTranslation(generateRequestMessage(textInput)));
-            console.log(tag + "Current translation: " + textInput + " Last: " + lastTranslationText.current);
+            //console.log(tag + "Current translation: " + textInput + " Last: " + lastTranslationText.current);
             lastTranslationText.current = textInput;
             lastInputLanguage.current = inputLanguage;
             lastOutputLanguage.current = outputLanguage;
-            // TODO: Needed?
-            // dispatch(clearCurrentTranslation());
+            lastTone.current = currentTone;
+            dispatch(clearCurrentTranslation());
         }
     }
 
@@ -96,16 +143,20 @@ const Translator : React.FC<Props> = (props = {}) => {
     function handleLanguageChange(language : string, type : TranslateCardType){
         if(type === TranslateCardType.Input){
             dispatch(setInputLanguage(language));
+            localStorage.setItem("inputLanguage", language);
         }
-        else dispatch(setOutputLanguage(language));
+        else {
+            dispatch(setOutputLanguage(language));
+            localStorage.setItem("outputLanguage", language);
+        }
     }
 
     function handleSwitchButtonPress(){
         // console.log(tag + "handleSwitchPress " + "in: " + textInput + " out: " + textOutput);
-        const temp = textInput.slice();
+        const temp = textInput.trim();
         dispatch(setTextInput(textOutput)); // doesn't work when empty
         dispatch(setTextOutput(temp));
-        const temp2 = inputLanguage.slice();
+        const temp2 = inputLanguage;
         dispatch(setInputLanguage(outputLanguage));
         dispatch(setOutputLanguage(temp2));
     }
@@ -116,26 +167,43 @@ const Translator : React.FC<Props> = (props = {}) => {
                 <TranslatorCard type={TranslateCardType.Input}
                                 handleTextChange={handleTextInputChange}
                                 handleLanguageChange={handleLanguageChange}
+                                handleIconClick={handleIconClick}
                                 language={inputLanguage}
+                                otherLanguage={outputLanguage}
+                                mobile={mobileCheckDidLoad && isMobileSize}
+                                currentStatus={currentStatus}
                                 textToDisplay={textInput}/>
-                <CircleButton id={"switch-languages-button"}
-                              icon={switchIcon}
-                              enablePress={false}
-                              handlePress={handleSwitchButtonPress}
-                              className={"rotate-image-right"}
-                              iconRatio={.5}
-                              size={50}
-                />
+                {mobileCheckDidLoad && !isMobileSize &&
+                    <CircleButton id={"switch-languages-button"}
+                        icon={switchIcon}
+                        disabled={currentStatus === LoadingStates.loading}
+                        enablePressStyling={false}
+                        handlePress={handleSwitchButtonPress}
+                        className={"rotate-image-right drop-shadow"}
+                        iconRatio={50}
+                        size={50}
+                />}
                 <TranslatorCard
                     type={TranslateCardType.Output}
                     handleLanguageChange={handleLanguageChange}
+                    handleIconClick={handleIconClick}
                     textToDisplay={textOutput}
                     language={outputLanguage}
+                    otherLanguage={inputLanguage}
+                    currentStatus={currentStatus}
+                    showLoader={currentStatus === LoadingStates.loading}
                 />
             </div>
             <div id={"translator-container--bottom"}>
-                <SquareButton disabled={currentStatus === LoadingStates.loading}
-                              handlePress={handleTranslateBtnClick} text={"Translate"} />
+                {mobileCheckDidLoad && !isMobileSize && <SquareButton disabled={currentStatus === LoadingStates.loading}
+                                                        handlePress={handleTranslateBtnClick}
+                                                        width={isMobileSize ? 100 : 120}
+                                                        height={isMobileSize ? 70 : 50}
+                                                        widthType={isMobileSize ? "%" : "px"}
+                                                        heightType={"px"}
+                                                        text={"Translate"}
+                                                        fontSize={isMobileSize ? "var(--font-size-med)" : ""}
+                />}
             </div>
         </div>
 

@@ -6,19 +6,18 @@
     display: flex;
     flex-direction: column;
     height: 70%;
-    min-height: 300px;
     width: 100%;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
 
-    /*min-height: 500px;*/
-    max-height: 400px;
+    min-height: 300px;
+    max-height: 412px;
     max-width: 1500px;
 }
 
 #translator-container--main{
-    height: 100%;
+    /*height: 100%;*/
     width: 100%;
     /*background-color: red;*/
     display: flex;
@@ -33,6 +32,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 #switch-languages-button{
@@ -45,7 +45,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px;
+    /*padding: 10px;*/
+    padding-bottom: 10px;
+    padding-top: 10px;
     gap: 5px;
 }
 
@@ -65,12 +67,51 @@
     font-family: var(--primary-font);
     font-size: var(--font-size-small);
     padding: 0.7em;
-    line-height: 20px;
+    line-height: 24px;
     border: none;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.translator-card--spinner {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.translator-card--textarea-container{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    /*background-color: blue;*/
+}
+
+.translator-card--loader-container{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    /*background-color: blue;*/
+}
+
+.translator-card--textarea{
+    flex: 1;
+    /*background-color: yellow;*/
+}
+
+.translator-card--textarea-btns{
+    flex-basis: 50px;
+    /*background-color: green;*/
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+    justify-content: space-between;
 }
 
 .translator-card--textarea:focus{
     /*outline: 2px solid var(--light-grey);*/
+}
+
+.translator-card--textarea::placeholder{
+    color: var(--grey);
 }
 
 .translator-card--textarea--output {
@@ -79,5 +120,34 @@
 
 .translator-card--icon-container{
     flex-basis: 50px;
+    display: flex;
+    margin-right: 10px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 3px;
 }
 
+.tc--icon-char-container{
+    text-align: center;
+    color: var(--grey);
+    font-size: var(--font-size-xs);
+}
+
+.tc--icon-char-container-max{
+    color: var(--red);
+}
+
+@media (max-width: 700px) and (orientation: portrait){
+    #translator-container{
+        height: 100%;
+        /*background-color: green;*/
+        max-height: none;
+    }
+    #translator-container--main{
+        flex-direction: column;
+    }
+    #translator-container--bottom{
+        /*background-color: yellow;*/
+        flex-basis: 10px;
+    }
+}

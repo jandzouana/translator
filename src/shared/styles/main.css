@@ -10,16 +10,13 @@ body, html{
 #app-container{
     display: flex;
     flex-direction: column;
-    /*align-items: stretch;*/
-    height: 100vh;
-    min-height: 400px;
-    max-width: 1400px;
-    min-width: 700px;
+    /*min-height: var(--min-app-height);*/
+    min-width: calc(var(--mobile-breakpoint-width) - 1px);
+    max-width: var(--max-app-width);
+    margin: auto;
 }
 
 #header{
-    /*background-color: gray;*/
-    /*height: 100px;*/
     flex-basis: 100px;
     width: 100%;
     display: flex;
@@ -38,33 +35,24 @@ body, html{
 }
 
 #main{
-    /*background-color: #007bff;*/
     flex: 1;
-    /*max-height: 580px;*/
-    /*max-width: 1500px;*/
-    /*min-height: 400px;*/
-
     display: flex;
     flex-direction: column;
     margin-right: 70px;
     margin-left: 70px;
-    /*margin-bottom: 20px;*/
 }
 
 .level{
-    /*border: 2px solid lightseagreen;*/
     display: flex;
 }
 
 #l1{
-    flex-basis: 50px;
+    flex-basis: 70px;
     align-items: center;
-    display: none;
 }
 
 #l2{
     flex: 1;
-    /*align-items: center;*/
     display: flex;
     justify-content: flex-start;
 }
@@ -77,6 +65,9 @@ body, html{
 }
 
 /* Minor adjustments */
+.full-height{
+    height: 100vh;
+}
 
 .disable-select {
     user-select: none;
@@ -94,6 +85,14 @@ body, html{
     transform: rotate(90deg);
 }
 
+.rotate-image-left{
+    transform: rotate(-90deg);
+}
+
+.rotate-image-upside-down {
+    transform: rotate(180deg);
+}
+
 .hide{
     display: none;
 }
@@ -101,6 +100,13 @@ body, html{
 .invisible{
     visibility: hidden;
 }
+
+.drop-shadow {
+    /* horizontal offset, vertical offset, blur radius, spread radius, color */
+    box-shadow: 2px -2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Scrolls */
 
 /* For Webkit-based browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
@@ -111,6 +117,7 @@ body, html{
 ::-webkit-scrollbar-track {
     background-color: var(--white);
     border-radius: 3px;
+    /*margin-bottom: 15px;*/
 }
 
 ::-webkit-scrollbar-thumb {
@@ -137,15 +144,28 @@ body, html{
 }
 
 .red-scrollbar::-webkit-scrollbar-track {
-    background-color: var(--white);
-    border-radius: 3px;
-}
-
-.red-scrollbar::-webkit-scrollbar-thumb {
     background-color: var(--dark-red);
     border-radius: 3px;
 }
 
+.red-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--off-white);
+    border-radius: 3px;
+}
+
 .red-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: black;
+    background-color: var(--light-grey);
+}
+
+@media (max-width: 700px) and (orientation: portrait){
+    #app-container{
+        min-width: 100vw;
+    }
+    #main{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    #header{
+        flex-basis: 72px;
+    }
 }

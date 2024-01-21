@@ -3,10 +3,19 @@ export const defaultLanguages = {
     output: "Spanish (Español)"
 }
 
-export const languages = [
+export const defaultTone : string = "Formal";
+
+export const tones : Array<string> = ["Formal", "Informal", "Professional"];
+
+export const maxCharLimit : number = 1000;
+
+export const mobileWidthBreakpoint = 700;
+
+export const languages : Array<string> = [
     'Arabic (العربية)',
     'Bengali (বাংলা)',
     'Chinese (中文)',
+    'English',
     'French (Français)',
     'German (Deutsch)',
     'Hindi (हिन्दी)',
