@@ -24,7 +24,7 @@ import TranslatorCard from "./components/TranslatorCard";
 import CircleButton from "../../shared/components/buttons/CircleButton";
 import switchIcon from '../../assets/sort2.svg';
 import SquareButton from "../../shared/components/buttons/SquareButton";
-import {defaultLanguages, mobileWidthBreakpoint} from "@/shared/constants/constants";
+import {defaultLanguages, maxTranslations, mobileWidthBreakpoint} from "@/shared/constants/constants";
 import useWindowSize from "@/shared/utils/useWindowSize";
 
 interface Props {
@@ -120,8 +120,8 @@ const Translator : React.FC<Props> = (props = {}) => {
         const storedUsageCount = localStorage.getItem('translationUsageCount');
         if(storedUsageCount && enableTranslateLimit) {
             const usageCount = parseInt(storedUsageCount, 10);
-            if (usageCount >= 10) {
-                alert('You have exceeded the limit of 10 free translations.');
+            if (usageCount >= maxTranslations) {
+                alert(`You have exceeded the limit of ${maxTranslations} free translations.`);
                 return;
             }
         }

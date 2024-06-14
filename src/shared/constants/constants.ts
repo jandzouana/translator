@@ -11,6 +11,8 @@ export const maxCharLimit : number = 1000;
 
 export const mobileWidthBreakpoint = 700;
 
+export const maxTranslations = 4;
+
 export const languages : Array<string> = [
     'Arabic (العربية)',
     'Bengali (বাংলা)',
